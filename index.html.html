@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Творческая мастерская | Официальный сайт писателя</title>
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-color: #2c2c2c;
+            --accent-color: #8b5a2b;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid #e0dad3;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: normal;
+        }
+        header p {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+        nav {
+            margin-top: 20px;
+        }
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            color: var(--accent-color);
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .about-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .book-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border: 1px solid #e0dad3;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .book-card h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+        }
+        .price {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #6f441f;
+        }
+        .ad-block {
+            background: #f0ede9;
+            border: 1px dashed #bbb;
+            padding: 20px;
+            text-align: center;
+            margin: 40px 0;
+            color: #777;
+            font-size: 0.9em;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9em;
+            color: #888;
+            border-top: 1px solid #e0dad3;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Имя Автора</h1>
+        <p>Поэт, писатель, член союза литераторов</p>
+        <nav>
+            <a href="#about">О себе</a>
+            <a href="#books">Книги и Стихи</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <!-- Рекламное место вверху -->
+        <div class="ad-block">
+            <!-- Сюда позже вставим код рекламы РСЯ или Google AdSense -->
+            Место для контекстной рекламы (Верхний баннер)
+        </div>
+
+        <section id="about" class="about-section">
+            <h2>О авторе</h2>
+            <p>Добро пожаловать в мое творческое пространство. Здесь вы найдете мои новые стихотворения, анонсы романов и сможете приобрести электронные или печатные версии книг напрямую у автора.</p>
+        </section>
+
+        <section id="books">
+            <h2 style="text-align: center;">Книги и сборники</h2>
+            <div class="books-grid">
+                
+                <!-- Книга 1 -->
+                <div class="book-card">
+                    <h3>Шепот Осени</h3>
+                    <p>Сборник лирических стихотворений о природе, любви и поиске себя.</p>
+                    <div class="price">350 ₽</div>
+                    <!-- Ссылку '#' замените на вашу платежную ссылку (ЮKassa / Бусти / Литрес) -->
+                    <a href="#" class="btn" target="_blank">Купить книгу</a>
+                </div>
+
+                <!-- Книга 2 -->
+                <div class="book-card">
+                    <h3>След на воде</h3>
+                    <p>Детективный роман с глубоким психологическим подтекстом.</p>
+                    <div class="price">490 ₽</div>
+                    <a href="#" class="btn" target="_blank">Купить книгу</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Рекламное место внизу -->
+        <div class="ad-block">
+            Место для контекстной рекламы (Нижний баннер)
+        </div>
+
+    </div>
+
+    <footer id="contacts">
+        <p>&copy; 2026 Имя Автора. Все права защищены.</p>
+        <p>По вопросам сотрудничества: email@example.com</p>
+    </footer>
+
+</body>
+</html>
