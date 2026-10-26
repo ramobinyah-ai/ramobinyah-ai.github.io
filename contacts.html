@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты | Творчество Автора</title>
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-color: #2c2c2c;
+            --accent-color: #8b5a2b;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            padding: 30px 20px;
+            border-bottom: 1px solid #e0dad3;
+            background: #fff;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2em;
+            font-weight: normal;
+        }
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        /* Блок контактов */
+        .contacts-block {
+            background: var(--card-bg);
+            border: 1px solid #e0dad3;
+            border-radius: 6px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            margin-top: 30px;
+        }
+        .contacts-info {
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        .contacts-info p {
+            margin: 10px 0;
+        }
+        .contacts-info a {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        /* Форма обратной связи */
+        .contact-form h2 {
+            font-weight: normal;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--text-color);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0dad3;
+            border-radius: 4px;
+            font-family: 'Georgia', serif;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Georgia', serif;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #6f4722;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9em;
+            color: #888;
+            border-top: 1px solid #e0dad3;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Контакты</h1>
+        <nav>
+            <a href="index.html">← На главную</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <div class="contacts-block">
+            <div class="contacts-info">
+                <p>По вопросам сотрудничества, издания книг и предложений:</p>
+                <!-- Замените адрес почты на ваш настоящий -->
+                <p><strong>Email:</strong> <a href="mailto:email@example.com">email@example.com</a></p>
+            </div>
+
+            <form class="contact-form" action="#" method="POST">
+                <h2>Написать мне</h2>
+                
+                <div class="form-group">
+                    <label for="name">Ваше имя:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Ваш Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Сообщение:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Отправить письмо</button>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Рамо Бин Ях. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
