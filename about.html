@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О авторе | Рамо Бин Ях</title>
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-color: #2c2c2c;
+            --accent-color: #8b5a2b;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+        header {
+            padding: 30px 20px;
+            border-bottom: 1px solid #e0dad3;
+            background: #fff;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2em;
+            font-weight: normal;
+        }
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .container {
+            max-width: 750px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        .about-block {
+            background: var(--card-bg);
+            border: 1px solid #e0dad3;
+            border-radius: 6px;
+            padding: 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        /* Место под фото автора */
+        .author-photo-wrapper {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            background: #f0ede9;
+            border: 1px solid #e0dad3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .author-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .about-text p {
+            margin-bottom: 20px;
+            text-indent: 20px;
+            text-align: justify;
+            font-size: 1.1em;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 30px 0;
+            text-indent: 0 !important;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9em;
+            color: #888;
+            border-top: 1px solid #e0dad3;
+            margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>О авторе</h1>
+        <nav>
+            <a href="index.html">← На главную</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <div class="about-block">
+            
+            <!-- Круглая заглушка для фотографии. Когда захотите, замените ссылку в src на свое фото -->
+            <div class="author-photo-wrapper">
+                <img src="https://placeholder.com" alt="Рамо Бин Ях" class="author-photo">
+            </div>
+
+            <div class="about-text">
+                <p>Приветствую вас в моём творческом пространстве. Меня зовут Рамо Бин Ях. Я поэт и писатель, посвятивший себя поиску искренности, глубины и эмоциональной подлинности в каждом написанном слове.</p>
+                
+                <p>Для меня литература и поэзия — это не просто выверенное ремесло или строгое следование сухим академическим формулам. Настоящее творчество подобно пробивающемуся из-под земли весеннему ключу: оно рождается тогда, когда внутри горит живое чувство, а оставаться безучастным и молчать становится просто невозможно. Поэзия должна обладать душой, транслировать честный человеческий опыт и находить искренний отклик в сердцах тех, кто умеет сопереживать.</p>
+
+                <p class="quote">«Многие стихотворения красивы, у них идеальная рифма и звучание, но они остаются пустыми. В них нет души. Сила же истинного слова — в его первозданности, честности и внутреннем нерве».</p>
+
+                <p>На страницах этого сайта вы сможете познакомиться с моими книгами, сборниками и новыми стихотворениями, которые отражают мой собственный взгляд на мир, человеческую эмпатию и тонкие грани нашей жизни. Спасибо, что разделяете этот путь вместе со мной.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Рамо Бин Ях. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
