@@ -37,7 +37,7 @@
         }
         .container {
             max-width: 600px;
-            margin: 40px auto;
+            margin: 60px auto;
             padding: 0 20px;
         }
         /* Блок контактов */
@@ -45,66 +45,27 @@
             background: var(--card-bg);
             border: 1px solid #e0dad3;
             border-radius: 6px;
-            padding: 30px;
+            padding: 40px 30px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-            margin-top: 30px;
-        }
-        .contacts-info {
-            margin-bottom: 30px;
-            font-size: 1.1em;
             text-align: center;
         }
-        .contacts-info p {
-            margin: 10px 0;
+        .contacts-text {
+            font-size: 1.15em;
+            margin-bottom: 25px;
+            color: #555;
         }
-        .contacts-info a {
-            color: var(--accent-color);
-            text-decoration: underline;
-        }
-        /* Форма обратной связи */
-        .contact-form h2 {
-            font-weight: normal;
+        .email-link {
+            display: inline-block;
             font-size: 1.4em;
-            margin-bottom: 20px;
-            text-align: center;
-            color: var(--text-color);
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
         }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 0.95em;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #e0dad3;
-            border-radius: 4px;
-            font-family: 'Georgia', serif;
-            box-sizing: border-box;
-            background-color: #fff;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-        .btn-submit {
-            display: block;
-            width: 100%;
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 12px;
-            border: none;
-            border-radius: 4px;
-            font-family: 'Georgia', serif;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .btn-submit:hover {
-            background-color: #6f4722;
+        .email-link:hover {
+            color: #6f4722;
+            border-color: #6f4722;
         }
         footer {
             text-align: center;
@@ -112,7 +73,7 @@
             font-size: 0.9em;
             color: #888;
             border-top: 1px solid #e0dad3;
-            margin-top: 60px;
+            margin-top: 80px;
         }
     </style>
 </head>
@@ -128,32 +89,10 @@
     <div class="container">
         
         <div class="contacts-block">
-            <div class="contacts-info">
-                <p>По вопросам сотрудничества, издания книг и предложений:</p>
-                <!-- Замените адрес почты на ваш настоящий -->
-                <p><strong>Email:</strong> <a href="ramobinyah@gmail.com">ramobinyah@gmail.com</a></p>
-            </div>
-
-            <form class="contact-form" action="https://formspree.io/f/mgaaalza" method="POST">
-                <h2>Написать мне</h2>
-                
-                <div class="form-group">
-                    <label for="name">Ваше имя:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Ваш Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Сообщение:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-
-                <button type="submit" class="btn-submit">Отправить письмо</button>
-            </form>
+            <p class="contacts-text">По вопросам сотрудничества, издания книг и предложений:</p>
+            
+            <!-- Кликабельный Email, который открывает почту пользователя -->
+            <p><strong>Email:</strong> <a href="mailto:ramobinyah@gmail.com" class="email-link">ramobinyah@gmail.com</a></p>
         </div>
 
     </div>
