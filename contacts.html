@@ -54,18 +54,46 @@
             margin-bottom: 25px;
             color: #555;
         }
+        .email-container {
+            margin: 20px 0;
+        }
         .email-link {
             display: inline-block;
             font-size: 1.4em;
             color: var(--accent-color);
             text-decoration: none;
             font-weight: bold;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.2s, color 0.2s;
+            transition: color 0.2s;
         }
         .email-link:hover {
             color: #6f4722;
-            border-color: #6f4722;
+            text-decoration: underline;
+        }
+        /* Кнопка копирования */
+        .btn-copy {
+            display: inline-block;
+            margin-top: 15px;
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: 'Georgia', serif;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-copy:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+        .tooltip {
+            display: block;
+            font-size: 0.85em;
+            color: green;
+            margin-top: 8px;
+            height: 18px;
+            font-style: italic;
         }
         footer {
             text-align: center;
@@ -91,11 +119,31 @@
         <div class="contacts-block">
             <p class="contacts-text">По вопросам сотрудничества, издания книг и предложений:</p>
             
-            <!-- Кликабельный Email, который открывает почту пользователя -->
-            <p><strong>Email:</strong> <a href="mailto:ramobinyah@gmail.com" class="email-link">ramobinyah@gmail.com</a></p>
+            <div class="email-container">
+                <strong>Email:</strong> <br>
+                <a href="mailto:ramobinyah@gmail.com" class="email-link">ramobinyah@gmail.com</a>
+                <br>
+                <button class="btn-copy" onclick="copyEmail()">Скопировать Email</button>
+                <span id="tooltip-text" class="tooltip"></span>
+            </div>
         </div>
 
     </div>
+
+    <script>
+        function copyEmail() {
+            var emailText = "ramobinyah@gmail.com";
+            navigator.clipboard.writeText(emailText).then(function() {
+                var tooltip = document.getElementById("tooltip-text");
+                tooltip.innerText = "Адрес скопирован в буфер обмена!";
+                setTimeout(function() {
+                    tooltip.innerText = "";
+                }, 3000);
+            }).catch(function(err) {
+                console.error('Не удалось скопировать: ', err);
+            });
+        }
+    </script>
 
     <footer>
         <p>&copy; 2026 Рамо Бин Ях. Все права защищены.</p>
