@@ -3,82 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Стихи | Рамо Бин Ях</title>
+    <title>Стихи | Творчество Автора</title>
     <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-color: #2c2c2c;
+            --accent-color: #8b5a2b;
+            --card-bg: #ffffff;
+        }
         body {
             font-family: 'Georgia', serif;
-            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            line-height: 1.6;
         }
         header {
-            background-color: #fff;
-            border-bottom: 1px solid #ddd;
-            padding: 20px 0;
+            padding: 30px 20px;
+            border-bottom: 1px solid #e0dad3;
+            background: #fff;
             text-align: center;
         }
         header h1 {
-            margin: 0;
-            font-size: 24px;
-            letter-spacing: 2px;
-        }
-        nav {
-            margin-top: 15px;
+            margin: 0 0 10px 0;
+            font-size: 2em;
+            font-weight: normal;
         }
         nav a {
-            margin: 0 15px;
+            color: var(--accent-color);
             text-decoration: none;
-            color: #666;
-            font-weight: bold;
-        }
-        nav a:hover {
-            color: #000;
+            margin: 0 15px;
         }
         .container {
-            max-width: 600px;
+            max-width: 1000px;
             margin: 40px auto;
             padding: 0 20px;
             text-align: center;
         }
         .placeholder-text {
             font-style: italic;
-            color: #999;
+            color: #777;
             margin-top: 50px;
-            font-size: 18px;
+            font-size: 1.2em;
         }
         footer {
             text-align: center;
-            padding: 20px 0;
-            color: #777;
-            font-size: 14px;
-            border-top: 1px solid #ddd;
-            background: #fff;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            padding: 40px 20px;
+            font-size: 0.9em;
+            color: #888;
+            border-top: 1px solid #e0dad3;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Стихи</h1>
+    <header>
+        <h1>Мои стихотворения</h1>
         <nav>
             <a href="index.html">← На главную</a>
         </nav>
-</header>
+    </header>
 
-<div class="container">
-    <div class="placeholder-text">
-        Раздел находится в разработке. Скоро здесь появятся новые стихотворения.
+    <div class="container">
+        <div class="placeholder-text">
+            Раздел находится в разработке. Скоро здесь появятся новые стихотворения.
+        </div>
     </div>
-</div>
 
-<footer>
-    © 2026 Рамо Бин Ях. Все права защищены.
-</footer>
+    <footer>
+        <p>&copy; 2026 Рамо Бин Ях. Все права защищены.</p>
+    </footer>
 
 </body>
 </html>
