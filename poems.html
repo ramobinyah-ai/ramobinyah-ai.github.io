@@ -24,28 +24,29 @@
             font-size: 24px;
             letter-spacing: 2px;
         }
-        nav {
-            margin-top: 15px;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #666;
-            font-weight: bold;
-        }
-        nav a:hover {
-            color: #000;
-        }
         .container {
             max-width: 600px;
             margin: 40px auto;
             padding: 0 20px;
-            text-align: center;
+        }
+        /* Стиль кнопки возврата как на странице книг */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
         }
         .placeholder-text {
             font-style: italic;
             color: #999;
             margin-top: 50px;
+            text-align: center;
             font-size: 18px;
         }
         footer {
@@ -65,13 +66,12 @@
 
 <header>
     <h1>Рамо Бин Ях</h1>
-    <nav>
-        <a href="index.html">Главная</a>
-        <a href="poems.html" style="color: #000;">Стихи</a>
-    </nav>
 </header>
 
 <div class="container">
+    <!-- Кнопка возврата один в один как на books.html -->
+    <a href="index.html" class="back-link">← На главную</a>
+
     <div class="placeholder-text">
         Раздел находится в разработке. Скоро здесь появятся новые стихотворения.
     </div>
