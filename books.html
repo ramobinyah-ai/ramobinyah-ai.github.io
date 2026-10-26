@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Витрина книг | Творчество Автора</title>
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-color: #2c2c2c;
+            --accent-color: #8b5a2b;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            padding: 30px 20px;
+            border-bottom: 1px solid #e0dad3;
+            background: #fff;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2em;
+            font-weight: normal;
+        }
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        /* Сетка для витрины книг */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 40px 30px;
+            margin-top: 30px;
+        }
+        /* Карточка книги на витрине */
+        .book-item {
+            background: var(--card-bg);
+            border: 1px solid #e0dad3;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .book-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+        /* Контейнер для обложки, чтобы все были одного размера */
+        .cover-wrapper {
+            width: 100%;
+            height: 280px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: #f0ede9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .book-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Картинка аккуратно заполнит область обложки */
+        }
+        .book-title {
+            font-size: 1.2em;
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        .book-genre {
+            font-size: 0.85em;
+            color: #777;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .btn-litres {
+            display: block;
+            background-color: #ff6600; /* Фирменный оранжевый цвет Литрес */
+            color: #fff;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn-litres:hover {
+            background-color: #e05a00;
+        }
+        .ad-banner {
+            background: #f0ede9;
+            border: 1px dashed #bbb;
+            padding: 20px;
+            text-align: center;
+            margin: 40px 0;
+            color: #777;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9em;
+            color: #888;
+            border-top: 1px solid #e0dad3;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Витрина моих книг</h1>
+        <nav>
+            <a href="index.html">← На главную</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <!-- Верхний рекламный блок -->
+        <div class="ad-banner">
+            Место для рекламы РСЯ (Верхний баннер витрины)
+        </div>
+
+        <!-- Сетка книг -->
+        <div class="showcase-grid">
+            
+            <!-- Книга 1 -->
+            <div class="book-item">
+                <div>
+                    <div class="cover-wrapper">
+                        <!-- В src подставим реальную ссылку на картинку вашей обложки. Пока стоит заглушка-пример -->
+                        <img src="https://unsplash.com" alt="Обложка книги" class="book-cover">
+                    </div>
+                    <div class="book-title">Шепот Осени</div>
+                    <div class="book-genre">Сборник стихотворений</div>
+                </div>
+                <!-- Замените '#' на вашу реальную ссылку на Литрес для этой книги -->
+                <a href="https://litres.ru" target="_blank" class="btn-litres">Читать на Литрес</a>
+            </div>
+
+            <!-- Книга 2 -->
+            <div class="book-item">
+                <div>
+                    <div class="cover-wrapper">
+                        <img src="https://unsplash.com" alt="Обложка книги" class="book-cover">
+                    </div>
+                    <div class="book-title">След на воде</div>
+                    <div class="book-genre">Детективный роман</div>
+                </div>
+                <a href="https://litres.ru" target="_blank" class="btn-litres">Читать на Литрес</a>
+            </div>
+
+            <!-- Книга 3 -->
+            <div class="book-item">
+                <div>
+                    <div class="cover-wrapper">
+                        <img src="https://unsplash.com" alt="Обложка книги" class="book-cover">
+                    </div>
+                    <div class="book-title">Эхо вселенной</div>
+                    <div class="book-genre">Фантастика / Стихи</div>
+                </div>
+                <a href="https://litres.ru" target="_blank" class="btn-litres">Читать на Литрес</a>
+            </div>
+
+            <!-- Книга 4 -->
+            <div class="book-item">
+                <div>
+                    <div class="cover-wrapper">
+                        <img src="https://unsplash.com" alt="Обложка книги" class="book-cover">
+                    </div>
+                    <div class="book-title">Дневник памяти</div>
+                    <div class="book-genre">Романтическая проза</div>
+                </div>
+                <a href="https://litres.ru" target="_blank" class="btn-litres">Читать на Литрес</a>
+            </div>
+
+        </div>
+
+        <!-- Нижний рекламный блок -->
+        <div class="ad-banner">
+            Место для рекламы РСЯ (Нижний баннер витрины)
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Имя Автора. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
