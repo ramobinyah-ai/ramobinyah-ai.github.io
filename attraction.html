@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Притяжение | Рамо Бин Ях</title>
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-color: #2c2c2c;
+            --accent-color: #8c6b47;
+            --scroll-paper-bg: #e6cfb3; /* Теплое золото для этого раздела */
+        }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            padding: 30px 20px;
+            border-bottom: 1px solid #e0dad3;
+            background: #fff;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2em;
+            font-weight: normal;
+            color: #4a3825;
+        }
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        
+        /* Контейнер для вертикального свитка */
+        .scroll-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 25px;
+        }
+
+        /* Вертикальный манускрипт (раскрывается вниз) */
+        .main-scroll-paper {
+            background-color: var(--scroll-paper-bg);
+            background-image: 
+                radial-gradient(circle at 50% 30%, rgba(255,255,255,0.45), transparent),
+                linear-gradient(to right, #a18a6f 0%, transparent 8%, transparent 92%, #a18a6f 100%);
+            border-left: 15px solid #82694e;
+            border-right: 15px solid #82694e;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.16),
+                inset 0 0 50px rgba(117, 94, 69, 0.35);
+            border-radius: 4px;
+            max-width: 550px;
+            width: 100%;
+            padding: 50px 45px;
+            box-sizing: border-box;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        /* Деревянные валики сверху и снизу */
+        .main-scroll-paper::before,
+        .main-scroll-paper::after {
+            content: '';
+            position: absolute;
+            left: -25px;
+            right: -25px;
+            height: 24px;
+            background: linear-gradient(to bottom, #3b2816, #785a3c 50%, #26190d);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-radius: 12px;
+        }
+        .main-scroll-paper::before { top: -12px; }
+        .main-scroll-paper::after { bottom: -12px; }
+
+        /* Внутреннее поле с рамкой */
+        .scroll-inner-content {
+            border: 1px dashed rgba(130, 105, 78, 0.45);
+            padding: 25px 15px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Интерактивный аккордеон стиха */
+        .poem-accordion {
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(130, 105, 78, 0.15);
+            transition: all 0.3s ease;
+        }
+        .poem-accordion:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        /* Название стихотворения (Кликабельный заголовок) */
+        .poem-accordion summary {
+            font-size: 1.25em;
+            padding: 15px 10px;
+            cursor: pointer;
+            color: #3b2d1f;
+            outline: none;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: color 0.2s ease;
+        }
+        .poem-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        /* Символ пера */
+        .poem-accordion summary::after {
+            content: '✒️';
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+            opacity: 0.5;
+        }
+        .poem-accordion[open] summary::after {
+            transform: rotate(-30deg) scale(1.1);
+            opacity: 0.9;
+        }
+        .poem-accordion summary:hover {
+            color: var(--accent-color);
+        }
+
+        /* Текст стихотворения */
+        .poem-text-block {
+            padding: 10px 15px 30px 15px;
+            font-style: italic;
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #2b1f13;
+            text-align: left;
+            animation: slideDownFade 0.45s ease-out forwards;
+            transform-origin: top center;
+        }
+
+        @keyframes slideDownFade {
+            from { opacity: 0; transform: scaleY(0.95); }
+            to { opacity: 1; transform: scaleY(1); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9em;
+            color: #888;
+            border-top: 1px solid #e0dad3;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Притяжение</h1>
+        <nav>
+            <a href="poems.html">← К разделам</a>
+        </nav>
+    </header>
+
+    <div class="scroll-container">
+        <!-- Главный вертикальный свиток -->
+        <div class="main-scroll-paper">
+            <div class="scroll-inner-content">
+
+                <!-- Стихотворение 1 -->
+                <details class="poem-accordion">
+                    <summary>Весенняя капля</summary>
+                    <div class="poem-text-block">
+                        Заплакала берёза сладкою слезой,<br>
+                        Лоток вонзили в тело весеннею порой.<br>
+                        <br>
+                        И капли падали, звеня,<br>
+                        В лесную тишину маня,<br>
+                        Прозрачный сок, как чистый свет,<br>
+                        Земли проснувшейся привет.
+                    </div>
+                </details>
+
+                <!-- Стихотворение 2 -->
+                <details class="poem-accordion">
+                    <summary>Название второго стиха</summary>
+                    <div class="poem-text-block">
+                        Строки следующего произведения...
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Рамо Бин Ях. Все права защищены.</p>
+    </footer>
+
+    <script>
+        let audioCtx = null;
+
+        function playScrollSound() {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                const duration = 0.42;
+                const bufferSize = audioCtx.sampleRate * duration;
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const data = buffer.getChannelData(0);
+
+                for (let i = 0; i < bufferSize; i++) {
+                    data[i] = Math.random() * 2 - 1;
+                }
+
+                const source = audioCtx.createBufferSource();
+                source.buffer = buffer;
+
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(500, audioCtx.currentTime);
+                filter.frequency.exponentialRampToValueAtTime(130, audioCtx.currentTime + duration);
+
+                const gain = audioCtx.createGain();
+                gain.gain.setValueAtTime(0, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 0.07);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+                source.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioCtx.destination);
+                source.start();
+            } catch (e) {
+                console.log("Аудио заблокировано.");
+            }
+        }
+
+        document.querySelectorAll('.poem-accordion summary').forEach(el => {
+            el.addEventListener('click', () => {
+                playScrollSound();
+            });
+        });
+    </script>
+
+</body>
+</html>
