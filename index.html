@@ -153,7 +153,101 @@
         </div>
 
     <div class="container">
+        <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* Обнуляем отступы самого баннера */
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #fbf9f4; /* Цвет фона баннера */
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Кликабельная ссылка, которая ведет на ваш сайт/книгу */
+        .banner-link {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            box-sizing: border-box;
+            border: 1px solid #e6dfd5; /* Тонкая рамка вокруг баннера */
+        }
+
+        /* Контейнер для бегущей строки */
+        .marquee-wrapper {
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Сама движущаяся линия */
+        .marquee-line {
+            display: flex;
+            white-space: nowrap;
+            animation: banner-scroll 20s linear infinite;
+        }
+
+        /* Стиль текста в баннере */
+        .marquee-line span {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            font-size: 18px; /* Оптимальный размер для рекламного блока */
+            color: #8b5a2b; /* Акцентный цвет текста */
+            padding-right: 60px;
+        }
+
+        /* Разделитель между фразами */
+        .marquee-line span::after {
+            content: " ❖ ";
+            margin-left: 60px;
+            color: #e6dfd5;
+        }
+
+        /* Плавная остановка при наведении */
+        .banner-link:hover .marquee-line {
+            animation-play-state: paused;
+        }
         
+        /* Делаем текст чуть ярче при наведении на баннер */
+        .banner-link:hover span {
+            color: #6f441f;
+        }
+
+        /* Анимация бесконечного сдвига */
+        @keyframes banner-scroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Замените '#' на реальную ссылку (например, на страницу покупки книги на Литрес или Бусти) -->
+    <a href="#" class="banner-link" target="_blank">
+        <div class="marquee-wrapper">
+            <div class="marquee-line">
+                <span>Успейте прочитать: новый сборник стихотворений «Шепот Осени» уже в продаже!</span>
+                <span>«Поэт рождается, чтоб быть, в кромешной тьме путь осветить...»</span>
+                <span>Перейти на официальный сайт писателя Рамо Бин Ях</span>
+                
+                <!-- Дубликат текста для бесшовной анимации -->
+                <span>Успейте прочитать: новый сборник стихотворений «Шепот Осени» уже в продаже!</span>
+                <span>«Поэт рождается, чтоб быть, в кромешной тьме путь осветить...»</span>
+                <span>Перейти на официальный сайт писателя Рамо Бин Ях</span>
+            </div>
+        </div>
+    </a>
+
+</body>
+</html>
+
         <!-- Рекламное место вверху -->
         <div class="ad-block">
             <!-- Сюда позже вставим код рекламы РСЯ или Google AdSense -->
