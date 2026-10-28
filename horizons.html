@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Линии горизонта | Рамо Бин Ях</title>
+    <!-- 
+      ========================================================================
+      LICENSE NOTICE FOR SOURCE CODE (ЛИЦЕНЗИЯ НА ИСХОДНЫЙ КОД САЙТА)
+      ========================================================================
+      Copyright (c) 2026 Ramo Bin Yah (https://ramobinyah-ai.github.io/)
+      All Rights Reserved.
+    -->
     <style>
         :root {
             --bg-color: #fcfbf9;
@@ -38,7 +45,6 @@
             font-weight: bold;
         }
         
-        /* Контейнер для вертикального свитка */
         .scroll-container {
             display: flex;
             justify-content: center;
@@ -46,7 +52,6 @@
             padding: 60px 25px;
         }
 
-        /* Вертикальный манускрипт (раскрывается вниз) */
         .main-scroll-paper {
             background-color: var(--scroll-paper-bg);
             background-image: 
@@ -54,19 +59,15 @@
                 linear-gradient(to right, #9e7f57 0%, transparent 8%, transparent 92%, #9e7f57 100%);
             border-left: 15px solid #7d5e36;
             border-right: 15px solid #7d5e36;
-            box-shadow: 
-                0 15px 35px rgba(0, 0, 0, 0.15),
-                inset 0 0 50px rgba(139, 94, 60, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), inset 0 0 50px rgba(139, 94, 60, 0.3);
             border-radius: 4px;
             max-width: 550px;
             width: 100%;
             padding: 50px 45px;
             box-sizing: border-box;
             position: relative;
-            transition: all 0.4s ease;
         }
 
-        /* Деревянные валики сверху и снизу */
         .main-scroll-paper::before,
         .main-scroll-paper::after {
             content: '';
@@ -78,32 +79,21 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             border-radius: 12px;
         }
-        .main-scroll-paper::before {
-            top: -12px;
-        }
-        .main-scroll-paper::after {
-            bottom: -12px;
-        }
+        .main-scroll-paper::before { top: -12px; }
+        .main-scroll-paper::after { bottom: -12px; }
 
-        /* Внутреннее поле с рамкой */
         .scroll-inner-content {
             border: 1px dashed rgba(112, 75, 36, 0.4);
             padding: 25px 15px;
             background: rgba(255, 255, 255, 0.15);
         }
 
-        /* Интерактивный аккордеон стиха */
         .poem-accordion {
             margin-bottom: 10px;
             border-bottom: 1px solid rgba(112, 75, 36, 0.15);
-            transition: all 0.3s ease;
         }
-        .poem-accordion:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
+        .poem-accordion:last-child { border-bottom: none; }
 
-        /* Название стихотворения (Кликабельный заголовок) */
         .poem-accordion summary {
             font-size: 1.25em;
             padding: 15px 10px;
@@ -115,28 +105,17 @@
             justify-content: space-between;
             align-items: center;
             user-select: none;
-            transition: color 0.2s ease;
         }
-        .poem-accordion summary::-webkit-details-marker {
-            display: none; /* Убираем маркер в Safari */
-        }
+        .poem-accordion summary::-webkit-details-marker { display: none; }
         
-        /* Символ пера вместо стандартного маркера */
         .poem-accordion summary::after {
             content: '✒️';
             font-size: 0.8em;
             transition: transform 0.3s ease;
             opacity: 0.5;
         }
-        .poem-accordion[open] summary::after {
-            transform: rotate(-30deg) scale(1.1);
-            opacity: 0.9;
-        }
-        .poem-accordion summary:hover {
-            color: var(--accent-color);
-        }
+        .poem-accordion[open] summary::after { transform: rotate(-30deg) scale(1.1); opacity: 0.9; }
 
-        /* Текст стихотворения (Раскрывающийся блок) */
         .poem-text-block {
             padding: 10px 15px 30px 15px;
             font-style: italic;
@@ -144,30 +123,13 @@
             line-height: 1.7;
             color: #2b1a0e;
             text-align: left;
-            /* Плавная анимация разворачивания контента сверху вниз */
             animation: slideDownFade 0.45s ease-out forwards;
             transform-origin: top center;
         }
 
-        /* Эффект вытягивания бумаги вниз */
         @keyframes slideDownFade {
-            from { 
-                opacity: 0; 
-                transform: scaleY(0.95); 
-            }
-            to { 
-                opacity: 1; 
-                transform: scaleY(1); 
-            }
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9em;
-            color: #888;
-            border-top: 1px solid #e0dad3;
-            margin-top: 40px;
+            from { opacity: 0; transform: scaleY(0.95); }
+            to { opacity: 1; transform: scaleY(1); }
         }
     </style>
 </head>
@@ -181,11 +143,8 @@
     </header>
 
     <div class="scroll-container">
-        <!-- Главный вертикальный свиток -->
         <div class="main-scroll-paper">
             <div class="scroll-inner-content">
-
-                <!-- Стихотворение 1 -->
                 <details class="poem-accordion">
                     <summary>Птичий дом</summary>
                     <div class="poem-text-block">
@@ -205,80 +164,50 @@
                         Там вас ждёт кто-то ещё.
                     </div>
                 </details>
-
-                <!-- Стихотворение 2 -->
                 <details class="poem-accordion">
                     <summary>Название второго стиха</summary>
-                    <div class="poem-text-block">
-                        Здесь вы сможете разместить строки<br>
-                        вашего следующего произведения...
-                    </div>
+                    <div class="poem-text-block">Строки следующего произведения...</div>
                 </details>
-
-                <!-- Стихотворение 3 -->
-                <details class="poem-accordion">
-                    <summary>Название третьего стиха</summary>
-                    <div class="poem-text-block">
-                        И строки еще одного стихотворения<br>
-                        из цикла «Линии горизонта».
-                    </div>
-                </details>
-
             </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Рамо Бин Ях. Все права защищены.</p>
+     <footer style="text-align: center; padding: 40px 20px; font-size: 0.9em; color: #555; border-top: 1px solid #e0dad3; margin-top: 60px; line-height: 1.6;">
+        <div style="max-width: 600px; margin: 0 auto 15px auto; font-style: italic; color: #6e5d4f;">
+            Все стихотворения, тексты и материалы, опубликованные на данном сайте, являются объектом авторского права и защищены лицензией 
+            <a href="https://creativecommons.org" target="_blank" style="color: #8b5a2b; text-decoration: underline;">Creative Commons BY-NC-ND 4.0</a>. 
+            <br>Вы можете делиться произведениями при условии обязательного указания авторства (Рамо Бин Ях) и ссылки на первоисточник. Коммерческое использование и любые изменения текстов строго запрещены.
+        </div>
+        <p style="margin: 0; font-weight: bold; letter-spacing: 1px;">&copy; 2026 Рамо Бин Ях. Все права защищены (All Rights Reserved).</p>
     </footer>
 
     <script>
-        // Синтезатор звука разворачивания свитка (Web Audio API)
         let audioCtx = null;
-
         function playScrollSound() {
             try {
-                if (!audioCtx) {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                }
+                if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
                 const duration = 0.42;
                 const bufferSize = audioCtx.sampleRate * duration;
                 const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
                 const data = buffer.getChannelData(0);
-
-                for (let i = 0; i < bufferSize; i++) {
-                    data[i] = Math.random() * 2 - 1;
-                }
-
+                for (let i = 0; i < bufferSize; i++) { data[i] = Math.random() * 2 - 1; }
                 const source = audioCtx.createBufferSource();
                 source.buffer = buffer;
-
                 const filter = audioCtx.createBiquadFilter();
                 filter.type = 'lowpass';
                 filter.frequency.setValueAtTime(500, audioCtx.currentTime);
                 filter.frequency.exponentialRampToValueAtTime(130, audioCtx.currentTime + duration);
-
                 const gain = audioCtx.createGain();
                 gain.gain.setValueAtTime(0, audioCtx.currentTime);
                 gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 0.07);
                 gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-
-                source.connect(filter);
-                filter.connect(gain);
-                gain.connect(audioCtx.destination);
+                source.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination);
                 source.start();
-            } catch (e) {
-                console.log("Аудио контекст ожидает взаимодействия.");
-            }
+            } catch (e) {}
         }
-
-        // Подключаем шуршание к кликам
         document.querySelectorAll('.poem-accordion summary').forEach(el => {
-            el.addEventListener('click', () => {
-                playScrollSound();
-            });
+            el.addEventListener('click', () => { playScrollSound(); });
         });
     </script>
-
 </body>
 </html>
