@@ -49,10 +49,16 @@
             color: #4a3825;
             letter-spacing: 0.5px;
         }
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px 15px; /* Заменяет фиксированные маргины для гибкого переноса */
+        }
         nav a {
             color: var(--accent-color);
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0;
             font-weight: bold;
             font-size: 0.9em;
         }
@@ -62,7 +68,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 25px 8px; /* Небольшой внешний отступ */
+            padding: 25px 12px; /* Чуть увеличен боковой отступ, чтобы не прижималось к краям экрана */
+            box-sizing: border-box;
+            overflow-x: hidden; /* КРИТИЧНО: Защита от горизонтальной прокрутки из-за left/right: -10px */
         }
         .main-scroll-paper {
             background-color: var(--scroll-paper-bg);
@@ -109,7 +117,7 @@
         
         /* Яркие, адаптивные заголовки */
         .poem-accordion summary {
-            font-size: 1.15em; 
+            font-size: 1.1em; /* Слегка уменьшен для ультра-узких экранов 320px */
             font-weight: bold;
             letter-spacing: 0.3px;
             padding: 12px 2px;
@@ -135,7 +143,7 @@
             transition: transform 0.3s ease, opacity 0.2s ease;
             opacity: 0.5;
             flex-shrink: 0;
-            margin-left: 6px;
+            margin-left: 10px; /* Увеличен отступ, чтобы текст не наезжал на перо */
         }
         .poem-accordion[open] summary {
             color: #5a3d1e;
@@ -156,6 +164,19 @@
             animation: slideDownFade 0.4s ease-out forwards;
             transform-origin: top center;
         }
+
+        /* Дополнительная микро-оптимизация для самых узких экранов (до 360px) */
+        @media (max-width: 360px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+            .poem-accordion summary {
+                font-size: 1em;
+            }
+            .poem-text-block {
+                font-size: 0.95em;
+            }
+        }
         
         /* === ДЕСКТОПНЫЙ И ПЛАНШЕТНЫЙ ДИЗАЙН (МАСШТАБИРОВАНИЕ НА БОЛЬШИХ ЭКРАНАХ) === */
         @media (min-width: 480px) {
@@ -166,12 +187,16 @@
                 font-size: 2.2em;
                 letter-spacing: 1px;
             }
+            nav {
+                gap: 0;
+            }
             nav a {
                 margin: 0 15px;
                 font-size: 0.95em;
             }
             .scroll-container {
                 padding: 60px 25px;
+                overflow-x: visible; /* На больших экранах можно отключить скрытие */
             }
             .main-scroll-paper {
                 padding: 50px 40px;
@@ -216,7 +241,8 @@
                 transform: scaleY(1);
             }
         }
-    </style>
+</style>
+
 </head>
 <body>
 
