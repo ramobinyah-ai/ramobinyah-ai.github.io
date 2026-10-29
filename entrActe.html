@@ -53,10 +53,17 @@ header h1 {
   letter-spacing: 0.5px;
 }
 
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 15px; /* Заменяет фиксированные отступы для предотвращения поломки меню */
+}
+
 nav a {
   color: var(--accent-color);
   text-decoration: none;
-  margin: 0 10px;
+  margin: 0; /* Отступы перенесены в gap */
   font-weight: bold;
   font-size: 0.9em;
 }
@@ -66,7 +73,9 @@ nav a {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px 8px;
+  padding: 25px 12px; /* Слегка увеличен боковой зазор для красоты */
+  box-sizing: border-box;
+  overflow-x: hidden; /* КРИТИЧНО: Исключает горизонтальную прокрутку из-за выступов валика */
 }
 
 .main-scroll-paper {
@@ -124,7 +133,7 @@ nav a {
 }
 
 .poem-accordion summary {
-  font-size: 1.15em;
+  font-size: 1.1em; /* Оптимизировано для узких экранов */
   font-weight: bold;
   letter-spacing: 0.3px;
   padding: 12px 2px;
@@ -153,7 +162,7 @@ nav a {
   transition: transform 0.3s ease, opacity 0.2s ease;
   opacity: 0.5;
   flex-shrink: 0;
-  margin-left: 6px;
+  margin-left: 10px; /* Увеличен зазор, чтобы длинное название не накладывалось на иконку */
 }
 
 .poem-accordion[open] summary {
@@ -178,6 +187,19 @@ nav a {
   transform-origin: top center;
 }
 
+/* Оптимизация под экраны ультрамалых смартфонов (до 360px) */
+@media (max-width: 360px) {
+  header h1 {
+    font-size: 1.5em;
+  }
+  .poem-accordion summary {
+    font-size: 1em;
+  }
+  .poem-text-block {
+    font-size: 0.95em;
+  }
+}
+
 /* === ДЕСКТОПНЫЙ И ПЛАНШЕТНЫЙ ДИЗАЙН === */
 @media (min-width: 480px) {
   header {
@@ -187,12 +209,16 @@ nav a {
     font-size: 2.2em;
     letter-spacing: 1px;
   }
+  nav {
+    gap: 0; /* Сбрасываем мобильный gap для применения классических маргинов */
+  }
   nav a {
     margin: 0 15px;
     font-size: 0.95em;
   }
   .scroll-container {
     padding: 60px 25px;
+    overflow-x: visible; /* На десктопах скрытие боковин не требуется */
   }
   .main-scroll-paper {
     padding: 50px 40px;
@@ -241,7 +267,8 @@ nav a {
     transform: scaleY(1);
   }
 }
-    </style>
+</style>
+
 </head>
 <body>
 
