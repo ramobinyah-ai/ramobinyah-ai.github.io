@@ -25,7 +25,7 @@
             --bg-color: #fcfbf9;
             --text-color: #2c2c2c;
             --accent-color: #8c6b47;
-            --scroll-paper-bg: #e6cfb3; /* Теплое золото для этого раздела */
+            --scroll-paper-bg: #e6cfb3; 
         }
         body {
             font-family: 'Georgia', serif;
@@ -34,111 +34,187 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
         }
         header {
-            padding: 30px 20px;
+            padding: 30px 15px;
             border-bottom: 1px solid #e0dad3;
             background: #fff;
             text-align: center;
         }
         header h1 {
             margin: 0 0 10px 0;
-            font-size: 2em;
+            font-size: 1.8em;
             font-weight: normal;
             color: #4a3825;
+            letter-spacing: 0.5px;
         }
         nav a {
             color: var(--accent-color);
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 10px;
             font-weight: bold;
+            font-size: 0.9em;
         }
         
+        /* === МОБИЛЬНЫЙ ОПТИМИЗИРОВАННЫЙ СВИТОК === */
         .scroll-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 60px 25px;
+            padding: 25px 8px; /* Небольшой внешний отступ */
         }
-
         .main-scroll-paper {
             background-color: var(--scroll-paper-bg);
-            background-image: 
-                radial-gradient(circle at 50% 30%, rgba(255,255,255,0.45), transparent),
-                linear-gradient(to right, #a18a6f 0%, transparent 8%, transparent 92%, #a18a6f 100%);
-            border-left: 15px solid #82694e;
-            border-right: 15px solid #82694e;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.16), inset 0 0 50px rgba(117, 94, 69, 0.35);
-            border-radius: 4px;
-            max-width: 550px;
+            /* Текстура и тень свернутого листа */
+            background-image: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.45), transparent), linear-gradient(to right, #a18a6f 0%, transparent 6%, transparent 94%, #a18a6f 100%);
+            border-left: 6px solid #82694e;  /* Тонкие, но заметные деревянные поля на мобильном */
+            border-right: 6px solid #82694e;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12), inset 0 0 30px rgba(117, 94, 69, 0.3);
+            border-radius: 3px;
+            max-width: 580px;
             width: 100%;
-            padding: 50px 45px;
+            padding: 25px 8px; /* Компактные боковые поля, чтобы текст не сжимался */
             box-sizing: border-box;
             position: relative;
         }
-
-        .main-scroll-paper::before,
-        .main-scroll-paper::after {
+        
+        /* Компактные деревянные наконечники для мобильных экранов */
+        .main-scroll-paper::before, .main-scroll-paper::after {
             content: '';
             position: absolute;
-            left: -25px;
-            right: -25px;
-            height: 24px;
+            left: -10px; /* Идеальное прилегание к краям */
+            right: -10px;
+            height: 14px; /* Меньший диаметр цилиндра */
             background: linear-gradient(to bottom, #3b2816, #785a3c 50%, #26190d);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            border-radius: 12px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+            border-radius: 7px;
+            z-index: 2;
         }
-        .main-scroll-paper::before { top: -12px; }
-        .main-scroll-paper::after { bottom: -12px; }
-
+        .main-scroll-paper::before { top: -7px; }
+        .main-scroll-paper::after { bottom: -7px; }
+        
         .scroll-inner-content {
-            border: 1px dashed rgba(130, 105, 78, 0.45);
-            padding: 25px 15px;
-            background: rgba(255, 255, 255, 0.15);
+            border: 1px dashed rgba(130, 105, 78, 0.25);
+            padding: 12px 6px; 
+            background: rgba(255, 255, 255, 0.25);
         }
-
         .poem-accordion {
-            margin-bottom: 10px;
-            border-bottom: 1px solid rgba(130, 105, 78, 0.15);
+            margin-bottom: 4px;
+            border-bottom: 1px solid rgba(130, 105, 78, 0.12);
         }
-        .poem-accordion:last-child { border-bottom: none; }
-
+        .poem-accordion:last-child {
+            border-bottom: none;
+        }
+        
+        /* Яркие, адаптивные заголовки */
         .poem-accordion summary {
-            font-size: 1.25em;
-            padding: 15px 10px;
+            font-size: 1.15em; 
+            font-weight: bold;
+            letter-spacing: 0.3px;
+            padding: 12px 2px;
             cursor: pointer;
-            color: #3b2d1f;
+            color: #26190d;
             outline: none;
             list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
             user-select: none;
+            transition: color 0.2s ease;
         }
-        .poem-accordion summary::-webkit-details-marker { display: none; }
-        
+        .poem-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        .poem-accordion summary:hover {
+            color: #5a3d1e;
+        }
         .poem-accordion summary::after {
             content: '✒️';
             font-size: 0.8em;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.2s ease;
             opacity: 0.5;
+            flex-shrink: 0;
+            margin-left: 6px;
         }
-        .poem-accordion[open] summary::after { transform: rotate(-30deg) scale(1.1); opacity: 0.9; }
-
+        .poem-accordion[open] summary {
+            color: #5a3d1e;
+        }
+        .poem-accordion[open] summary::after {
+            transform: rotate(-30deg) scale(1.1);
+            opacity: 1;
+        }
         .poem-text-block {
-            padding: 10px 15px 30px 15px;
+            padding: 8px 2px 20px 2px; 
             font-style: italic;
-            font-size: 1.1em;
-            line-height: 1.7;
+            font-size: 1.05em; 
+            line-height: 1.55;
             color: #2b1f13;
             text-align: left;
-            animation: slideDownFade 0.45s ease-out forwards;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            animation: slideDownFade 0.4s ease-out forwards;
             transform-origin: top center;
+        }
+        
+        /* === ДЕСКТОПНЫЙ И ПЛАНШЕТНЫЙ ДИЗАЙН (МАСШТАБИРОВАНИЕ НА БОЛЬШИХ ЭКРАНАХ) === */
+        @media (min-width: 480px) {
+            header {
+                padding: 40px 20px;
+            }
+            header h1 {
+                font-size: 2.2em;
+                letter-spacing: 1px;
+            }
+            nav a {
+                margin: 0 15px;
+                font-size: 0.95em;
+            }
+            .scroll-container {
+                padding: 60px 25px;
+            }
+            .main-scroll-paper {
+                padding: 50px 40px;
+                background-image: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.45), transparent), linear-gradient(to right, #a18a6f 0%, transparent 8%, transparent 92%, #a18a6f 100%);
+                border-left: 15px solid #82694e;
+                border-right: 15px solid #82694e;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.16), inset 0 0 50px rgba(117, 94, 69, 0.35);
+                border-radius: 4px;
+            }
+            .main-scroll-paper::before, .main-scroll-paper::after {
+                left: -25px;
+                right: -25px;
+                height: 24px;
+                border-radius: 12px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            }
+            .main-scroll-paper::before { top: -12px; }
+            .main-scroll-paper::after { bottom: -12px; }
+            
+            .scroll-inner-content {
+                padding: 25px 20px;
+            }
+            .poem-accordion summary {
+                font-size: 1.35em;
+                padding: 16px 10px;
+                letter-spacing: 0.5px;
+            }
+            .poem-text-block {
+                padding: 12px 15px 35px 15px;
+                font-size: 1.1em;
+                line-height: 1.6;
+            }
         }
 
         @keyframes slideDownFade {
-            from { opacity: 0; transform: scaleY(0.95); }
-            to { opacity: 1; transform: scaleY(1); }
+            from {
+                opacity: 0;
+                transform: scaleY(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: scaleY(1);
+            }
         }
     </style>
 </head>
