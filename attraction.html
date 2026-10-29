@@ -4,28 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Притяжение | Рамо Бин Ях</title>
-    <!-- 
-      ========================================================================
-      LICENSE NOTICE FOR SOURCE CODE (ЛИЦЕНЗИЯ НА ИСХОДНЫЙ КОД САЙТА)
-      ========================================================================
-      Copyright (c) 2026 Ramo Bin Yah (https://github.io)
-      All Rights Reserved.
-    
-      Исходный код данного веб-сайта (включая архитектуру HTML, стили CSS, 
-      дизайн интерактивных свитков и скрипты Web Audio API) является интеллектуальной
-      собственностью автора и защищен законодательством об авторском праве.
-    
-      Запрещается полное или частичное копирование, заимствование, модификация 
-      или коммерческое использование программного кода без предварительного 
-      письменного согласия правообладателя.
-      ========================================================================
-    -->
     <style>
         :root {
-            --bg-color: #fcfbf9;
-            --text-color: #2c2c2c;
-            --accent-color: #8c6b47;
-            --scroll-paper-bg: #e6cfb3; 
+            --bg-color: #f5f2eb;
+            --text-color: #1a1a1a;
+            --accent-color: #705235;
+            --book-page-bg: #fdfcf9; 
         }
         body {
             font-family: 'Georgia', serif;
@@ -37,212 +21,181 @@
             -webkit-text-size-adjust: 100%;
         }
         header {
-            padding: 30px 15px;
-            border-bottom: 1px solid #e0dad3;
-            background: #fff;
+            padding: 30px 15px 15px 15px;
             text-align: center;
         }
         header h1 {
             margin: 0 0 10px 0;
             font-size: 1.8em;
             font-weight: normal;
-            color: #4a3825;
+            color: #362514;
             letter-spacing: 0.5px;
         }
         nav {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 10px 15px; /* Заменяет фиксированные маргины для гибкого переноса */
         }
         nav a {
             color: var(--accent-color);
             text-decoration: none;
-            margin: 0;
-            font-weight: bold;
+            font-weight: normal;
             font-size: 0.9em;
+            font-style: italic;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #000;
         }
         
-        /* === МОБИЛЬНЫЙ ОПТИМИЗИРОВАННЫЙ СВИТОК === */
-        .scroll-container {
+        /* === КНИЖНЫЙ ВАРИАНТ СТРАНИЦЫ С УЛУЧШЕННОЙ АДАПТИВНОСТЬЮ === */
+        .book-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 25px 12px; /* Чуть увеличен боковой отступ, чтобы не прижималось к краям экрана */
+            padding: 10px 10px 30px 10px;
             box-sizing: border-box;
-            overflow-x: hidden; /* КРИТИЧНО: Защита от горизонтальной прокрутки из-за left/right: -10px */
-        }
-        .main-scroll-paper {
-            background-color: var(--scroll-paper-bg);
-            /* Текстура и тень свернутого листа */
-            background-image: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.45), transparent), linear-gradient(to right, #a18a6f 0%, transparent 6%, transparent 94%, #a18a6f 100%);
-            border-left: 6px solid #82694e;  /* Тонкие, но заметные деревянные поля на мобильном */
-            border-right: 6px solid #82694e;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12), inset 0 0 30px rgba(117, 94, 69, 0.3);
-            border-radius: 3px;
-            max-width: 580px;
             width: 100%;
-            padding: 25px 8px; /* Компактные боковые поля, чтобы текст не сжимался */
+            overflow-x: hidden; /* Защита от случайной горизонтальной прокрутки */
+        }
+        .book-page {
+            background-color: var(--book-page-bg);
+            border: 1px solid #dcd6cd;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.02);
+            max-width: 650px;
+            width: 100%;
+            padding: 30px 15px; /* Компактные базовые отступы для мобильных */
             box-sizing: border-box;
             position: relative;
         }
         
-        /* Компактные деревянные наконечники для мобильных экранов */
-        .main-scroll-paper::before, .main-scroll-paper::after {
+        /* Эмуляция книжного переплета / корешка слева */
+        .book-page::before {
             content: '';
             position: absolute;
-            left: -10px; /* Идеальное прилегание к краям */
-            right: -10px;
-            height: 14px; /* Меньший диаметр цилиндра */
-            background: linear-gradient(to bottom, #3b2816, #785a3c 50%, #26190d);
-            box-shadow: 0 3px 6px rgba(0,0,0,0.25);
-            border-radius: 7px;
-            z-index: 2;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 12px;
+            background: linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.01) 25%, transparent 100%);
+            pointer-events: none;
         }
-        .main-scroll-paper::before { top: -7px; }
-        .main-scroll-paper::after { bottom: -7px; }
         
-        .scroll-inner-content {
-            border: 1px dashed rgba(130, 105, 78, 0.25);
-            padding: 12px 6px; 
-            background: rgba(255, 255, 255, 0.25);
+        .book-inner-content {
+            padding: 5px 0;
+            width: 100%;
         }
-        .poem-accordion {
-            margin-bottom: 4px;
-            border-bottom: 1px solid rgba(130, 105, 78, 0.12);
+        
+        /* Интерактивный аккордеон в книжном стиле */
+        .poem-entry {
+            margin-bottom: 20px;
+            border-bottom: 1px dashed rgba(192, 181, 169, 0.4);
+            padding-bottom: 15px;
+            width: 100%;
         }
-        .poem-accordion:last-child {
+        .poem-entry:last-child {
+            margin-bottom: 50px;
             border-bottom: none;
+            padding-bottom: 0;
         }
         
-        /* Яркие, адаптивные заголовки */
-        .poem-accordion summary {
-            font-size: 1.1em; /* Слегка уменьшен для ультра-узких экранов 320px */
-            font-weight: bold;
+        /* Книжные заголовки-кнопки */
+        .poem-entry summary {
+            font-size: 1.25em;
+            font-weight: normal;
             letter-spacing: 0.3px;
-            padding: 12px 2px;
+            padding: 8px 0;
+            color: #362514;
+            text-align: center;
             cursor: pointer;
-            color: #26190d;
             outline: none;
             list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             user-select: none;
             transition: color 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
         }
-        .poem-accordion summary::-webkit-details-marker {
+        .poem-entry summary::-webkit-details-marker {
             display: none;
         }
-        .poem-accordion summary:hover {
-            color: #5a3d1e;
+        .poem-entry summary:hover {
+            color: var(--accent-color);
         }
-        .poem-accordion summary::after {
+        
+        /* Иконка пера */
+        .poem-entry summary::after {
             content: '✒️';
-            font-size: 0.8em;
+            font-size: 0.65em;
+            opacity: 0.3;
             transition: transform 0.3s ease, opacity 0.2s ease;
-            opacity: 0.5;
-            flex-shrink: 0;
-            margin-left: 10px; /* Увеличен отступ, чтобы текст не наезжал на перо */
+            flex-shrink: 0; /* Перо не будет сжиматься при нехватке места */
         }
-        .poem-accordion[open] summary {
-            color: #5a3d1e;
+        .poem-entry[open] summary {
+            color: var(--accent-color);
+            margin-bottom: 15px;
         }
-        .poem-accordion[open] summary::after {
+        .poem-entry[open] summary::after {
             transform: rotate(-30deg) scale(1.1);
             opacity: 1;
         }
+        
+        /* Блок с текстом: использует адаптивные отступы и гарантирует перенос длинных слов */
         .poem-text-block {
-            padding: 8px 2px 20px 2px; 
-            font-style: italic;
+            padding: 0 5%; 
+            font-style: normal;
             font-size: 1.05em; 
-            line-height: 1.55;
-            color: #2b1f13;
+            line-height: 1.65;
+            color: #2c2c2c;
             text-align: left;
+            box-sizing: border-box;
+            width: 100%;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            word-break: break-word;
             animation: slideDownFade 0.4s ease-out forwards;
             transform-origin: top center;
         }
 
-        /* Дополнительная микро-оптимизация для самых узких экранов (до 360px) */
-        @media (max-width: 360px) {
-            header h1 {
-                font-size: 1.5em;
-            }
-            .poem-accordion summary {
-                font-size: 1em;
-            }
-            .poem-text-block {
-                font-size: 0.95em;
-            }
-        }
-        
-        /* === ДЕСКТОПНЫЙ И ПЛАНШЕТНЫЙ ДИЗАЙН (МАСШТАБИРОВАНИЕ НА БОЛЬШИХ ЭКРАНАХ) === */
-        @media (min-width: 480px) {
-            header {
-                padding: 40px 20px;
-            }
-            header h1 {
-                font-size: 2.2em;
-                letter-spacing: 1px;
-            }
-            nav {
-                gap: 0;
-            }
-            nav a {
-                margin: 0 15px;
-                font-size: 0.95em;
-            }
-            .scroll-container {
-                padding: 60px 25px;
-                overflow-x: visible; /* На больших экранах можно отключить скрытие */
-            }
-            .main-scroll-paper {
-                padding: 50px 40px;
-                background-image: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.45), transparent), linear-gradient(to right, #a18a6f 0%, transparent 8%, transparent 92%, #a18a6f 100%);
-                border-left: 15px solid #82694e;
-                border-right: 15px solid #82694e;
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.16), inset 0 0 50px rgba(117, 94, 69, 0.35);
-                border-radius: 4px;
-            }
-            .main-scroll-paper::before, .main-scroll-paper::after {
-                left: -25px;
-                right: -25px;
-                height: 24px;
-                border-radius: 12px;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            }
-            .main-scroll-paper::before { top: -12px; }
-            .main-scroll-paper::after { bottom: -12px; }
-            
-            .scroll-inner-content {
-                padding: 25px 20px;
-            }
-            .poem-accordion summary {
-                font-size: 1.35em;
-                padding: 16px 10px;
-                letter-spacing: 0.5px;
-            }
-            .poem-text-block {
-                padding: 12px 15px 35px 15px;
-                font-size: 1.1em;
-                line-height: 1.6;
-            }
-        }
-
+        /* Анимация плавного появления текста */
         @keyframes slideDownFade {
             from {
                 opacity: 0;
-                transform: scaleY(0.96);
+                transform: scaleY(0.98);
             }
             to {
                 opacity: 1;
                 transform: scaleY(1);
             }
         }
-</style>
 
+        /* === МЕДИА-ЗАПРОСЫ ДЛЯ СРЕДНИХ И БОЛЬШИХ ЭКРАНОВ === */
+        @media (min-width: 480px) {
+            header {
+                padding: 40px 20px 20px 20px;
+            }
+            header h1 {
+                font-size: 2em;
+                letter-spacing: 1px;
+            }
+            .book-container {
+                padding: 20px 15px 40px 15px;
+            }
+            .book-page {
+                padding: 45px 30px;
+            }
+            .poem-entry summary {
+                font-size: 1.4em;
+                letter-spacing: 0.5px;
+            }
+            .poem-text-block {
+                padding: 0 10%;
+                font-size: 1.1em;
+                line-height: 1.7;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -253,10 +206,11 @@
         </nav>
     </header>
 
-    <div class="scroll-container">
-        <div class="main-scroll-paper">
-            <div class="scroll-inner-content">
-                <details class="poem-accordion">
+    <div class="book-container">
+        <div class="book-page">
+            <div class="book-inner-content">
+                
+                <details class="poem-entry">
                     <summary>Весенняя капля</summary>
                     <div class="poem-text-block">
                         Заплакала берёза сладкою слезой,<br>
@@ -268,52 +222,54 @@
                         Земли проснувшейся привет.
                     </div>
                 </details>
-                <details class="poem-accordion">
+
+                <details class="poem-entry">
                     <summary>Название второго стиха</summary>
-                    <div class="poem-text-block">Строки следующего произведения...</div>
+                    <div class="poem-text-block">
+                        Строки следующего произведения...
+                    </div>
                 </details>
 
             </div>
         </div>
     </div>
-<!-- Кнопка CloudTips под свитком раздела "Линии горизонта" -->
-<div style="text-align: center; margin: 40px auto 60px auto; max-width: 500px; padding: 0 20px;">
-    
-    <!-- Традиционный поэтический разделитель -->
-    <div style="color: #c0b5a9; letter-spacing: 10px; font-size: 1.2em; margin-bottom: 30px;">* * *</div>
-    
-    <p style="font-family: 'Georgia', serif; font-style: italic; color: #555; margin-bottom: 20px; font-size: 1.05em; line-height: 1.6;">
-        Если эти строки отозвались в вашем сердце, вы можете поддержать автора:
-    </p>
-    
-    <!-- Замените '#' на вашу личную ссылку от CloudTips -->
-    <a href="#" target="_blank" style="
-        display: inline-block;
-        background-color: transparent;
-        color: #8b5a2b;
-        border: 1px solid #8b5a2b;
-        padding: 12px 30px;
-        text-decoration: none;
-        border-radius: 2px;
-        font-family: 'Georgia', serif;
-        font-size: 0.9em;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: bold;
-        transition: all 0.3s ease;
-    " onmouseover="this.style.backgroundColor='#8b5a2b'; this.style.color='#ffffff';" 
-       onmouseout="this.style.backgroundColor='transparent'; this.style.color='#8b5a2b';">
-        Поддержать автора ❖
-    </a>
-</div>
 
-    <footer style="text-align: center; padding: 40px 20px; font-size: 0.9em; color: #555; border-top: 1px solid #e0dad3; margin-top: 60px; line-height: 1.6;">
+    <div style="text-align: center; margin: 20px auto 40px auto; max-width: 500px; padding: 0 15px; box-sizing: border-box;">
+        <div style="color: #c0b5a9; letter-spacing: 10px; font-size: 1.2em; margin-bottom: 25px;">* * *</div>
+        
+        <p style="font-family: 'Georgia', serif; font-style: italic; color: #555; margin-bottom: 20px; font-size: 1.05em; line-height: 1.6;">
+            Если эти строки отозвались в вашем сердце, вы можете поддержать автора:
+        </p>
+        
+        <a href="#" target="_blank" style="
+            display: inline-block;
+            background-color: transparent;
+            color: #705235;
+            border: 1px solid #705235;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 2px;
+            font-family: 'Georgia', serif;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            max-width: 100%;
+        " onmouseover="this.style.backgroundColor='#705235'; this.style.color='#ffffff';" 
+           onmouseout="this.style.backgroundColor='transparent'; this.style.color='#705235';">
+            Поддержать автора ❖
+        </a>
+    </div>
+
+    <footer style="text-align: center; padding: 30px 15px; font-size: 0.85em; color: #555; border-top: 1px solid #dcd6cd; margin-top: 40px; line-height: 1.6; box-sizing: border-box;">
         <div style="max-width: 600px; margin: 0 auto 15px auto; font-style: italic; color: #6e5d4f;">
             Все стихотворения, тексты и материалы, опубликованные на данном сайте, являются объектом авторского права и защищены лицензией 
-            <a href="https://creativecommons.org" target="_blank" style="color: #8b5a2b; text-decoration: underline;">Creative Commons BY-NC-ND 4.0</a>. 
+            <a href="https://creativecommons.org" target="_blank" style="color: #705235; text-decoration: underline;">Creative Commons BY-NC-ND 4.0</a>. 
             <br>Вы можете делиться произведениями при условии обязательного указания авторства (Рамо Бин Ях) и ссылки на первоисточник. Коммерческое использование и любые изменения текстов строго запрещены.
         </div>
-        <p style="margin: 0; font-weight: bold; letter-spacing: 1px;">&copy; 2026 Рамо Бин Ях. Все права защищены (All Rights Reserved).</p>
+        <p style="margin: 0; font-weight: bold; letter-spacing: 0.5px;">&copy; 2026 Рамо Бин Ях. Все права защищены (All Rights Reserved).</p>
     </footer>
 
     <script>
@@ -321,28 +277,9 @@
         function playScrollSound() {
             try {
                 if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
-                const duration = 0.42;
+                const duration = 0.35;
                 const bufferSize = audioCtx.sampleRate * duration;
                 const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
                 const data = buffer.getChannelData(0);
                 for (let i = 0; i < bufferSize; i++) { data[i] = Math.random() * 2 - 1; }
                 const source = audioCtx.createBufferSource();
-                source.buffer = buffer;
-                const filter = audioCtx.createBiquadFilter();
-                filter.type = 'lowpass';
-                filter.frequency.setValueAtTime(500, audioCtx.currentTime);
-                filter.frequency.exponentialRampToValueAtTime(130, audioCtx.currentTime + duration);
-                const gain = audioCtx.createGain();
-                gain.gain.setValueAtTime(0, audioCtx.currentTime);
-                gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 0.07);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-                source.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination);
-                source.start();
-            } catch (e) {}
-        }
-        document.querySelectorAll('.poem-accordion summary').forEach(el => {
-            el.addEventListener('click', () => { playScrollSound(); });
-        });
-    </script>
-</body>
-</html>
