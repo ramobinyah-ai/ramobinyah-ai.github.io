@@ -109,19 +109,20 @@
             font-size: 1.25em;
             font-weight: normal;
             letter-spacing: 0.3px;
-            padding: 8px 0;
+            padding: 8px 5%; /* Выровнено с отступом текста (5%) на смартфонах */
             color: #2b2721;
-            text-align: center;
+            text-align: left; /* Текст заголовка сдвинут налево */
             cursor: pointer;
             outline: none;
             list-style: none;
             user-select: none;
             transition: color 0.2s ease;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start; /* Элементы прижаты к началу строки */
             align-items: center;
             gap: 8px;
             width: 100%;
+            box-sizing: border-box; /* Корректный расчет ширины с учетом padding */
         }
         .poem-entry summary::-webkit-details-marker {
             display: none;
@@ -193,6 +194,7 @@
             .poem-entry summary {
                 font-size: 1.4em;
                 letter-spacing: 0.5px;
+                padding: 8px 10%; /* Выровнено с отступом текста (10%) на мониторах */
             }
             .poem-text-block {
                 padding: 0 10%;
@@ -200,7 +202,8 @@
                 line-height: 1.7;
             }
         }
-    </style>
+</style>
+
 </head>
 <body>
 
