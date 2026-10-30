@@ -20,7 +20,7 @@
       письменного согласия правообладателя.
       ========================================================================
     -->
-    <style>
+ <style>
         :root {
             --bg-color: #f6f5f2;
             --text-color: #2c2c2c;
@@ -119,19 +119,20 @@
             font-size: 1.25em;
             font-weight: normal;
             letter-spacing: 0.3px;
-            padding: 8px 0;
+            padding: 8px 5%; /* Синхронизировано с отступом текста (5%) на мобильных */
             color: #2e2b24;
-            text-align: center;
+            text-align: left; /* Выравнивание текста заголовка по левому краю */
             cursor: pointer;
             outline: none;
             list-style: none;
             user-select: none;
             transition: color 0.2s ease;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start; /* Прижимает заголовок и перо к левому краю */
             align-items: center;
             gap: 8px;
             width: 100%;
+            box-sizing: border-box; /* Защита ширины от влияния внутренних отступов */
         }
         .poem-entry summary::-webkit-details-marker {
             display: none;
@@ -203,6 +204,7 @@
             .poem-entry summary {
                 font-size: 1.4em;
                 letter-spacing: 0.5px;
+                padding: 8px 10%; /* Синхронизировано с отступом текста (10%) на десктопах */
             }
             .poem-text-block {
                 padding: 0 10%;
@@ -210,7 +212,8 @@
                 line-height: 1.7;
             }
         }
-    </style>
+</style>
+
 </head>
 <body>
 
