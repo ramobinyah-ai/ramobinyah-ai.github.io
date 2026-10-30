@@ -5,197 +5,212 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Притяжение | Рамо Бин Ях</title>
     <style>
-        :root {
-            --bg-color: #f5f2eb;
-            --text-color: #1a1a1a;
-            --accent-color: #705235;
-            --book-page-bg: #fdfcf9; 
-        }
-        body {
-            font-family: 'Georgia', serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            -webkit-text-size-adjust: 100%;
-        }
-        header {
-            padding: 30px 15px 15px 15px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0 0 10px 0;
-            font-size: 1.8em;
-            font-weight: normal;
-            color: #362514;
-            letter-spacing: 0.5px;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-        }
-        nav a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: normal;
-            font-size: 0.9em;
-            font-style: italic;
-            transition: color 0.2s;
-        }
-        nav a:hover {
-            color: #000;
-        }
-        
-        /* === КНИЖНЫЙ ВАРИАНТ СТРАНИЦЫ С УЛУЧШЕННОЙ АДАПТИВНОСТЬЮ === */
-        .book-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 10px 30px 10px;
-            box-sizing: border-box;
-            width: 100%;
-            overflow-x: hidden; /* Защита от случайной горизонтальной прокрутки */
-        }
-        .book-page {
-            background-color: var(--book-page-bg);
-            border: 1px solid #dcd6cd;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.02);
-            max-width: 650px;
-            width: 100%;
-            padding: 30px 15px; /* Компактные базовые отступы для мобильных */
-            box-sizing: border-box;
-            position: relative;
-        }
-        
-        /* Эмуляция книжного переплета / корешка слева */
-        .book-page::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 12px;
-            background: linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.01) 25%, transparent 100%);
-            pointer-events: none;
-        }
-        
-        .book-inner-content {
-            padding: 5px 0;
-            width: 100%;
-        }
-        
-        /* Интерактивный аккордеон в книжном стиле */
-        .poem-entry {
-            margin-bottom: 20px;
-            border-bottom: 1px dashed rgba(192, 181, 169, 0.4);
-            padding-bottom: 15px;
-            width: 100%;
-        }
-        .poem-entry:last-child {
-            margin-bottom: 50px;
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        
-        /* Книжные заголовки-кнопки */
-        .poem-entry summary {
-            font-size: 1.25em;
-            font-weight: normal;
-            letter-spacing: 0.3px;
-            padding: 8px 0;
-            color: #362514;
-            text-align: center;
-            cursor: pointer;
-            outline: none;
-            list-style: none;
-            user-select: none;
-            transition: color 0.2s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            width: 100%;
-        }
-        .poem-entry summary::-webkit-details-marker {
-            display: none;
-        }
-        .poem-entry summary:hover {
-            color: var(--accent-color);
-        }
-        
-        /* Иконка пера */
-        .poem-entry summary::after {
-            content: '✒️';
-            font-size: 0.65em;
-            opacity: 0.3;
-            transition: transform 0.3s ease, opacity 0.2s ease;
-            flex-shrink: 0; /* Перо не будет сжиматься при нехватке места */
-        }
-        .poem-entry[open] summary {
-            color: var(--accent-color);
-            margin-bottom: 15px;
-        }
-        .poem-entry[open] summary::after {
-            transform: rotate(-30deg) scale(1.1);
-            opacity: 1;
-        }
-        
-        /* Блок с текстом: использует адаптивные отступы и гарантирует перенос длинных слов */
-        .poem-text-block {
-            padding: 0 5%; 
-            font-style: normal;
-            font-size: 1.05em; 
-            line-height: 1.65;
-            color: #2c2c2c;
-            text-align: left;
-            box-sizing: border-box;
-            width: 100%;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            word-break: break-word;
-            animation: slideDownFade 0.4s ease-out forwards;
-            transform-origin: top center;
-        }
+:root {
+  --bg-color: #f5f2eb;
+  --text-color: #1a1a1a;
+  --accent-color: #705235;
+  --book-page-bg: #fdfcf9;
+}
 
-        /* Анимация плавного появления текста */
-        @keyframes slideDownFade {
-            from {
-                opacity: 0;
-                transform: scaleY(0.98);
-            }
-            to {
-                opacity: 1;
-                transform: scaleY(1);
-            }
-        }
+body {
+  font-family: 'Georgia', serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
 
-        /* === МЕДИА-ЗАПРОСЫ ДЛЯ СРЕДНИХ И БОЛЬШИХ ЭКРАНОВ === */
-        @media (min-width: 480px) {
-            header {
-                padding: 40px 20px 20px 20px;
-            }
-            header h1 {
-                font-size: 2em;
-                letter-spacing: 1px;
-            }
-            .book-container {
-                padding: 20px 15px 40px 15px;
-            }
-            .book-page {
-                padding: 45px 30px;
-            }
-            .poem-entry summary {
-                font-size: 1.4em;
-                letter-spacing: 0.5px;
-            }
-            .poem-text-block {
-                padding: 0 10%;
-                font-size: 1.1em;
-                line-height: 1.7;
-            }
-        }
-    </style>
+header {
+  padding: 30px 15px 15px 15px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 10px 0;
+  font-size: 1.8em;
+  font-weight: normal;
+  color: #362514;
+  letter-spacing: 0.5px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+nav a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 0.9em;
+  font-style: italic;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+/* === КНИЖНЫЙ ВАРИАНТ СТРАНИЦЫ С УЛУЧШЕННОЙ АДАПТИВНОСТЬЮ === */
+.book-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px 30px 10px;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.book-page {
+  background-color: var(--book-page-bg);
+  border: 1px solid #dcd6cd;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.02);
+  max-width: 650px;
+  width: 100%;
+  padding: 30px 15px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Эмуляция книжного переплета / корешка слева */
+.book-page::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.01) 25%, transparent 100%);
+  pointer-events: none;
+}
+
+.book-inner-content {
+  padding: 5px 0;
+  width: 100%;
+}
+
+/* Интерактивный аккордеон в книжном стиле */
+.poem-entry {
+  margin-bottom: 20px;
+  border-bottom: 1px dashed rgba(192, 181, 169, 0.4);
+  padding-bottom: 15px;
+  width: 100%;
+}
+
+.poem-entry:last-child {
+  margin-bottom: 50px;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Книжные заголовки-кнопки */
+.poem-entry summary {
+  font-size: 1.25em;
+  font-weight: normal;
+  letter-spacing: 0.3px;
+  padding: 8px 5%; /* Отступ 5% слева и справа для выравнивания с текстом */
+  color: #362514;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  list-style: none;
+  user-select: none;
+  transition: color 0.2s ease;
+  display: flex;
+  justify-content: flex-start; /* Контент прижат к левому краю */
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box; /* Чтобы padding не раздувал ширину */
+}
+
+.poem-entry summary::-webkit-details-marker {
+  display: none;
+}
+
+.poem-entry summary:hover {
+  color: var(--accent-color);
+}
+
+/* Иконка пера */
+.poem-entry summary::after {
+  content: '✒️';
+  font-size: 0.65em;
+  opacity: 0.3;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.poem-entry[open] summary {
+  color: var(--accent-color);
+  margin-bottom: 15px;
+}
+
+.poem-entry[open] summary::after {
+  transform: rotate(-30deg) scale(1.1);
+  opacity: 1;
+}
+
+/* Блок с текстом */
+.poem-text-block {
+  padding: 0 5%; /* Базовый отступ 5% для мобильных */
+  font-style: normal;
+  font-size: 1.05em;
+  line-height: 1.65;
+  color: #2c2c2c;
+  text-align: left;
+  box-sizing: border-box;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  animation: slideDownFade 0.4s ease-out forwards;
+  transform-origin: top center;
+}
+
+/* Анимация плавного появления текста */
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: scaleY(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* === МЕДИА-ЗАПРОСЫ ДЛЯ СРЕДНИХ И БОЛЬШИХ ЭКРАНОВ === */
+@media (min-width: 480px) {
+  header {
+    padding: 40px 20px 20px 20px;
+  }
+  header h1 {
+    font-size: 2em;
+    letter-spacing: 1px;
+  }
+  .book-container {
+    padding: 20px 15px 40px 15px;
+  }
+  .book-page {
+    padding: 45px 30px;
+  }
+  .poem-entry summary {
+    font-size: 1.4em;
+    letter-spacing: 0.5px;
+    padding: 8px 10%; /* Синхронное увеличение отступа до 10% на ПК */
+  }
+  .poem-text-block {
+    padding: 0 10%; /* Отступ 10% на ПК */
+    font-size: 1.1em;
+    line-height: 1.7;
+  }
+}
+</style>
+
 </head>
 <body>
 
