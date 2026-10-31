@@ -342,18 +342,40 @@
         </div>
     </div>
 
-  <!-- Блок «Поделиться» (Чистый HTML/CSS без внешних скриптов) -->
+  <!-- Блок «Поделиться» с кнопкой копирования ссылки -->
 <div style="text-align: center; margin: 30px auto 20px auto;">
     <p style="font-family: 'Georgia', serif; font-style: italic; color: #777; margin-bottom: 15px; font-size: 0.95em;">Поделиться стихами:</p>
-    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; align-items: center;">
         <!-- ВКонтакте -->
         <a href="https://vk.com" target="_blank" style="background-color: #0077FF; color: white; text-decoration: none; padding: 8px 18px; border-radius: 20px; font-family: sans-serif; font-size: 14px; font-weight: bold; display: inline-block;">VK</a>
-        <!-- Telegram -->
-        <a href="https://t.org" target="_blank" style="background-color: #2CA5E0; color: white; text-decoration: none; padding: 8px 18px; border-radius: 20px; font-family: sans-serif; font-size: 14px; font-weight: bold; display: inline-block;">Telegram</a>
         <!-- Одноклассники -->
-        <a href="https://ok.ru" target="_blank" style="background-color: #F2720C; color: white; text-decoration: none; padding: 8px 18px; border-radius: 20px; font-family: sans-serif; font-size: 14px; font-weight: bold; display: inline-block;">OK</a>
+        <a href="https://ok.ru" target="_blank" style="background-color: #F2720C; color: white; text-decoration: none; padding: 8px 18px; border-radius: 20px; font-family: sans-serif; font-size: 14px; font-weight: bold; display: inline-block;">OK</a>        
+        <!-- Кнопка «Скопировать ссылку» -->
+        <button id="copy-link-btn" onclick="copyPageUrl()" style="background-color: #555555; color: white; border: none; cursor: pointer; padding: 8px 18px; border-radius: 20px; font-family: sans-serif; font-size: 14px; font-weight: bold; display: inline-block; transition: background-color 0.2s;">Скопировать ссылку</button>
     </div>
 </div>
+
+<script>
+function copyPageUrl() {
+    const el = document.createElement('textarea');
+    el.value = 'https://ramobinyah.art';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+
+    const btn = document.getElementById('copy-link-btn');
+    const originalText = btn.innerText;
+    btn.innerText = 'Ссылка скопирована!';
+    btn.style.backgroundColor = '#28a745';
+
+    setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.backgroundColor = '#555555';
+    }, 2000);
+}
+</script>
+
 
     <!-- Блок поддержки автора -->
     <div style="text-align: center; margin: 20px auto 40px auto; max-width: 500px; padding: 0 15px; box-sizing: border-box;">
