@@ -9,6 +9,105 @@
     <meta name="description" content="Официальный сайт писателя и поэта Рамо Бин Ях. Творческая мастерская, оригинальные стихотворения, новые рассказы и витрина фантастических книг автора.">
     <style>
         :root {
+  --primary-color: #3a3f58;
+  --accent-color: #8c7ae6;
+  --text-main: #2f3640;
+  --text-muted: #718093;
+  --bg-card: #ffffff;
+  --bg-section: #f5f6fa;
+}
+
+.poems-section {
+  background-color: var(--bg-section);
+  padding: 60px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.poems-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.poems-title {
+  text-align: center;
+  font-size: 32px;
+  color: var(--primary-color);
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.poems-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color: var(--accent-color);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.poems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.poem-card {
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.poem-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.poem-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 15px;
+}
+
+.poem-category {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.poem-heading {
+  font-size: 20px;
+  color: var(--primary-color);
+  margin: 0 0 15px 0;
+}
+
+.poem-text {
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text-main);
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.poem-link {
+  display: inline-block;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.poem-link:hover {
+  color: var(--primary-color);
+}
+
+        :root {
             --bg-color: #fcfbf9;
             --text-color: #2c2c2c;
             --accent-color: #8b5a2b;
@@ -154,6 +253,63 @@
                 Планету он ведёт вперёд.
             </div>
         </div>
+
+    <section class="poems-section">
+  <div class="poems-container">
+    <h2 class="poems-title">Новые стихи</h2>
+    
+    <div class="poems-grid">
+      <!-- Карточка 1 -->
+      <article class="poem-card">
+        <div class="poem-meta">
+          <span class="poem-date">02 ноября 2026</span>
+          <span class="poem-category">Пейзажная лирика</span>
+        </div>
+        <h3 class="poem-heading">Посидим мы с тобой на заимке</h3>
+        <div class="poem-text">
+          <p>Посидим мы с тобой на заимке,<br>
+          Разведём костерок до утра,<br>
+          Вспомним годы былые с улыбкой…<br>
+          До чего же ушица вкусна!</p>
+        </div>
+        <a href="https://ramobinyah.art/horizons" class="poem-link">Читать полностью →</a>
+      </article>
+
+      <!-- Карточка 2 -->
+      <article class="poem-card">
+        <div class="poem-meta">
+          <span class="poem-date">30 октября 2026</span>
+          <span class="poem-category">Философская лирика</span>
+        </div>
+        <h3 class="poem-heading">А был ли мальчик в деревне летом</h3>
+        <div class="poem-text">
+          <p>А был ли мальчик в деревне летом?<br>
+          Ходил ли в поле косить траву?<br>
+          Он сочинял и пел куплеты<br>
+          И на рыбалку - по утру.</p>
+        </div>
+        <a href="https://ramobinyah.art/noise-of-time" class="poem-link">Читать полностью →</a>
+      </article>
+
+      <!-- Карточка 3 -->
+      <article class="poem-card">
+        <div class="poem-meta">
+          <span class="poem-date">25 октября 2026</span>
+          <span class="poem-category">Любовная лирика</span>
+        </div>
+        <h3 class="poem-heading">Здравствуй, милая Алёна!</h3>
+        <div class="poem-text">
+          <p>Здравствуй, милая Алёна!<br>
+          Я тебя узнал едва.<br>
+          Ты, конечно, изменилась –<br>
+          Боже, как ты хороша!</p>
+        </div>
+        <a href="#" class="poem-link">Читать полностью →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
 
     <!-- Рекламное место вверху -->
 <div class="ad-block" style="padding: 0; background: transparent; border: none; overflow: hidden; height: 60px;">
