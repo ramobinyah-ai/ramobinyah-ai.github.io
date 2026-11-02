@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аудиостихи | Рамо Бин Ях</title>
+    <!-- ========================================================================
+    LICENSE NOTICE FOR SOURCE CODE (ЛИЦЕНЗИЯ НА ИСХОДНЫЙ КОД САЙТА)
+    ========================================================================
+    Copyright (c) 2026 Ramo Bin Yah (https://github.io)
+    All Rights Reserved.
+    Исходный код данного веб-сайта является интеллектуальной собственностью автора.
+    ======================================================================== -->
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-color: #2c2c2c;
+            --accent-color: #8c6b47;
+            --scroll-paper-bg: #e6cfb3;
+            --player-bg: rgba(255, 255, 255, 0.25);
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 30px 20px;
+            border-bottom: 1px solid #e0dad3;
+            background: #fff;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2em;
+            font-weight: normal;
+            color: #4a3825;
+        }
+
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .scroll-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .main-scroll-paper {
+            background-color: var(--scroll-paper-bg);
+            background-image: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.45), transparent), linear-gradient(to right, #a18a6f 0%, transparent 8%, transparent 92%, #a18a6f 100%);
+            border-left: 15px solid #82694e;
+            border-right: 15px solid #82694e;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.16), inset 0 0 50px rgba(117, 94, 69, 0.35);
+            border-radius: 4px;
+            max-width: 550px;
+            width: 100%;
+            padding: 50px 30px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        @media (max-width: 480px) {
+            .main-scroll-paper {
+                padding: 40px 15px;
+                border-left-width: 10px;
+                border-right-width: 10px;
+            }
+        }
+
+        .main-scroll-paper::before, .main-scroll-paper::after {
+            content: '';
+            position: absolute;
+            left: -25px;
+            right: -25px;
+            height: 24px;
+            background: linear-gradient(to bottom, #3b2816, #785a3c 50%, #26190d);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-radius: 12px;
+        }
+        .main-scroll-paper::before { top: -12px; }
+        .main-scroll-paper::after { bottom: -12px; }
+
+        .scroll-inner-content {
+            border: 1px dashed rgba(130, 105, 78, 0.45);
+            padding: 20px 15px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .audio-track-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(130, 105, 78, 0.2);
+        }
+
+        .audio-track-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .track-title {
+            font-size: 1.3em;
+            color: #3b2d1f;
+            margin: 0 0 5px 0;
+            font-weight: normal;
+        }
+
+        .track-category {
+            font-size: 0.85em;
+            color: #6e5d4f;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* Кастомный минималистичный плеер под стиль сайта */
+        .custom-player {
+            display: flex;
+            align-items: center;
+            background: var(--player-bg);
+            border: 1px solid rgba(130, 105, 78, 0.3);
+            border-radius: 4px;
+            padding: 10px 15px;
+            gap: 15px;
+        }
+
+        .play-btn {
+            background: #8b5a2b;
+            color: #fff;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            transition: background 0.2s;
+            flex-shrink: 0;
+            padding-left: 3px; /* Оптическое центрирование треугольника игры */
+        }
+
+        .play-btn.playing {
+            padding-left: 0;
+        }
+
+        .play-btn:hover {
+            background: #6e441f;
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            height: 12px;
+        }
+
+        .progress-bar {
+            background: rgba(130, 105, 78, 0.3);
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: #8b5a2b;
+            height: 100%;
+            width: 0%;
+            border-radius: 2px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .time-display {
+            font-size: 0.85em;
+            color: #3b2d1f;
+            font-family: monospace;
+            min-width: 35px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Аудиоверсии произведений</h1>
+    <nav>
+        <a href="index.html">← Главная</a>
+        <a href="poems.html">Стихи</a>
+    </nav>
+</header>
+
+<div class="scroll-container">
+    <div class="main-scroll-paper">
+        <div class="scroll-inner-content">
+
+            <!-- Трек 1 -->
+            <div class="audio-track-item">
+                <h3 class="track-title">Весенняя капля</h3>
+                <span class="track-category">Пейзажная лирика</span>
+                <div class="custom-player" data-src="audio/vesennaya_kaplya.mp3">
+                    <button class="play-btn" onclick="togglePlay(this)">▶</button>
+                    <div class="progress-container" onclick="setProgress(event, this)">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <div class="time-display">0:00</div>
+                </div>
+            </div>
+
+            <!-- Трек 2 -->
+            <div class="audio-track-item">
+                <h3 class="track-title">А был ли мальчик в деревне летом</h3>
+                <span class="track-category">Философская лирика</span>
+                <div class="custom-player" data-src="audio/malchik_letom.mp3">
+                    <button class="play-btn" onclick="togglePlay(this)">▶</button>
+                    <div class="progress-container" onclick="setProgress(event, this)">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <div class="time-display">0:00</div>
+                </div>
+            </div>
+
+            <!-- Трек 3 -->
+            <div class="audio-track-item">
+                <h3 class="track-title">Да, я такой</h3>
+                <span class="track-category">Философская лирика</span>
+                <div class="custom-player" data-src="audio/da_ya_takoy.mp3">
+                    <button class="play-btn" onclick="togglePlay(this)">▶</button>
+                    <div class="progress-container" onclick="setProgress(event, this)">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <div class="time-display">0:00</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer style="text-align: center; padding: 40px 20px; font-size: 0.9em; color: #555; border-top: 1px solid #e0dad3; margin-top: 60px;">
+    <p style="margin: 0; font-weight: bold; letter-spacing: 1px;">&copy; 2026 Рамо Бин Ях. Все права защищены.</p>
+</footer>
+
+<script>
+    let currentAudio = null;
+    let currentButton = null;
+
+    function togglePlay(button) {
+        const player = button.closest('.custom-player');
+        const audioSrc = player.getAttribute('data-src');
+        const timeDisplay = player.querySelector('.time-display');
+        const progressFill = player.querySelector('.progress-fill');
+
+        // Если кликнули по уже играющему треку — ставим на паузу
+        if (currentAudio && currentButton === button) {
+            if (currentAudio.paused) {
+                currentAudio.play();
+                button.textContent = '⏸';
+                button.classList.add('playing');
+            } else {
+                currentAudio.focus
+                currentAudio.pause();
+                button.textContent = '▶';
+                button.classList.remove('playing');
+            }
+            return;
+        }
+
+        // Если играет другой трек — останавливаем его
+        if (currentAudio) {
+            currentAudio.pause();
+            currentButton.textContent = '▶';
+            currentButton.classList.remove('playing');
+        }
+
+        // Создаем новый объект аудио
+        currentAudio = new Audio(audioSrc);
+        currentButton = button;
+
+        currentAudio.play();
+        button.textContent = '⏸';
+        button.classList.add('playing');
+
+        // Обновление прогресс-бара
