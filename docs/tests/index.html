@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивные тесты по вселенной Рамо Бин Ях</title>
+    <meta name="description" content="Пройдите психологические и литературные тесты. Узнайте свой уровень эмпатии и тайны подсознания. Официальный сайт писателя Рамо Бин Ях.">
+    <style>
+        :root {
+            --bg-color: #0d0e15;
+            --card-bg: #161925;
+            --accent-color: #8a2be2;
+            --accent-hover: #9d4edd;
+            --text-main: #f0f3f8;
+            --text-muted: #94a3b8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .container { width: 100%; max-width: 800px; text-align: center; }
+        h1 { font-size: 2.2rem; margin-bottom: 10px; letter-spacing: 1px; }
+        .subtitle { color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; text-align: left; }
+        @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+        .card { background: var(--card-bg); border: 1px solid rgba(138, 43, 226, 0.2); border-radius: 16px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 25px rgba(0,0,0,0.4); transition: transform 0.3s, border-color 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+        .card-tag { display: inline-block; background: rgba(138, 43, 226, 0.15); color: #00ffcc; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; width: max-content; }
+        .card-tag.locked { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+        .card h2 { font-size: 1.4rem; margin-bottom: 10px; color: var(--text-main); }
+        .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 25px; }
+        .btn-play { display: block; text-align: center; background: var(--accent-color); color: white; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: bold; transition: background 0.3s; }
+        .btn-play:hover { background: var(--accent-hover); }
+        .btn-play.disabled { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.2); pointer-events: none; border: 1px dashed rgba(255,255,255,0.1); }
+        footer { margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); }
+        .back-link { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin-bottom: 20px; display: inline-block; transition: color 0.2s; }
+        .back-link:hover { color: var(--accent-hover); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="/" class="back-link">← Вернуться на главную ramobinyah.art</a>
+    <h1>Психологические тесты и квесты</h1>
+    <p class="subtitle">Погрузитесь вглубь своего сознания и откройте тайны литературных миров Рамо Бин Ях.</p>
+
+    <div class="grid">
+        <!-- ТЕСТ 1: ЭМПАТ -->
+        <div class="card">
+            <div>
+                <span class="card-tag">Психология & Книги</span>
+                <h2>Какой ты эмпат?</h2>
+                <p>Узнайте уровень своей ментальной чувствительности к эмоциям окружающих людей и скрытым ритмам этого мира. По мотивам романа «Суперэмпат».</p>
+            </div>
+            <a href="./empat/" class="btn-play">Пройти тест</a>
+        </div>
+
+        <!-- ИДЕЯ ТЕСТА 2: МНЕМОСИДА (В разработке) -->
+        <div class="card">
+            <div>
+                <span class="card-tag locked">Скоро</span>
+                <h2>Тайны Мнемосиды: Тест на память</h2>
+                <p>Проверьте силу своего фокуса и глубинного удержания образов. Насколько хорошо вы защищены от космического забвения? По мотивам повести «Мнемосида».</p>
+            </div>
+            <a href="#" class="btn-play disabled">В разработке</a>
+        </div>
+
+        <!-- ИДЕЯ ТЕСТА 3: ПОЭЗИЯ (В разработке) -->
+        <div class="card">
+            <div>
+                <span class="card-tag locked">Скоро</span>
+                <h2>Какая строка созвучна вашей душе?</h2>
+                <p>Интуитивный тест-медитация. Выберите визуальные образы и звуки, чтобы найти то самое стихотворение автора, которое отражает ваше текущее состояние.</p>
+            </div>
+            <a href="#" class="btn-play disabled">В разработке</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    © 2026 Рамо Бин Ях. Все права защищены.
+</footer>
+
+</body>
+</html>
