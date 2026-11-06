@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NBSRRQJ2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
+    
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-W66L6M67"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Притяжение — Сборник стихов и поэзии | Рамо Бин Ях</title>
+<meta name="description" content="Читать современные стихи и лирику Рамо Бин Ях из сборника «Притяжение». Искренняя поэзия о чувствах, внутренних силах, притяжении душ и жизненной философии.">
+<meta name="keywords" content="Рамо Бин Ях, Притяжение, стихи Рамо Бин Ях, сборник Притяжение, современная поэзия, лирика, любовная лирика, читать стихи Рамо Бин Ях">
+    <style>
+:root {
+  --bg-color: #f5f2eb;
+  --text-color: #1a1a1a;
+  --accent-color: #705235;
+  --book-page-bg: #fdfcf9;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+header {
+  padding: 30px 15px 15px 15px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 10px 0;
+  font-size: 1.8em;
+  font-weight: normal;
+  color: #362514;
+  letter-spacing: 0.5px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+nav a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 0.9em;
+  font-style: italic;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+/* === КНИЖНЫЙ ВАРИАНТ СТРАНИЦЫ С УЛУЧШЕННОЙ АДАПТИВНОСТЬЮ === */
+.book-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px 30px 10px;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.book-page {
+  background-color: var(--book-page-bg);
+  border: 1px solid #dcd6cd;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.02);
+  max-width: 650px;
+  width: 100%;
+  padding: 30px 15px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Эмуляция книжного переплета / корешка слева */
+.book-page::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.01) 25%, transparent 100%);
+  pointer-events: none;
+}
+
+.book-inner-content {
+  padding: 5px 0;
+  width: 100%;
+}
+
+/* Интерактивный аккордеон в книжном стиле */
+.poem-entry {
+  margin-bottom: 20px;
+  border-bottom: 1px dashed rgba(192, 181, 169, 0.4);
+  padding-bottom: 15px;
+  width: 100%;
+}
+
+.poem-entry:last-child {
+  margin-bottom: 50px;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Книжные заголовки-кнопки */
+.poem-entry summary {
+  font-size: 1.25em;
+  font-weight: normal;
+  letter-spacing: 0.3px;
+  padding: 8px 5%; /* Отступ 5% слева и справа для выравнивания с текстом */
+  color: #362514;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  list-style: none;
+  user-select: none;
+  transition: color 0.2s ease;
+  display: flex;
+  justify-content: flex-start; /* Контент прижат к левому краю */
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box; /* Чтобы padding не раздувал ширину */
+}
+
+.poem-entry summary::-webkit-details-marker {
+  display: none;
+}
+
+.poem-entry summary:hover {
+  color: var(--accent-color);
+}
+
+/* Иконка пера */
+.poem-entry summary::after {
+  content:;
+  font-size: 0.65em;
+  opacity: 0.3;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.poem-entry[open] summary {
+  color: var(--accent-color);
+  margin-bottom: 15px;
+}
+
+.poem-entry[open] summary::after {
+  transform: rotate(-30deg) scale(1.1);
+  opacity: 1;
+}
+
+/* Блок с текстом */
+.poem-text-block {
+  padding: 0 5%; /* Базовый отступ 5% для мобильных */
+  font-style: normal;
+  font-size: 1.05em;
+  line-height: 1.65;
+  color: #2c2c2c;
+  text-align: left;
+  box-sizing: border-box;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  animation: slideDownFade 0.4s ease-out forwards;
+  transform-origin: top center;
+}
+
+/* Анимация плавного появления текста */
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: scaleY(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* === МЕДИА-ЗАПРОСЫ ДЛЯ СРЕДНИХ И БОЛЬШИХ ЭКРАНОВ === */
+@media (min-width: 480px) {
+  header {
+    padding: 40px 20px 20px 20px;
+  }
+  header h1 {
+    font-size: 2em;
+    letter-spacing: 1px;
+  }
+  .book-container {
+    padding: 20px 15px 40px 15px;
+  }
+  .book-page {
+    padding: 45px 30px;
+  }
+  .poem-entry summary {
+    font-size: 1.4em;
+    letter-spacing: 0.5px;
+    padding: 8px 10%; /* Синхронное увеличение отступа до 10% на ПК */
+  }
+  .poem-text-block {
+    padding: 0 10%; /* Отступ 10% на ПК */
+    font-size: 1.1em;
+    line-height: 1.7;
+  }
+}
+</style>
+
+</head>
+<body>
+
+    <header>
+        <h1>Детство золотое</h1>
+        <nav>
+            <a href="poems.html">← К разделам</a>
+        </nav>
+    </header>
+
+    <div class="book-container">
+        <div class="book-page">
+            <div class="book-inner-content">
+                
+                <details class="poem-entry" open>
+                    <summary></summary>
+           <!-- Новый блок с картинкой над текстом -->
+          <div class="poem-image-block">
+            <img src="Имя вашего файла.jpg" alt="Детство золотое">
+          </div>
+
+                    <div class="poem-text-block">
+                        А был ли мальчик в деревне летом?<br>
+                        Ходил ли в поле косить траву?<br>
+                        Он сочинял и пел куплеты<br>
+                        И на рыбалку - по утру.<br>
+                    </div>
+                </details>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Блок «Поделиться» с кнопкой копирования ссылки -->
+<div style="text-align: center; margin: 30px auto 20px auto;">
+    <p style="font-family: 'Georgia', serif; font-style: italic; color: #777; margin-bottom: 15px; font-size: 0.95em;">Поделиться стихами:</p>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; align-items: center;">
+        <!-- Кнопка «Скопировать ссылку» -->
+        <button id="copy-link-btn" onclick="copyPageUrl()" style="background-color: #555555; color: white; border: none; cursor: pointer; padding: 8px 18px; border-radius: 20px; font-family: sans-serif; font-size: 14px; font-weight: bold; display: inline-block; transition: background-color 0.2s;">Скопировать ссылку</button>
+    </div>
+</div>
+
+<script>
+function copyPageUrl() {
+    const el = document.createElement('textarea');
+    el.value = 'https://ramobinyah.art/attraction';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+
+    const btn = document.getElementById('copy-link-btn');
+    const originalText = btn.innerText;
+    btn.innerText = 'Ссылка скопирована!';
+    btn.style.backgroundColor = '#28a745';
+
+    setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.backgroundColor = '#555555';
+    }, 2000);
+}
+</script>
+
+    <div style="text-align: center; margin: 20px auto 40px auto; max-width: 500px; padding: 0 15px; box-sizing: border-box;">
+        <div style="color: #c0b5a9; letter-spacing: 10px; font-size: 1.2em; margin-bottom: 25px;">* * *</div>
+
+
+        <p style="font-family: 'Georgia', serif; font-style: italic; color: #555; margin-bottom: 20px; font-size: 1.05em; line-height: 1.6;">
+            Если эти строки отозвались в вашем сердце, вы можете поддержать автора:
+        </p>
+        
+        <a href="#" target="_blank" style="
+            display: inline-block;
+            background-color: transparent;
+            color: #705235;
+            border: 1px solid #705235;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 2px;
+            font-family: 'Georgia', serif;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            max-width: 100%;
+        " onmouseover="this.style.backgroundColor='#705235'; this.style.color='#ffffff';" 
+           onmouseout="this.style.backgroundColor='transparent'; this.style.color='#705235';">
+            Поддержать автора ❖
+        </a>
+    </div>
+
+    <script>
+  // Скрипт автоматически открывает <details>, если на него перешли по ссылке-якорю
+  function openTargetDetails() {
+    const hash = window.location.hash;
+    if (hash) {
+      const targetDetails = document.querySelector(hash);
+      if (targetDetails && targetDetails.tagName === 'DETAILS') {
+        targetDetails.open = true;
+      }
+    }
+  }
+  // Запускаем при загрузке страницы и при смене хэша
+  window.addEventListener('DOMContentLoaded', openTargetDetails);
+  window.addEventListener('hashchange', openTargetDetails);
+</script>
+
+
+    <footer style="text-align: center; padding: 30px 15px; font-size: 0.85em; color: #555; border-top: 1px solid #dcd6cd; margin-top: 40px; line-height: 1.6; box-sizing: border-box;">
+        <div style="max-width: 600px; margin: 0 auto 15px auto; font-style: italic; color: #6e5d4f;">
+            Все стихотворения, тексты и материалы, опубликованные на данном сайте, являются объектом авторского права и защищены лицензией 
+            <a href="https://creativecommons.org" target="_blank" style="color: #705235; text-decoration: underline;">Creative Commons BY-NC-ND 4.0</a>. 
+            <br>Вы можете делиться произведениями при условии обязательного указания авторства (Рамо Бин Ях) и ссылки на первоисточник. Коммерческое использование и любые изменения текстов строго запрещены.
+        </div>
+        <p style="margin: 0; font-weight: bold; letter-spacing: 0.5px;">&copy; 2026 Рамо Бин Ях. Все права защищены (All Rights Reserved).</p>
+    </footer>
+
+    <script>
+        let audioCtx = null;
+        function playScrollSound() {
+            try {
+                if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+                const duration = 0.35;
+                const bufferSize = audioCtx.sampleRate * duration;
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) { data[i] = Math.random() * 2 - 1; }
+                const source = audioCtx.createBufferSource();
