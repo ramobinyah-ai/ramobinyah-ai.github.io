@@ -1,0 +1,212 @@
+ <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Мета-теги для поисковиков: теперь они уникальны для каждого стиха -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 1. ГЛАВНЫЙ ЗАГОЛОВОК ДЛЯ ПОИСКОВЫХ СИСТЕМ (Обязательно уникальный!) -->
+    <title>А где-то шумят ветра — Стихи | Рамо Бин Ях</title>
+    
+    <meta name="description" content="Читать стихотворение «Название стихотворения» современного поэта Рамо Бин Ях.">
+    <meta name="keywords" content="Рамо Бин Ях, А где-то шумят ветра, стихи, поэзия, современный поэт">
+    
+     <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NBSRRQJ2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
+
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-color: #2c2c2c;
+            --accent-color: #8b5a2b;
+            --card-bg: #ffffff;
+            --border-color: #e0dad3;
+        }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+        header {
+            padding: 30px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: #fff;
+            text-align: center;
+        }
+        /* 2. СТИЛЬ ДЛЯ ГЛАВНОГО ЗАГОЛОВКА СТРАНИЦЫ */
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+            font-weight: normal;
+            color: var(--accent-color); /* Выделим цветом автора главное название */
+        }
+        header .author-name {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .container {
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .poem-block {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0 0 50px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        .poem-image-wrapper {
+            width: 100%;
+            max-height: 450px;
+            overflow: hidden;
+            background: #f0ede9;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .poem-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .poem-content {
+            padding: 50px 40px 0 40px;
+            text-align: center;
+        }
+        .poem-text {
+            font-size: 1.25em; /* Чуть увеличили шрифт для лучшей читаемости */
+            line-height: 1.65;
+            display: inline-block;
+            text-align: left; 
+        }
+        .stanza {
+            margin-bottom: 25px; 
+        }
+        .poem-date {
+            text-align: right;
+            font-style: italic;
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 30px;
+        }
+        .poem-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 0 5px;
+        }
+        .nav-button {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+        .nav-button:hover {
+            color: var(--accent-color);
+        }
+        .nav-button .arrow {
+            font-family: sans-serif;
+            font-size: 1.2em;
+        }
+        .nav-button.prev .arrow {
+            margin-right: 8px;
+        }
+        .nav-button.next .arrow {
+            margin-left: 8px;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9em;
+            color: #888;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <!-- Робот Яндекса или Google сразу поймет, чему посвящена эта страница -->
+    <h1>«Поэт рождается чтоб быть»</h1>
+    <div class="author-name">Рамо Бин Ях</div>
+    <nav>
+        <a href="/">На главную</a>
+    </nav>
+</header>
+<div class="container">
+    <div class="poem-block">
+        <div class="poem-content">
+            <div class="poem-text">
+                <div class="stanza">
+                    А где-то шумят ветра,<br>
+                    А где-то идут дожди.<br>
+                    Я не могу без тебя,<br>
+                    Скорее ко мне приди!
+                </div>
+                
+                <!-- Дата или место написания (опционально) -->
+                <div class="poem-date">2026 г.</div>
+
+            </div>
+        </div>
+    </div>
+
+     <!-- Обновленный блок навигации с кнопкой копирования ссылки -->
+    <div class="poem-navigation">
+        <a href="../smert-pridet-za-kazhdym/index.html" class="nav-button prev">
+            <span class="arrow">←</span> <span class="text">Предыдущее</span>
+        </a>
+        
+        <button class="share-button" id="shareBtn" onclick="copyPoemLink()">Поделиться</button>
+        
+        <a href="poem-next.html" class="nav-button next">
+            <span class="text">Следующее</span> <span class="arrow">→</span>
+        </a>
+    </div>
+</div>
+<footer>
+    <p>&copy; 2026 Рамо Бин Ях. Все права защищены.</p>
+</footer>
+
+<!-- Скрипт для копирования ссылки -->
+<script>
+function copyPoemLink() {
+    const shareBtn = document.getElementById('shareBtn');
+    
+    // Используем современное и безопасное API для копирования текущего URL
+    navigator.clipboard.writeText(window.location.href).then(() => {
+        // Успешное копирование: меняем текст и добавляем класс стиля
+        shareBtn.textContent = 'Ссылка скорпирована!';
+        shareBtn.classList.add('copied');
+        shareBtn.disabled = true; // Защита от повторных кликов во время анимации
+        
+        // Через 2 секунды возвращаем всё в исходный вид
+        setTimeout(() => {
+            shareBtn.textContent = 'Поделиться';
+            shareBtn.classList.remove('copied');
+            shareBtn.disabled = false;
+        }, 2000);
+    }).catch(err => {
+        console.error('Ошибка при копировании: ', err);
+    });
+}
+</script>
+</body>
+</html>
