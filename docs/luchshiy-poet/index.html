@@ -79,18 +79,21 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.02);
         }
 
+        /* Обновленный блок для вертикальной фотографии (без обрезки) */
         .poem-image-wrapper {
             width: 100%;
-            max-height: 450px;
+            max-height: none; 
             overflow: hidden;
             background: #ffffff;
             border-bottom: 1px solid var(--border-color);
         }
 
+        /* Настройки для правильного масштабирования фото */
         .poem-image {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto; 
+            max-width: 100%;
+            object-fit: contain; 
             display: block;
         }
 
@@ -178,7 +181,7 @@
 
 <div class="container">
     <div class="poem-block">
-        <!-- Блок для полноценной фотографии автора -->
+        <!-- Вертикальная фотография автора -->
         <div class="poem-image-wrapper">
             <img src="luchshiy-sovremennyy-poet.jpg" alt="Лучший современный поэт — Рамо Бин Ях" class="poem-image">
         </div>
