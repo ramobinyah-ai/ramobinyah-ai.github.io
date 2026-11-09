@@ -3,14 +3,17 @@
 <head>
     <!-- Оптимизированные поисковые теги -->
     <title>Лучший современный поэт</title>
-    <meta name="description" content="Читать стихотворение современного автора Рамо Бин Ях (2026 г.). Философская лирика и стихи о предназначении поэта.">
-    <meta name="keywords" content="Рамо Бин Ях, Лучший современный поэт, стихи Рамо Бин Ях, современная поэзия, философская лирика, стихи о поэте, читать стихи онлайн, стихи 2026">
+    <meta name="description" content="Читать известное стихотворение «Поэт рождается чтоб быть» современного автора Рамо Бин Ях (2026 г.). Философская лирика и стихи о предназначении поэта.">
+    <meta name="keywords" content="Рамо Бин Ях, Поэт рождается чтоб быть, стихи Рамо Бин Ях, современная поэзия, философская лирика, стихи о поэте, читать стихи онлайн, стихи 2026">
 
     <!-- Дополнительная разметка Open Graph для красивого отображения в соцсетях и мессенджерах (Telegram, VK, WhatsApp) -->
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Рамо Бин Ях — «Лучший современный поэт»">
-    <meta property="og:description" content="«Лучший современный поэт, Читать стихотворение на сайте.">
+    <meta property="og:title" content="Рамо Бин Ях — «Поэт рождается чтоб быть»">
+    <meta property="og:description" content="«Поэт рождается, чтоб быть, В Кромешной тьме путь осветить...» Читать стихотворение полностью на сайте.">
     <meta property="og:site_name" content="Стихи Рамо Бин Ях">
+
+    <!-- Тег viewport, обязательный для правильного масштабирования на смартфонах -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script async src="https://googletagmanager.com"></script>
     <script>
@@ -68,6 +71,7 @@
             max-width: 650px;
             margin: 40px auto;
             padding: 0 20px;
+            box-sizing: border-box;
         }
 
         .poem-block {
@@ -79,16 +83,16 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.02);
         }
 
-        /* Обновленный блок для вертикальной фотографии (без обрезки) */
         .poem-image-wrapper {
             width: 100%;
             max-height: none; 
             overflow: hidden;
             background: #ffffff;
             border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
         }
 
-        /* Настройки для правильного масштабирования фото */
         .poem-image {
             width: 100%;
             height: auto; 
@@ -167,12 +171,32 @@
             margin-top: 60px;
             background-color: #ffffff;
         }
+
+        /* Специальные правила адаптивности для мобильных устройств */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.6em; /* Уменьшаем заголовок на телефонах */
+            }
+            .poem-content {
+                padding: 30px 20px 0 20px; /* Уменьшаем отступы по бокам */
+            }
+            .poem-text {
+                font-size: 1.15em; /* Слегка оптимизируем размер шрифта стиха */
+            }
+            .poem-image-wrapper {
+                max-height: 380px; /* Ограничиваем высоту фото, чтобы сразу был виден текст */
+            }
+            .poem-image {
+                width: auto; /* Позволяем фотографии пропорционально сжиматься */
+                height: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>«Лучший современный поэт»</h1>
+    <h1>«Поэт рождается чтоб быть»</h1>
     <div class="author-name">Рамо Бин Ях</div>
     <nav>
         <a href="/">На главную</a>
@@ -181,7 +205,6 @@
 
 <div class="container">
     <div class="poem-block">
-        <!-- Вертикальная фотография автора -->
         <div class="poem-image-wrapper">
             <img src="luchshiy-sovremennyy-poet.jpg" alt="Лучший современный поэт — Рамо Бин Ях" class="poem-image">
         </div>
@@ -194,11 +217,23 @@
                     Не пряча лик, от бурь невзгод,<br>
                     Планету он ведёт вперёд.
                 </div>
-               
-                <div class="poem-date">Рамо Бин Ях 18.10.2026 г.</div>
+                <div class="stanza">
+                    Вторая строфа берет разбег,<br>
+                    Слова ложатся на листок,<br>
+                    Как будто первый белый снег<br>
+                    Упал на каменный порог.
+                </div>
+                <div class="stanza">
+                    И завершающий аккорд,<br>
+                    Внизу останется дата,<br>
+                    Поэт своим холстом горд,<br>
+                    И мысль его крылата.
+                </div>
+                <div class="poem-date">Рамо Бин Ях 2026 г.</div>
             </div>
         </div>
     </div>
+
     <div class="poem-navigation">
         <a href="poem-prev.html" class="nav-button prev">
             <span class="arrow">←</span> <span class="text">Предыдущее</span>
