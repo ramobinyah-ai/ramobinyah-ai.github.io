@@ -12,9 +12,6 @@
     <meta property="og:description" content="«Поэт рождается, чтоб быть, В Кромешной тьме путь осветить...» Читать стихотворение полностью на сайте.">
     <meta property="og:site_name" content="Стихи Рамо Бин Ях">
 
-    <!-- Тег viewport, обязательный для правильного масштабирования на смартфонах -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <script async src="https://googletagmanager.com"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -71,7 +68,6 @@
             max-width: 650px;
             margin: 40px auto;
             padding: 0 20px;
-            box-sizing: border-box;
         }
 
         .poem-block {
@@ -83,16 +79,16 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.02);
         }
 
+        /* Обновленный блок для вертикальной фотографии (без обрезки) */
         .poem-image-wrapper {
             width: 100%;
             max-height: none; 
             overflow: hidden;
             background: #ffffff;
             border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: center;
         }
 
+        /* Настройки для правильного масштабирования фото */
         .poem-image {
             width: 100%;
             height: auto; 
@@ -171,26 +167,6 @@
             margin-top: 60px;
             background-color: #ffffff;
         }
-
-        /* Специальные правила адаптивности для мобильных устройств */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.6em; /* Уменьшаем заголовок на телефонах */
-            }
-            .poem-content {
-                padding: 30px 20px 0 20px; /* Уменьшаем отступы по бокам */
-            }
-            .poem-text {
-                font-size: 1.15em; /* Слегка оптимизируем размер шрифта стиха */
-            }
-            .poem-image-wrapper {
-                max-height: 380px; /* Ограничиваем высоту фото, чтобы сразу был виден текст */
-            }
-            .poem-image {
-                width: auto; /* Позволяем фотографии пропорционально сжиматься */
-                height: 100%;
-            }
-        }
     </style>
 </head>
 <body>
@@ -205,6 +181,7 @@
 
 <div class="container">
     <div class="poem-block">
+        <!-- Вертикальная фотография автора -->
         <div class="poem-image-wrapper">
             <img src="luchshiy-sovremennyy-poet.jpg" alt="Лучший современный поэт — Рамо Бин Ях" class="poem-image">
         </div>
