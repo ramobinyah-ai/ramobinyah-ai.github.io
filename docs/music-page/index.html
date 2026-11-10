@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Оптимизированные поисковые теги -->
+    <title>Музыкальная страница — Рамо Бин Ях | Официальный сайт</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Официальная музыкальная страница современного автора Рамо Бин Ях. Слушать песни и музыкальные альбомы онлайн.">
+    <meta name="keywords" content="Рамо Бин Ях, музыкальная страница, слушать песни, Рамо Бин Ях слушать, песни 2026, современная музыка, Bandcamp плеер">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Музыкальная страница Рамо Бин Ях — слушать онлайн">
+    <meta property="og:description" content="Слушайте авторские песни и музыкальные релизы Рамо Бин Ях на официальном сайте.">
+    <meta property="og:url" content="https://ramobinyah.art">
+    <meta property="og:site_name" content="ramobinyah.art">
+
+    <script async src="https://googletagmanager.com"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    </script>
+    
+    <script async src="https://googletagmanager.com"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    </script>
+
+    <style>
+        /* Обнуление базовых стилей */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Светлая палитра */
+        :root {
+            --bg-color: #fcfbf9;      /* Мягкий светлый фон */
+            --text-color: #2c2c2c;    /* Угольный для основного текста */
+            --accent-color: #8b5a2b;  /* Кофейный для акцентов и заголовков */
+            --card-bg: #ffffff;       /* Белый для блоков с плеерами */
+            --border-color: #e0dad3;  /* Пастельный для аккуратных границ */
+            --meta-color: #7c7c7c;    /* Приглушенный для подписей */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 30px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: #ffffff;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2rem;
+            font-weight: normal;
+            color: var(--accent-color);
+        }
+
+        header .author-name {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Сетка для удобного размещения песен */
+        .main-content {
+            flex: 1 0 auto;
+            padding: 40px 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .music-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Карточка трека/альбома */
+        .music-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .music-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+            box-shadow: 0 6px 20px rgba(139, 90, 43, 0.05);
+        }
+
+        .music-card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+
+        .music-card-meta {
+            font-size: 0.85rem;
+            color: var(--meta-color);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Контейнер для плеера Bandcamp */
+        .bandcamp-player-wrap {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            line-height: 0;
+            background-color: #ffffff;
+        }
+
+        .bandcamp-player-wrap iframe {
+            width: 100% !important;
+            border: 0;
+            display: block;
+        }
+
+        footer {
+            flex-shrink: 0;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+            color: var(--meta-color);
+            border-top: 1px solid var(--border-color);
+            background: #ffffff;
+        }
+
+        footer a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Мобильная адаптивность */
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.8rem; }
+            .music-card { padding: 16px; }
+            .music-grid { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка музыкальной страницы -->
+    <header>
+        <h1>Музыкальная страница</h1>
+        <div class="author-name">Рамо Бин Ях</div>
+        <nav>
+            <a href="/">На главную</a>
+            <a href="/audiostihi">Аудиостихи</a>
+        </nav>
+    </header>
+
+    <!-- Основной контент (Сетка с песнями) -->
+    <div class="main-content">
+        <main class="container">
+            <div class="music-grid">
+                
+                <!-- КАРТОЧКА ПЕСНИ №1 (Основной альбом/трек) -->
+                <div class="music-card">
+                    <div class="music-card-title">Оголённый нерв времени</div>
+                    <div class="music-card-meta">Релиз: 2026 г.</div>
+                    <div class="bandcamp-player-wrap">
+                        <!-- Встроенный большой плеер Bandcamp (Цвета подобраны под светлый дизайн) -->
+                        <iframe style="border: 0; width: 100%; height: 472px;" src="https://bandcamp.com" seamless><a href="https://bandcamp.com">Оголённый нерв времени by Ramo Bin Yah</a></iframe>
+                    </div>
+                </div>
+
+                <!-- КАРТОЧКА ПЕСНИ №2 (Шаблон для будущих синглов или новых треков) -->
+                <!-- Когда будете добавлять новую песню, просто скопируйте этот блок <div> и вставьте ниже -->
+                <!-- 
+                <div class="music-card">
+                    <div class="music-card-title">Название вашей новой песни</div>
+                    <div class="music-card-meta">Релиз: 2026 г.</div>
+                    <div class="bandcamp-player-wrap">
+                        Здесь будет ваш новый iframe код из Bandcamp (размер large, высота 120px для сингла)
+                    </div>
+                </div> 
+                -->
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Подвал музыкальной страницы -->
+    <footer>
+        <p>&copy; 2026 <a href="/">Рамо Бин Ях</a>. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
