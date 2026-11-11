@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <!-- Обязательный тег для мобильной адаптивности -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <!-- Оптимизированные поисковые теги -->
     <title>Лучший современный поэт</title>
     <meta name="description" content="Читать стихотворение современного автора Рамо Бин Ях (2026 г.). Философская лирика и стихи о предназначении поэта.">
     <meta name="keywords" content="Рамо Бин Ях, Лучший современный поэт, стихи Рамо Бин Ях, современная поэзия, философская лирика, стихи о поэте, читать стихи онлайн, стихи 2026">
-
-    <!-- Дополнительная разметка Open Graph для красивого отображения в соцсетях и мессенджерах (Telegram, VK, WhatsApp) -->
+    
+    <!-- Дополнительная разметка Open Graph для красивого отображения в соцсетях и мессенджерах -->
     <meta property="og:type" content="article">
     <meta property="og:title" content="Рамо Бин Ях — «Лучший современный поэт»">
     <meta property="og:description" content="«Лучший современный поэт, Читать стихотворение на сайте.">
     <meta property="og:site_name" content="Стихи Рамо Бин Ях">
-
+    
     <script async src="https://googletagmanager.com"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
     </script>
-
+    
     <style>
         :root {
             --bg-color: #ffffff;
@@ -27,7 +31,7 @@
             --card-bg: #ffffff;
             --border-color: #e0dad3;
         }
-
+        
         body {
             font-family: 'Georgia', serif;
             background-color: var(--bg-color);
@@ -35,41 +39,46 @@
             margin: 0;
             padding: 0;
             line-height: 1.8;
+            -webkit-text-size-adjust: 100%; /* Защита от автоувеличения текста на iOS */
         }
-
+        
         header {
             padding: 30px 20px;
             border-bottom: 1px solid var(--border-color);
             background: #ffffff;
             text-align: center;
         }
-
+        
         header h1 {
             margin: 0 0 10px 0;
             font-size: 2.2em;
             font-weight: normal;
             color: var(--accent-color);
+            line-height: 1.3;
         }
-
+        
         header .author-name {
             font-size: 1.1em;
             color: #666;
             margin-bottom: 15px;
             font-style: italic;
         }
-
+        
         nav a {
             color: var(--accent-color);
             text-decoration: none;
             margin: 0 15px;
+            display: inline-block;
+            padding: 5px 0;
         }
-
+        
         .container {
             max-width: 650px;
             margin: 40px auto;
             padding: 0 20px;
+            box-sizing: border-box;
         }
-
+        
         .poem-block {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -78,41 +87,42 @@
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.02);
         }
-
-        /* Обновленный блок для вертикальной фотографии (без обрезки) */
+        
         .poem-image-wrapper {
             width: 100%;
-            max-height: none; 
+            max-height: none;
             overflow: hidden;
             background: #ffffff;
             border-bottom: 1px solid var(--border-color);
         }
-
-        /* Настройки для правильного масштабирования фото */
+        
         .poem-image {
             width: 100%;
-            height: auto; 
+            height: auto;
             max-width: 100%;
-            object-fit: contain; 
+            object-fit: contain;
             display: block;
         }
-
+        
         .poem-content {
             padding: 50px 40px 0 40px;
             text-align: center;
+            box-sizing: border-box;
         }
-
+        
         .poem-text {
             font-size: 1.25em;
             line-height: 1.65;
             display: inline-block;
             text-align: left;
+            max-width: 100%;
+            word-wrap: break-word; /* Защита от вылезания длинных слов */
         }
-
+        
         .stanza {
             margin-bottom: 25px;
         }
-
+        
         .poem-date {
             text-align: right;
             font-style: italic;
@@ -120,14 +130,16 @@
             color: #888;
             margin-top: 30px;
         }
-
+        
         .poem-navigation {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-top: 30px;
             padding: 0 5px;
+            gap: 10px; /* Отступы между кнопками на узких экранах */
         }
-
+        
         .nav-button, .share-button {
             color: var(--text-color);
             text-decoration: none;
@@ -139,25 +151,22 @@
             border: none;
             cursor: pointer;
             font-family: inherit;
+            padding: 10px; /* Увеличенная область клика для пальцев */
+            min-height: 44px; /* Минимальная высота по гайдлайнам доступности */
         }
-
+        
         .nav-button:hover, .share-button:hover {
             color: var(--accent-color);
         }
-
+        
         .nav-button .arrow {
             font-family: sans-serif;
             font-size: 1.2em;
         }
-
-        .nav-button.prev .arrow {
-            margin-right: 8px;
-        }
-
-        .nav-button.next .arrow {
-            margin-left: 8px;
-        }
-
+        
+        .nav-button.prev .arrow { margin-right: 8px; }
+        .nav-button.next .arrow { margin-left: 8px; }
+        
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -167,70 +176,102 @@
             margin-top: 60px;
             background-color: #ffffff;
         }
+
+        /* Адаптивные стили для мобильных устройств (смартфоны и планшеты) */
+        @media (max-width: 600px) {
+            header {
+                padding: 20px 15px;
+            }
+            header h1 {
+                font-size: 1.6em; /* Уменьшаем заголовок, чтобы не переносился некрасиво */
+            }
+            .container {
+                margin: 15px auto;
+                padding: 0 10px; /* Меньше отступы по краям экрана */
+            }
+            .poem-block {
+                padding-bottom: 30px; /* Компактный отступ снизу карточки */
+            }
+            .poem-content {
+                padding: 30px 20px 0 20px; /* Уменьшаем внутренние поля блока стиха */
+            }
+            .poem-text {
+                font-size: 1.1em; /* Оптимальный размер шрифта для чтения с телефона */
+            }
+            .poem-navigation {
+                margin-top: 20px;
+            }
+            .nav-button, .share-button {
+                font-size: 0.95em;
+            }
+            footer {
+                margin-top: 30px;
+                padding: 30px 15px;
+            }
+        }
     </style>
 </head>
 <body>
-
-<header>
-    <h1>«Лучший современный поэт»</h1>
-    <div class="author-name">Рамо Бин Ях</div>
-    <nav>
-        <a href="/">На главную</a>
-    </nav>
-</header>
-
-<div class="container">
-    <div class="poem-block">
-        <!-- Вертикальная фотография автора -->
-        <div class="poem-image-wrapper">
-            <img src="luchshiy-sovremennyy-poet.jpg" alt="Лучший современный поэт — Рамо Бин Ях" class="poem-image">
-        </div>
-        
-        <div class="poem-content">
-            <div class="poem-text">
-                <div class="stanza">
-                    Поэт рождается, чтоб быть,<br>
-                    В Кромешной тьме путь осветить.<br>
-                    Не пряча лик, от бурь невзгод,<br>
-                    Планету он ведёт вперёд.
+    <header>
+        <h1>«Лучший современный поэт»</h1>
+        <div class="author-name">Рамо Бин Ях</div>
+        <nav>
+            <a href="/">На главную</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="poem-block">
+            <!-- Вертикальная фотография автора -->
+            <div class="poem-image-wrapper">
+                <img src="luchshiy-sovremennyy-poet.jpg" alt="Лучший современный поэт — Рамо Бин Ях" class="poem-image">
+            </div>
+            <div class="poem-content">
+                <div class="poem-text">
+                    <div class="stanza">
+                        Поэт рождается, чтоб быть,<br>
+                        В Кромешной тьме путь осветить.<br>
+                        Не пряча лик, от бурь невзгод,<br>
+                        Планету он ведёт вперёд.
+                    </div>
+                    <div class="poem-date">Рамо Бин Ях 18.10.2026 г.</div>
                 </div>
-               
-                <div class="poem-date">Рамо Бин Ях 18.10.2026 г.</div>
             </div>
         </div>
+        
+        <div class="poem-navigation">
+            <a href="poem-prev.html" class="nav-button prev">
+                <span class="arrow">←</span> <!-- Добавил стрелочки для наглядности -->
+                <span class="text">Назад</span>
+            </a>
+            <button class="share-button" id="shareBtn" onclick="copyPoemLink()">Поделиться</button>
+            <a href="poem-next.html" class="nav-button next">
+                <span class="text">Вперед</span>
+                <span class="arrow">→</span>
+            </a>
+        </div>
     </div>
-    <div class="poem-navigation">
-        <a href="poem-prev.html" class="nav-button prev">
-            <span class="arrow"></span> <span class="text"></span>
-        </a>
-        <button class="share-button" id="shareBtn" onclick="copyPoemLink()">Поделиться</button>
-        <a href="poem-next.html" class="nav-button next">
-            <span class="text"></span> <span class="arrow"></span>
-        </a>
-    </div>
-</div>
-
-<footer>
-    <p>&copy; 2026 Рамо Бин Ях. Все права защищены.</p>
-</footer>
-
-<script>
-function copyPoemLink() {
-    const shareBtn = document.getElementById('shareBtn');
-    navigator.clipboard.writeText(window.location.href).then(() => {
-        shareBtn.textContent = 'Ссылка скопирована!';
-        shareBtn.classList.add('copied');
-        shareBtn.disabled = true;
-        setTimeout(() => {
-            shareBtn.textContent = 'Поделиться';
-            shareBtn.classList.remove('copied');
-            shareBtn.disabled = false;
-        }, 2000);
-    }).catch(err => {
-        console.error('Ошибка при копировании: ', err);
-    });
-}
-</script>
-
+    
+    <footer>
+        <p>&copy; 2026 Рамо Бин Ях. Все права защищены.</p>
+    </footer>
+    
+    <script>
+        function copyPoemLink() {
+            const shareBtn = document.getElementById('shareBtn');
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                shareBtn.textContent = 'Ссылка скопирована!';
+                shareBtn.classList.add('copied');
+                shareBtn.disabled = true;
+                setTimeout(() => {
+                    shareBtn.textContent = 'Поделиться';
+                    shareBtn.classList.remove('copied');
+                    shareBtn.disabled = false;
+                }, 2000);
+            }).catch(err => {
+                console.error('Ошибка при копировании: ', err);
+            });
+        }
+    </script>
 </body>
 </html>
