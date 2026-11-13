@@ -35,6 +35,12 @@
        <priority>0.8000</priority>
   </url>
 
+   <url>
+       <loc>https://ramobinyah.art/tests/empat/</loc>
+       <lastmod>2026-11-13T00:11:00+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+
   <!-- Страницы сборников стихотворений -->
   <url>
        <loc>https://ramobinyah.art/horizons.html</loc>
