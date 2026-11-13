@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест: Твоя идеальная профессия</title>
+<style>
+:root{--bg:#0d0e15;--card:#161925;--acc:#8a2be2;--teal:#00ffcc;--txt:#f0f3f8;--mut:#94a3b8}
+*{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif}
+body{background:var(--bg);color:var(--txt);padding:20px;display:flex;flex-direction:column;align-items:center;min-height:100vh}
+.box{width:100%;max-width:600px;background:var(--card);padding:35px 25px;border-radius:16px;border:1px solid rgba(138,43,226,.25);margin-top:20px;text-align:center}
+h1{font-size:1.8rem;margin-bottom:12px}
+.sub{color:var(--mut);margin-bottom:25px;line-height:1.5}
+.bar{width:100%;height:6px;background:rgba(255,255,255,.1);border-radius:4px;margin-bottom:20px;overflow:hidden}
+.fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--teal));width:0%;transition:.3s}
+.q{font-size:1.15rem;margin-bottom:20px;text-align:left;font-weight:bold;line-height:1.4}
+.ans{display:flex;flex-direction:column;gap:10px}
+.btn{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--txt);padding:14px;border-radius:8px;cursor:pointer;text-align:left;font-size:.95rem;transition:.2s}
+.btn:hover{background:rgba(138,43,226,.2);border-color:var(--acc)}
+.go{background:var(--acc);color:#fff;border:none;padding:15px 36px;font-size:1.1rem;border-radius:8px;cursor:pointer;font-weight:bold}
+.rt{font-size:1.45rem;color:var(--teal);margin:12px 0;font-weight:bold}
+.rd{color:var(--txt);text-align:left;line-height:1.55;margin-bottom:18px;font-size:.95rem}
+.pr{background:rgba(255,255,255,.03);padding:14px;border-radius:8px;text-align:left;margin-bottom:20px;font-size:.9rem;color:var(--mut)}
+.pr b{color:var(--teal);display:block;margin-bottom:4px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+@media(max-width:550px){.grid{grid-template-columns:1fr}}
+.card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:15px;border-radius:10px;text-align:left}
+.card h3{font-size:1rem;margin-bottom:6px}
+.card p{font-size:.82rem;color:var(--mut);margin-bottom:12px}
+.lnk{display:block;text-align:center;background:var(--acc);color:#fff;text-decoration:none;padding:9px;border-radius:6px;font-size:.85rem;font-weight:bold}
+.rst{background:transparent;border:1px solid var(--mut);color:var(--txt);width:100%;padding:10px;border-radius:6px;margin-top:15px;cursor:pointer}
+.hide{display:none}
+footer{margin-top:auto;padding-top:25px;font-size:.8rem;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="box">
+  <div id="v0">
+    <h1>Твоя идеальная профессия</h1>
+    <p class="sub">10 вопросов для определения твоего ведущего карьерного вектора и сильных сторон.</p>
+    <button type="button" class="go" id="b-start">Начать тест</button>
+  </div>
+  <div id="v1" class="hide">
+    <div class="bar"><div class="fill" id="fl"></div></div>
+    <div class="q" id="qt"></div>
+    <div class="ans" id="ab"></div>
+  </div>
+  <div id="v2" class="hide">
+    <div class="rt" id="rt"></div>
+    <p class="rd" id="rd"></p>
+    <div class="pr"><b>Подходящие профессии:</b><span id="rp"></span></div>
+    <div class="grid">
+      <div class="card"><h3>Роман «Суперэмпат»</h3><p>Книга о силе глубокого понимания людей.</p><a href="https://www.litres.ru/74263613/" class="lnk" target="_blank">Читать книгу</a></div>
+      <div class="card"><h3>Аудиостихи с музыкой</h3><p>Поэзия для вдохновения и новых идей.</p><a href="https://ramobinyah.art/audiostihi" class="lnk" target="_blank">Слушать на сайте</a></div>
+    </div>
+    <button type="button" class="rst" id="b-rst">Пройти заново</button>
+  </div>
+</div>
+<footer>© 2026 Рамо Бин Ях</footer>
+
+<script>
+const D=[
+["1. Какая задача приносит вам больше удовольствия?",["Помогать людям, вести переговоры и вдохновлять.",0],["Анализировать цифры, код или сложные схемы.",1],["Придумывать идеи, дизайн, тексты и образы.",2],["Наводить порядок в процессах и планировать.",3]],
+["2. Как вы ведете себя в новой компании?",["Легко знакомлюсь первым и улавливаю эмоции.",0],["Присматриваюсь и включаюсь в беседу по делу.",1],["Делюсь историями, шучу, обсуждаю искусство.",2],["Беру на себя организацию и сбор всех гостей.",3]],
+["3. Что раздражает в работе сильнее всего?",["Одиночество и отсутствие живого общения.",0],["Хаос и решения, принятые без фактов и логики.",1],["Жесткие рамки и запрет на эксперименты.",2],["Срыв сроков и пустые разговоры без дела.",3]],
+["4. Какие темы книг и видео вам ближе?",["Психология, отношения, интервью, биографии.",0],["Технологии, программирование, финансы, наука.",1],["Искусство, дизайн, художественная литература.",2],["Бизнес-кейсы, тайм-менеджмент, инструкции.",3]],
+["5. Ваша естественная роль в командном проекте:",["Переговорщик и мотиватор команды.",0],["Эксперт-аналитик, отвечающий за расчеты.",1],["Генератор идей и креативной подачи.",2],["Координатор сроков, задач и ресурсов.",3]],
+["6. Как вы принимаете сложные решения?",["Советуюсь с близкими и слушаю чувства.",0],["Считаю плюсы и минусы, изучаю статистику.",1],["Доверяю интуиции и выбираю то, что вдохновляет.",2],["Оцениваю практическую выгоду и надежность.",3]],
+["7. Идеальное рабочее место для вас — это:",["Открытый офис или постоянные встречи.",0],["Тихий кабинет с мощным ПК без отвлечений.",1],["Атмосферная студия или уютный уголок.",2],["Четко организованное пространство по правилам.",3]],
+["8. Как вы осваиваете новый сложный навык?",["Ищу наставника или спрашиваю у знакомых.",0],["Изучаю документацию и логику системы.",1],["Сразу пробую на практике методом экспериментов.",2],["Прохожу пошаговый курс с четкими заданиями.",3]],
+["9. За что окружающие чаще всего вас хвалят?",["За умение выслушать, поддержать и убедить.",0],["За внимательность к деталям и логику.",1],["За отличный вкус и нестандартный взгляд.",2],["За надежность и выполнение задач в срок.",3]],
+["10. Какой результат через 5 лет вызовет гордость?",["Люди, которым я помог вырасти или решить проблемы.",0],["Сложный цифровой продукт или точная система.",1],["Книга, дизайн-проект, бренд или произведение.",2],["Успешно построенный бизнес или крупный отдел.",3]]
+];
+const R=[
+["Человек — Человек (Коммуникатор)","Ваша сила — эмпатия и умение находить подход к каждому. Вы тонко чувствуете мотивацию людей и умеете вести за собой.","Психолог, HR-специалист, педагог, врач, PR-менеджер, переговорщик, коуч."],
+["Человек — Система (Аналитик и IT)","У вас логический склад ума. Вы легко видите закономерности в цифрах, коде и больших объемах данных.","Программист, аналитик данных, финансист, инженер, тестировщик, юрист."],
+["Человек — Образ (Творец и новатор)","Вы мыслите образами и цените эстетику. Вам важно создавать новое и вкладывать в работу индивидуальность.","UX/UI-дизайнер, писатель, сценарист, маркетолог, режиссер, архитектор."],
+["Человек — Процесс (Организатор)","Вы человек дела, превращающий идеи в четкий план. Отлично управляете ресурсами и держите фокус на результате.","Руководитель проектов, предприниматель, операционный директор, логист."]
+];
+let i=0,s=[0,0,0,0];
+const g=id=>document.getElementById(id);
+function show(){
+  g('fl').style.width=(i*10)+'%';
+  g('qt').textContent=D[i][0];
+  const b=g('ab');b.innerHTML='';
+  D[i].slice(1).forEach(x=>{
+    const btn=document.createElement('button');
+    btn.className='btn';btn.textContent=x[0];
+    btn.onclick=()=>{s[x[1]]++;i++;i<10?show():end()};
+    b.appendChild(btn);
+  });
+}
+function end(){
+  g('v1').classList.add('hide');g('v2').classList.remove('hide');
+  const m=s.indexOf(Math.max(...s));
+  g('rt').textContent=R[m][0];g('rd').textContent=R[m][1];g('rp').textContent=R[m][2];
+}
+g('b-start').onclick=()=>{i=0;s=[0,0,0,0];g('v0').classList.add('hide');g('v1').classList.remove('hide');show()};
+g('b-rst').onclick=()=>{g('v2').classList.add('hide');g('v0').classList.remove('hide')};
+</script>
+</body>
+</html>
