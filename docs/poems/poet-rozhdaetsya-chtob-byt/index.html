@@ -87,6 +87,19 @@
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.02);
         }
+        .poem-image-wrapper {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0; /* Убирает лишний микро-отступ снизу под картинкой */
+}
+
+.poem-image {
+    width: 100%;        /* Растягивает или сжимает картинку ровно по ширине карточки */
+    height: auto;       /* Сохраняет правильные пропорции, чтобы лицо/объект не сплющило */
+    display: block;     /* Убирает поведение строчного элемента */
+    object-fit: cover;  /* Гарантирует красивое заполнение, если вы зададите фиксированную высоту */
+}
+
         .poem-content {
             padding: 40px 30px 0 30px;
             text-align: center;
