@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Рассказы — Рамо Бин Ях | Современная проза</title>
+<meta name="description" content="Сборник рассказов современного автора Рамо Бин Ях (2026 г.). Читать современную прозу онлайн.">
+<meta name="keywords" content="Рамо Бин Ях, рассказы Рамо Бин Ях, проза, сборник рассказов, читать рассказы онлайн, современная литература">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Рассказы — Рамо Бин Ях">
+<meta property="og:description" content="Авторская проза и короткие рассказы. Читать онлайн на сайте ramobinyah.art">
+<meta property="og:site_name" content="ramobinyah.art">
+<meta property="og:image" content="https://ramobinyah.art">
+
+<!-- Google Tag Manager -->
+<script async src="https://googletagmanager.com"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
+
+<style>
+  :root {
+    --bg: #fcfbf9;
+    --card: #ffffff;
+    --text: #2c2c2c;
+    --accent: #8b5a2b;
+    --border: #e0dad3;
+    --muted: #777777;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  }
+  [data-theme="dark"] {
+    --bg: #161514;
+    --card: #1f1e1c;
+    --text: #dcd6ce;
+    --accent: #c88d55;
+    --border: #33302c;
+    --muted: #999187;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  }
+  body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    padding: 35px 20px;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  header h1 {
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-weight: normal;
+    font-size: 2.2em;
+  }
+  .subtitle {
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 18px;
+    font-size: 1.05em;
+  }
+  nav a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 0 14px;
+    font-size: 0.95em;
+    transition: opacity 0.2s;
+  }
+  nav a:hover {
+    opacity: 0.75;
+  }
+  .wrap {
+    max-width: 820px;
+    width: 100%;
+    margin: 30px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    flex: 1;
+  }
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .count {
+    font-size: 0.9em;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .btn {
+    font-family: Georgia, serif;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: 0.2s;
+  }
+  .btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .story-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  /* Карточка рассказа */
+  .story-item {
+    display: flex;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .story-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+  .story-cover {
+    width: 240px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #eae5de;
+  }
+  .story-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .story-item:hover .story-cover img {
+    transform: scale(1.04);
+  }
+  .story-info {
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+  }
+  .story-meta {
+    font-size: 0.85em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .story-title {
+    margin: 0 0 12px;
+    font-size: 1.45em;
+    font-weight: normal;
+    color: var(--accent);
+  }
+  .story-excerpt {
+    margin: 0 0 20px;
+    font-size: 1em;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .read-more {
+    align-self: flex-start;
+    color: var(--accent);
+    font-size: 0.95em;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story-item:hover .read-more {
+    border-bottom-color: var(--accent);
+  }
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    background: var(--card);
+    margin-top: 50px;
+    font-size: 0.9em;
+  }
+  @media (max-width: 650px) {
+    .story-item {
+      flex-direction: column;
+    }
+    .story-cover {
+      width: 100%;
+      height: 200px;
+    }
+    .story-info {
+      padding: 22px 20px;
+    }
+    .story-title {
+      font-size: 1.3em;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Рассказы</h1>
+  <div class="subtitle">Рамо Бин Ях — Современная проза</div>
+  <nav>
+    <a href="/">На главную</a>
+    <a href="/poems/">Стихотворения</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="toolbar">
+    <div class="count" id="storyCount">Произведений: 2</div>
+    <button class="btn" id="tBtn" onclick="theme()">🌙 Ночь</button>
+  </div>
+
+  <div class="story-list">
+
+    <!-- КАРТОЧКА РАССКАЗА 1 -->
+    <a href="pervyy-rasskaz/index.html" class="story-item">
+      <div class="story-cover">
+        <img src="pervyy-rasskaz/cover.jpg" alt="Название первого рассказа — Рамо Бин Ях">
+      </div>
+      <div class="story-info">
+        <div>
+          <div class="story-meta">27.07.2026 г.</div>
+          <h2 class="story-title">«Название первого рассказа»</h2>
+          <p class="story-excerpt">Короткая аннотация или цепляющий первый абзац истории. Два-три предложения, которые передают настроение и побуждают нажать на карточку.</p>
+        </div>
+        <span class="read-more">Читать рассказ →</span>
+      </div>
+    </a>
+
+    <!-- КАРТОЧКА РАССКАЗА 2 -->
+    <a href="vtoroy-rasskaz/index.html" class="story-item">
+      <div class="story-cover">
+        <img src="vtoroy-rasskaz/cover.jpg" alt="Название второго рассказа — Рамо Бин Ях">
+      </div>
+      <div class="story-info">
+        <div>
+          <div class="story-meta">15.08.2026 г.</div>
+          <h2 class="story-title">«Название второго рассказа»</h2>
+          <p class="story-excerpt">Ещё одна история о дорогах, осени и поиске своего места под солнцем. Чтобы добавить новый рассказ, просто скопируйте блок от комментария КАРТОЧКА РАССКАЗА.</p>
+        </div>
+        <span class="read-more">Читать рассказ →</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 Рамо Бин Ях. Все права защищены.
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Автоподсчёт количества рассказов
+    const total = document.querySelectorAll('.story-item').length;
+    document.getElementById('storyCount').textContent = `Произведений: ${total}`;
+
+    // Проверка сохранённой темы
+    if (localStorage.getItem('readerTheme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.getElementById('tBtn').textContent = '☀️ День';
+    }
+  });
+
+  function theme() {
+    const h = document.documentElement;
+    const b = document.getElementById('tBtn');
+    if (h.getAttribute('data-theme') === 'dark') {
+      h.removeAttribute('data-theme');
+      b.textContent = '🌙 Ночь';
+      localStorage.setItem('readerTheme', 'light');
+    } else {
+      h.setAttribute('data-theme', 'dark');
+      b.textContent = '☀️ День';
+      localStorage.setItem('readerTheme', 'dark');
+    }
+  }
+</script>
+
+</body>
+</html>
