@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>«Сдвиг поля» — Рамо Бин Ях</title>
+<style>
+  :root {
+    --bg: #fcfbf9;
+    --card: #ffffff;
+    --text: #2c2c2c;
+    --accent: #8b5a2b;
+    --border: #e0dad3;
+    --muted: #777777;
+  }
+  [data-theme="dark"] {
+    --bg: #161514;
+    --card: #1f1e1c;
+    --text: #dcd6ce;
+    --accent: #c88d55;
+    --border: #33302c;
+    --muted: #999187;
+  }
+  body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    transition: 0.3s;
+  }
+  header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    padding: 30px 20px;
+  }
+  header h1 {
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-weight: normal;
+    font-size: 2em;
+  }
+  .author {
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 15px;
+  }
+  nav a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 0 12px;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+  .toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+  .btn {
+    font-family: Georgia, serif;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 40px 45px;
+  }
+  .story p {
+    margin: 0 0 18px;
+    text-indent: 1.5em;
+    font-size: 1.15em;
+    text-align: justify;
+  }
+  .story p:first-child {
+    text-indent: 0;
+  }
+  .story p:first-child::first-letter {
+    float: left;
+    font-size: 3.2em;
+    line-height: 0.85;
+    padding-right: 10px;
+    color: var(--accent);
+  }
+  .date {
+    text-align: right;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 35px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+  }
+  .bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+  }
+  .bottom-nav a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    background: var(--card);
+    margin-top: 50px;
+    font-size: 0.9em;
+  }
+  @media (max-width: 600px) {
+    .card { padding: 25px 20px; }
+    .story p { text-align: left; font-size: 1.08em; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>«Сдвиг поля»</h1>
+  <div class="author">Рамо Бин Ях</div>
+  <nav>
+    <a href="/">На главную</a>
+    <a href="/stories/">Все рассказы</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="toolbar">
+    <button class="btn" onclick="size(-0.08)">A−</button>
+    <button class="btn" onclick="size(0.08)">A+</button>
+    <button class="btn" id="tBtn" onclick="theme()">🌙 Ночь</button>
+  </div>
+
+  <div class="card">
+    <div class="story" id="text">
+      <p>Августовское утро в Самойловке обычно пахло палой хвоей, утренней прохладой и влажным речным туманом. Но не в этом году. В шесть часов утра Глеб вышел на крыльцо своего деревянного дома и вместо привычной бодрящей свежести наткнулся на глухую, плотную стену тепла. Воздух был сухим, неподвижным и удивительно ароматным — тайга вокруг Абанского района теперь пахла не сырым мхом, а прокаленной землей, чабрецом и лавандой, словно палисадник где-нибудь в пригороде Неаполя. Глеб поправил на плече ремень тяжелого штатива. Ему было тридцать пять, последние пять лет он жил здесь, вдали от городской суеты, и зарабатывал на жизнь блогом «Сибирский хутор». Подписчики обожали его видео за честность, тишину и размеренность деревенского быта. Он включил камеру, навел объектив на желтеющее поле подкатывающего к горизонту рапса и улыбнулся: — Привет, народ. Время шесть утра, а на термометре в Красноярском крае уже плюс двадцать шесть. Мы не в Италии, ребята. Это Самойловка. И, кажется, наша сибирская тайга решила стать курортом. Глеб выключил запись. Шутки шутками, но внутри шевелилось странное, липкое чувство тревоги. Как заядлый любитель геологии и климатологии, он знал: природа не меняет правила игры без причины. В Европе вторую неделю стояла пятидесятиградусная засуха, выжигающая виноградники, а центральную Россию заливали тропические муссоны, превращая города в каналы. Вернувшись в дом, Глеб налил кофе и сел за рабочий стол, заваленный старыми геологическими картами Саян и распечатками графиков. Он открыл ноутбук, чтобы проверить суточные данные мониторинга геомагнитного поля Земли. Экран моргнул. График напряженности магнитосферы, обычно напоминающий плавную синусоиду, превратился в безумную кардиограмму умирающего сердца. Глеб замер, забыв про кофе. Диполь Земли стремительно ослабевал. Южный магнитный полюс, который и так последние годы дрейфовал в сторону Сибири с огромной скоростью, за последние трое суток совершил колоссальный скачок. Он буквально летел на север. — Не может быть, — прошептал Глеб. Он достал из ящика стола старый армейский жидкостный компас — надежный, аналоговый, не зависящий от интернета. Положил его на ровную поверхность стола. Стрелка компаса не указывала на север. Она бешено, мелко дрожала, совершая хаотичные колебания из стороны в сторону, а затем медленно, словно нехотя, развернулась почти на девяносто градусов и застыла, указывая куда-то в сторону Красноярска. Это был не просто сдвиг. Началась инверсия. Смена полюсов, о которой ученые спорили десятилетиями, происходила прямо сейчас, в режиме реального времени. Магнитный щит планеты рушился, перекраивая воздушные течения, смещая океанские плиты и ломая привычный климат. Глеб схватил телефон и набрал номер матери, живущей в райцентре. Экран выдал: «Сеть заблокирована. Только экстренные вызовы». Спутниковая навигация в верхнем углу дисплея горела тревожным красным крестом. В этот момент за окном, в полной утренней тишине, истошно и страшно завыли деревенские собаки. Земля под ногами Глеба едва заметно, но ощутимо дрогнула, заставив чашку с кофе звякнуть о блюдце. Где-то далеко на юго-западе, со стороны Красноярских сопок, послышался глухой, подземный ропот. Спящие миллионы лет древние вулканы Сибири начали просыпаться.</p>
+      <p>Второй и все последующие абзацы автоматически получают аккуратную красную строку. Текст комфортно читается как на компьютере, так и на экране смартфона.</p>
+      <p>— Диалоги оформляются обычными абзацами, — сказал герой, глядя на осенний дождь за окном.</p>
+    </div>
+    <div class="date">Рамо Бин Ях, 2026 г.</div>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="#">← Предыдущий</a>
+    <button class="btn" id="sBtn" onclick="share()">Поделиться</button>
+    <a href="#">Следующий →</a>
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 Рамо Бин Ях. Все права защищены.
+</footer>
+
+<script>
+  let fs = 1.15;
+  function size(d) {
+    fs = Math.min(1.5, Math.max(0.95, fs + d));
+    document.querySelectorAll('.story p').forEach(p => p.style.fontSize = fs + 'em');
+  }
+  function theme() {
+    const h = document.documentElement;
+    const b = document.getElementById('tBtn');
+    if (h.getAttribute('data-theme') === 'dark') {
+      h.removeAttribute('data-theme');
+      b.textContent = '🌙 Ночь';
+    } else {
+      h.setAttribute('data-theme', 'dark');
+      b.textContent = '☀️ День';
+    }
+  }
+  function share() {
+    navigator.clipboard.writeText(window.location.href);
+    const b = document.getElementById('sBtn');
+    b.textContent = 'Скопировано!';
+    setTimeout(() => b.textContent = 'Поделиться', 2000);
+  }
+</script>
+
+</body>
+</html>
