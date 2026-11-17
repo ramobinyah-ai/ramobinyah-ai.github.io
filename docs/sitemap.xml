@@ -34,7 +34,8 @@
        <lastmod>2026-11-10T19:14:39+00:00</lastmod>
        <priority>0.8000</priority>
   </url>
-
+  
+   <!-- Тесты -->
    <url>
        <loc>https://ramobinyah.art/tests/empat/</loc>
        <lastmod>2026-11-13T00:11:00+00:00</lastmod>
@@ -67,6 +68,8 @@
        <lastmod>2026-11-10T19:14:39+00:00</lastmod>
        <priority>0.8000</priority>
   </url>
+
+  <!-- Страницы стихотворений -->
    <url>
        <loc>https://ramobinyah.art/poems/poems/poet-rozhdaetsya-chtob-byt/</loc>
        <lastmod>2026-11-07T19:20:00+00:00</lastmod>
