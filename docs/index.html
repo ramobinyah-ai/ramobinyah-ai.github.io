@@ -244,6 +244,44 @@
             border-top: 1px solid #e0dad3;
       }  
 }
+/* Базовые стили карточки (для компьютеров и планшетов) */
+.story-card-horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.story-image {
+  flex: 0 0 320px; /* Фиксированная ширина картинки на ПК */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Картинка красиво заполняет блок без искажений */
+  display: block;
+}
+
+.story-body {
+  flex: 1;
+}
+
+/* Адаптация под мобильные устройства (экраны уже 768px) */
+@media (max-width: 768px) {
+  .story-card-horizontal {
+    flex-direction: column; /* Ставим элементы друг под другом */
+    gap: 16px;
+  }
+
+  .story-image {
+    flex: none;
+    width: 100%; /* Картинка растягивается на всю ширину карточки */
+    max-height: 240px; /* Ограничиваем высоту, чтобы не занимала весь экран */
+  }
+}
 
     </style>
 </head>
