@@ -1,21 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NBSRRQJ2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-</script>
-    
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-W66L6M67"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-</script>
-    
-    <meta charset="UTF-8">
+     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Аудиостихи Рамо Бин Ях — слушать слушать современные аудиостихи онлайн</title>
     <meta name="description" content="Слушайте авторские аудиостихи с музыкой на официальном сайте Рамо Бин Ях. Современная философская лирика и красивые стихи о любви в оригинальном исполнении.">
@@ -26,6 +12,12 @@
     <meta property="og:url" content="https://ramobinyah.art/audiostihi"> <!-- Укажите точный URL этой страницы -->
     <meta property="og:site_name" content="ramobinyah.art">
 
+     <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NBSRRQJ2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
     <style>
         /* Обнуление базовых стилей */
         * {
@@ -34,18 +26,63 @@
             padding: 0;
         }
 
+        /* Светлая палитра */
+        :root {
+            --bg-color: #fcfbf9;      /* Мягкий светлый фон */
+            --text-color: #2c2c2c;    /* Угольный для основного текста */
+            --accent-color: #8b5a2b;  /* Кофейный для акцентов и заголовков */
+            --card-bg: #ffffff;       /* Белый для блоков с плеерами */
+            --border-color: #e0dad3;  /* Пастельный для аккуратных границ */
+            --meta-color: #7c7c7c;    /* Приглушенный для подписей */
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0d0e12;
-            color: #f3f4f6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
-            padding: 0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* Контейнер для выравнивания контента */
+        header {
+            padding: 30px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: #ffffff;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2rem;
+            font-weight: normal;
+            color: var(--accent-color);
+        }
+
+        header .author-name {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Сетка для удобного размещения песен */
+        .main-content {
+            flex: 1 0 auto;
+            padding: 40px 0;
+        }
+
         .container {
             width: 100%;
             max-width: 800px;
@@ -53,210 +90,120 @@
             padding: 0 20px;
         }
 
-        /* Навигационная панель / Шапка сайта */
-        .site-header {
-            background: rgba(13, 14, 18, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 15px 0;
-        }
-
-        .header-wrap {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo a {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #ffffff;
-            text-decoration: none;
-            letter-spacing: 0.05em;
-        }
-
-        .logo a span {
-            color: #ff007f;
-        }
-
-        .nav-links a {
-            color: #9ca3af;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-            display: inline-block; margin-left: 20px;
-        }
-
-        .nav-links a:hover {
-            color: #ffffff;
-        }
-
-        /* Секция заголовка страницы */
-        .page-intro {
-            text-align: center;
-            padding: 60px 0 40px 0;
-        }
-
-        .page-intro h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #ff7b00, #ff007f);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
-        }
-
-        .page-intro p {
-            color: #9ca3af;
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* Основной контент */
-        .main-content {
-            flex: 1;
-            padding-bottom: 60px;
-        }
-
-        /* Лента аудиокарточек */
-        .audio-list {
+        .music-grid {
             display: flex;
             flex-direction: column;
             gap: 30px;
         }
 
-        /* Карточка стихотворения */
-        .poem-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
+        /* Карточка трека/альбома */
+        .music-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             padding: 24px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .poem-card:hover {
+        .music-card:hover {
             transform: translateY(-2px);
-            border-color: rgba(255, 0, 127, 0.3);
-            box-shadow: 0 10px 30px rgba(255, 0, 127, 0.08);
+            border-color: var(--accent-color);
+            box-shadow: 0 6px 20px rgba(139, 90, 43, 0.05);
         }
 
-        /* Название стиха */
-        .poem-title {
-            font-size: 1.4rem;
+        .music-card-title {
+            font-size: 1.3rem;
             font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 6px;
+            color: var(--text-color);
+            margin-bottom: 4px;
         }
 
-        /* Метаданные (дата, теги) */
-        .poem-meta {
+        .music-card-meta {
             font-size: 0.85rem;
-            color: #6b7280;
-            margin-bottom: 18px;
+            color: var(--meta-color);
+            margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
-        /* Контейнер плеера Bandcamp */
-        .bandcamp-player-container {
+        /* Контейнер для плеера Bandcamp */
+        .bandcamp-player-wrap {
             width: 100%;
             border-radius: 8px;
             overflow: hidden;
-            background: #18191f;
+            border: 1px solid var(--border-color);
             line-height: 0;
+            background-color: #ffffff;
         }
 
-        .bandcamp-player-container iframe {
+        .bandcamp-player-wrap iframe {
             width: 100% !important;
             border: 0;
+            display: block;
         }
 
-        /* Подвал */
-        .site-footer {
-            background: #090a0d;
-            padding: 30px 0;
+        footer {
+            flex-shrink: 0;
             text-align: center;
-            color: #4b5563;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px 20px;
+            font-size: 0.9em;
+            color: var(--meta-color);
+            border-top: 1px solid var(--border-color);
+            background: #ffffff;
         }
 
-        .site-footer a {
-            color: #6b7280;
+        footer a {
+            color: var(--text-color);
             text-decoration: none;
-            transition: color 0.2s ease;
         }
 
-        .site-footer a:hover {
-            color: #9ca3af;
+        footer a:hover {
+            color: var(--accent-color);
         }
 
-        /* Адаптивность для мобильных телефонов */
-        @media (max-width: 600px) {
-            .page-intro {
-                padding: 40px 0 30px 0;
-            }
-            .page-intro h1 {
-                font-size: 2rem;
-            }
-            .poem-card {
-                padding: 16px;
-                border-radius: 12px;
-            }
-            .poem-title {
-                font-size: 1.2rem;
-            }
+        /* Мобильная адаптивность */
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.8rem; }
+            .music-card { padding: 16px; }
+            .music-grid { gap: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Шапка сайта -->
-    <header class="site-header">
-        <div class="container header-wrap">
-            <div class="logo">
-                <a href="/">Рамо Бин Ях</span></a>
-            </div>
-            <nav class="nav-links">
-                <a href="/">На главную</a>
-                <a href="/poems">Стихи</a>
-            </nav>
-        </div>
+    <!-- Шапка музыкальной страницы -->
+    <header>
+        <h1>Музыкальная страница</h1>
+        <div class="author-name">Рамо Бин Ях</div>
+        <nav>
+            <a href="/">На главную</a>
+            <a href="https://ramobinyah.art/poems/poet-rozhdaetsya-chtob-byt/">Стихи</a>
+        </nav>
     </header>
 
-    <!-- Основная секция -->
-    <main class="container main-content">
-        
-        <!-- Интро страницы -->
-        <section class="page-intro">
-            <h1>Аудиостихи</h1>
-            <p>Современные аудиостихи Рамо Бин Ях: слушать онлайн.</p>
-        </section>
+    <!-- Основной контент (Сетка с песнями) -->
+    <div class="main-content">
+        <main class="container">
+            <div class="music-grid">
+                
+                <!-- КАРТОЧКА ПЕСНИ №1 (Основной альбом/трек) -->
+                <div class="music-card">
+                    <div class="music-card-title">Притяжение</div>
+                    <div class="music-card-meta">Релиз: 2026 г.</div>
+                    <div class="bandcamp-player-wrap">
+                        <!-- Встроенный большой плеер Bandcamp (Цвета подобраны под светлый дизайн) -->
+                        <iframe style="border: 0; width: 350px; height: 470px;" src="<iframe style="border: 0; width: 350px; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=1157888194/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://ramobinyah.bandcamp.com/album/-">Оголённый нерв времени by Ramo Bin Yah</a></iframe>
+                    </div>
+                </div>
 
-         <!-- Плеер со стихами -->
-         <section class="audio-list">
-            <div class="poem-card">
-                <div class="poem-title">Оголённый нерв времени</div>
-                <div class="poem-meta">Запись: 2026 г.</div>
-                <div class="bandcamp-player-container">
-                    <!-- Замените код ниже на ваш iframe код из Bandcamp -->
-                    <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=1157888194/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://ramobinyah.bandcamp.com/album/-">Оголённый нерв времени by Ramo Bin Yah</a></iframe>
             </div>
+        </main>
+    </div>
 
-        </section>
-    </main>
-
-    <!-- Подвал сайта -->
-    <footer class="site-footer">
-        <div class="container">
-            <p>© 2026 <a href="/">Рамо Бин Ях</a>. Все права защищены.</p>
-        </div>
+    <!-- Подвал музыкальной страницы -->
+    <footer>
+        <p>&copy; 2026 <a href="/">Рамо Бин Ях</a>. Все права защищены.</p>
     </footer>
 
 </body>
