@@ -328,20 +328,23 @@
 </style>
 
 <script>
-  const PROJECT_ID = "ramobinyah-stories";
-  const API_KEY = "AIzaSyBcfTl0UvAXuBIgCxFXS3QJYkZnjbcvrlE";
+  const SUPABASE_URL = "https://vtahppmvdbbouehmuzot.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_FDmB0Ek8zvdp9ajQ-ZSBgg_3nwbW5l5";
 
-  // Определяем уникальный ID рассказа по адресу страницы
   const rawPath = window.location.pathname.replace(/[^a-zA-Z0-9]/g, '_') || 'home';
   const storyId = rawPath.replace(/^_+|_+$/g, '') || 'sdvig_polya';
 
-  // Прямой адрес документа в вашей базе Firestore (без gstatic.com)
-  const DOC_URL = `https://googleapis.com{PROJECT_ID}/databases/(default)/documents/stories/${storyId}?key=${API_KEY}`;
+  const API_URL = `${SUPABASE_URL}/rest/v1/stories`;
+  const HEADERS = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": `Bearer ${SUPABASE_KEY}`,
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
+  };
 
   let counts = JSON.parse(localStorage.getItem(`counts_${storyId}`)) || { views: 0, likes: 0, loves: 0 };
   let userReaction = localStorage.getItem(`reaction_${storyId}`);
 
-  // Обновление интерфейса
   function renderUI() {
     document.getElementById('views-count').textContent = counts.views;
     document.getElementById('like-count').textContent = counts.likes;
@@ -356,50 +359,48 @@
     localStorage.setItem(`counts_${storyId}`, JSON.stringify(counts));
   }
 
-  // Сохранение актуальных цифр в Firebase Firestore через REST API
-  async function saveToFirestore() {
+  // Сохранение актуальных цифр в общую базу Supabase
+  async function syncToSupabase() {
     try {
-      await fetch(DOC_URL, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+      await fetch(API_URL, {
+        method: "POST",
+        headers: { ...HEADERS, "Prefer": "resolution=merge-duplicates" },
         body: JSON.stringify({
-          fields: {
-            views: { integerValue: String(counts.views) },
-            likes: { integerValue: String(counts.likes) },
-            loves: { integerValue: String(counts.loves) }
-          }
+          id: storyId,
+          views: counts.views,
+          likes: counts.likes,
+          loves: counts.loves
         })
       });
     } catch (err) {
-      console.error("Ошибка сохранения в базу:", err);
+      console.error("Ошибка записи в Supabase:", err);
     }
   }
 
-  // Загрузка данных из Firebase при открытии страницы
+  // Загрузка общих цифр при открытии рассказа
   async function initStory() {
     renderUI();
 
     try {
-      const res = await fetch(DOC_URL);
+      const res = await fetch(`${API_URL}?id=eq.${storyId}&select=*`, { headers: HEADERS });
       if (res.ok) {
-        const data = await res.json();
-        if (data.fields) {
-          counts.views = parseInt(data.fields.views?.integerValue || 0, 10);
-          counts.likes = parseInt(data.fields.likes?.integerValue || 0, 10);
-          counts.loves = parseInt(data.fields.loves?.integerValue || 0, 10);
+        const rows = await res.json();
+        if (rows.length > 0) {
+          counts.views = rows[0].views || 0;
+          counts.likes = rows[0].likes || 0;
+          counts.loves = rows[0].loves || 0;
         }
       }
     } catch (err) {
-      console.error("Ошибка чтения из базы:", err);
+      console.error("Ошибка чтения из Supabase:", err);
     }
 
-    // Прибавляем +1 просмотр за сессию
     if (!sessionStorage.getItem(`viewed_${storyId}`)) {
       counts.views += 1;
       sessionStorage.setItem(`viewed_${storyId}`, 'true');
       saveLocal();
       renderUI();
-      await saveToFirestore();
+      await syncToSupabase();
     } else {
       saveLocal();
       renderUI();
@@ -425,11 +426,12 @@
 
     saveLocal();
     renderUI();
-    await saveToFirestore();
+    await syncToSupabase();
   };
 
   initStory();
 </script>
+
 
 <!-- КОНЕЦ ВИДЖЕТА -->
 
