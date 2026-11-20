@@ -220,6 +220,194 @@
       <p>Васильевич приставил ладонь к глазам. Далеко в море, огибая затопленные макушки деревьев, к Самойловке медленно двигался самодельный деревянный плот. На нем, отчаянно маша белой тряпкой на палке, виднелись силуэты людей. Это были первые беженцы из полностью затопленных низинных деревень Абанского района. Новая эпоха человечества вступала в свои права, и Самойловке предстояло стать их единственным спасением.</p>
     </div>
     <div class="date">Рамо Бин Ях, 2026 г.</div>
+    <!-- ВИДЖЕТ ПРОСМОТРОВ И РЕАКЦИЙ -->
+<div class="story-widget" id="story-widget">
+  
+  <!-- Панель статистики -->
+  <div class="stats-bar">
+    <div class="reactions-summary">
+      <div class="icons-stack">
+        <span class="mini-icon mini-like">👍</span>
+        <span class="mini-icon mini-love">❤️</span>
+      </div>
+      <span id="total-reactions">...</span>
+    </div>
+    
+    <div class="views-counter">
+      👁️ Просмотров: <strong id="views-count">...</strong>
+    </div>
+  </div>
+
+  <!-- Панель кнопок -->
+  <div class="actions-bar">
+    <button class="action-btn" id="btn-like" onclick="toggleReaction('like')">
+      <span class="emoji">👍</span> Нравится (<span id="like-count">0</span>)
+    </button>
+    
+    <button class="action-btn" id="btn-love" onclick="toggleReaction('love')">
+      <span class="emoji">❤️</span> Супер (<span id="love-count">0</span>)
+    </button>
+  </div>
+
+</div>
+
+<style>
+  .story-widget {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid #e4e6eb;
+    border-radius: 8px;
+    background: #fff;
+  }
+  .stats-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e4e6eb;
+    color: #65676b;
+    font-size: 14px;
+  }
+  .reactions-summary {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .icons-stack {
+    display: flex;
+    align-items: center;
+  }
+  .mini-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: white;
+    border: 2px solid #fff;
+  }
+  .mini-like { background-color: #1877f2; z-index: 2; }
+  .mini-love { background-color: #f33e58; margin-left: -6px; z-index: 1; }
+  .actions-bar {
+    display: flex;
+    gap: 10px;
+    padding-top: 8px;
+  }
+  .action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #65676b;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+  .action-btn:hover { background-color: #f2f3f5; }
+  .action-btn:active { transform: scale(0.96); }
+  .action-btn:disabled { opacity: 0.6; cursor: wait; }
+  .action-btn.active-like { color: #1877f2; }
+  .action-btn.active-love { color: #f33e58; }
+  .emoji {
+    font-size: 18px;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .action-btn.active-like .emoji,
+  .action-btn.active-love .emoji { transform: scale(1.25); }
+</style>
+
+<script>
+  // Автоматически берём адрес текущей страницы и убираем лишние символы
+  const storyId = window.location.pathname.replace(/[^a-zA-Z0-9]/g, '_') || 'home';
+  
+  // Уникальное имя вашего сайта для базы счётчиков
+  const NAMESPACE = 'my_github_stories_site_2026'; 
+  const API_URL = `https://counterapi.dev{NAMESPACE}`;
+
+  let counts = { views: 0, likes: 0, loves: 0 };
+  let userReaction = localStorage.getItem(`reaction_${storyId}`);
+
+  async function updateCounter(key, action = '') {
+    try {
+      const url = action ? `${API_URL}/${storyId}_${key}/${action}` : `${API_URL}/${storyId}_${key}/`;
+      const res = await fetch(url);
+      if (!res.ok) return 0;
+      const data = await res.json();
+      return data.count || 0;
+    } catch (e) {
+      console.error('Ошибка счётчика:', e);
+      return 0;
+    }
+  }
+
+  async function initWidget() {
+    renderUI();
+
+    if (!sessionStorage.getItem(`viewed_${storyId}`)) {
+      counts.views = await updateCounter('views', 'up');
+      sessionStorage.setItem(`viewed_${storyId}`, 'true');
+    } else {
+      counts.views = await updateCounter('views');
+    }
+
+    const [likes, loves] = await Promise.all([
+      updateCounter('likes'),
+      updateCounter('loves')
+    ]);
+    
+    counts.likes = likes;
+    counts.loves = loves;
+    renderUI();
+  }
+
+  async function toggleReaction(type) {
+    const btnLike = document.getElementById('btn-like');
+    const btnLove = document.getElementById('btn-love');
+    btnLike.disabled = true;
+    btnLove.disabled = true;
+
+    if (userReaction === type) {
+      counts[type + 's'] = await updateCounter(type + 's', 'down');
+      userReaction = null;
+      localStorage.removeItem(`reaction_${storyId}`);
+    } else {
+      if (userReaction) {
+        counts[userReaction + 's'] = await updateCounter(userReaction + 's', 'down');
+      }
+      counts[type + 's'] = await updateCounter(type + 's', 'up');
+      userReaction = type;
+      localStorage.setItem(`reaction_${storyId}`, type);
+    }
+
+    renderUI();
+    btnLike.disabled = false;
+    btnLove.disabled = false;
+  }
+
+  function renderUI() {
+    document.getElementById('views-count').textContent = counts.views;
+    document.getElementById('like-count').textContent = counts.likes;
+    document.getElementById('love-count').textContent = counts.loves;
+    document.getElementById('total-reactions').textContent = counts.likes + counts.loves;
+
+    document.getElementById('btn-like').classList.toggle('active-like', userReaction === 'like');
+    document.getElementById('btn-love').classList.toggle('active-love', userReaction === 'love');
+  }
+
+  initWidget();
+</script>
+<!-- КОНЕЦ ВИДЖЕТА -->
+
   </div>
 
   <div class="bottom-nav">
