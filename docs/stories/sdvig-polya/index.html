@@ -327,31 +327,21 @@
   .action-btn.active-love .emoji { transform: scale(1.25); }
 </style>
 
-<script type="module">
-  import { initializeApp } from "https://gstatic.com";
-  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, onSnapshot } from "https://gstatic.com";
+<script>
+  const PROJECT_ID = "ramobinyah-stories";
+  const API_KEY = "AIzaSyBcfTl0UvAXuBIgCxFXS3QJYkZnjbcvrlE";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBcfTl0UvAXuBIgCxFXS3QJYkZnjbcvrlE",
-    authDomain: "ramobinyah-stories.firebaseapp.com",
-    projectId: "ramobinyah-stories",
-    storageBucket: "ramobinyah-stories.firebasestorage.app",
-    messagingSenderId: "833811172908",
-    appId: "1:833811172908:web:cf68ad0491f41c6873cb89"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // Автоматически определяем уникальный ID рассказа по адресу страницы
+  // Определяем уникальный ID рассказа по адресу страницы
   const rawPath = window.location.pathname.replace(/[^a-zA-Z0-9]/g, '_') || 'home';
-  const storyId = rawPath.replace(/^_+|_+$/g, '');
-  const storyRef = doc(db, "stories", storyId);
+  const storyId = rawPath.replace(/^_+|_+$/g, '') || 'sdvig_polya';
 
-  let counts = { views: 0, likes: 0, loves: 0 };
+  // Прямой адрес документа в вашей базе Firestore (без gstatic.com)
+  const DOC_URL = `https://googleapis.com{PROJECT_ID}/databases/(default)/documents/stories/${storyId}?key=${API_KEY}`;
+
+  let counts = JSON.parse(localStorage.getItem(`counts_${storyId}`)) || { views: 0, likes: 0, loves: 0 };
   let userReaction = localStorage.getItem(`reaction_${storyId}`);
 
-  // Обновление цифр и подсветки на экране
+  // Обновление интерфейса
   function renderUI() {
     document.getElementById('views-count').textContent = counts.views;
     document.getElementById('like-count').textContent = counts.likes;
@@ -362,68 +352,85 @@
     document.getElementById('btn-love').classList.toggle('active-love', userReaction === 'love');
   }
 
-  // Загрузка данных и подсчёт просмотра при открытии страницы
-  async function initStory() {
+  function saveLocal() {
+    localStorage.setItem(`counts_${storyId}`, JSON.stringify(counts));
+  }
+
+  // Сохранение актуальных цифр в Firebase Firestore через REST API
+  async function saveToFirestore() {
     try {
-      const snap = await getDoc(storyRef);
-      const isNewView = !sessionStorage.getItem(`viewed_${storyId}`);
-
-      if (!snap.exists()) {
-        await setDoc(storyRef, { views: 1, likes: 0, loves: 0 });
-        sessionStorage.setItem(`viewed_${storyId}`, 'true');
-      } else if (isNewView) {
-        await updateDoc(storyRef, { views: increment(1) });
-        sessionStorage.setItem(`viewed_${storyId}`, 'true');
-      }
-
-      // Обновление цифр в реальном времени
-      onSnapshot(storyRef, (docSnap) => {
-        if (docSnap.exists()) {
-          counts = docSnap.data();
-          renderUI();
-        }
+      await fetch(DOC_URL, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields: {
+            views: { integerValue: String(counts.views) },
+            likes: { integerValue: String(counts.likes) },
+            loves: { integerValue: String(counts.loves) }
+          }
+        })
       });
     } catch (err) {
-      console.error("Ошибка Firebase:", err);
+      console.error("Ошибка сохранения в базу:", err);
+    }
+  }
+
+  // Загрузка данных из Firebase при открытии страницы
+  async function initStory() {
+    renderUI();
+
+    try {
+      const res = await fetch(DOC_URL);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.fields) {
+          counts.views = parseInt(data.fields.views?.integerValue || 0, 10);
+          counts.likes = parseInt(data.fields.likes?.integerValue || 0, 10);
+          counts.loves = parseInt(data.fields.loves?.integerValue || 0, 10);
+        }
+      }
+    } catch (err) {
+      console.error("Ошибка чтения из базы:", err);
+    }
+
+    // Прибавляем +1 просмотр за сессию
+    if (!sessionStorage.getItem(`viewed_${storyId}`)) {
+      counts.views += 1;
+      sessionStorage.setItem(`viewed_${storyId}`, 'true');
+      saveLocal();
+      renderUI();
+      await saveToFirestore();
+    } else {
+      saveLocal();
+      renderUI();
     }
   }
 
   // Обработка нажатия на Лайк или Сердечко
   window.toggleReaction = async function(type) {
-    const btnLike = document.getElementById('btn-like');
-    const btnLove = document.getElementById('btn-love');
-    btnLike.disabled = true;
-    btnLove.disabled = true;
+    const prev = userReaction;
 
-    try {
-      if (userReaction === type) {
-        userReaction = null;
-        localStorage.removeItem(`reaction_${storyId}`);
-        renderUI();
-        await updateDoc(storyRef, { [type + 's']: increment(-1) });
-      } else {
-        const prev = userReaction;
-        userReaction = type;
-        localStorage.setItem(`reaction_${storyId}`, type);
-        renderUI();
-
-        const updates = { [type + 's']: increment(1) };
-        if (prev) {
-          updates[prev + 's'] = increment(-1);
-        }
-        await updateDoc(storyRef, updates);
+    if (prev === type) {
+      counts[type + 's'] = Math.max(0, counts[type + 's'] - 1);
+      userReaction = null;
+      localStorage.removeItem(`reaction_${storyId}`);
+    } else {
+      if (prev) {
+        counts[prev + 's'] = Math.max(0, counts[prev + 's'] - 1);
       }
-    } catch (err) {
-      console.error("Ошибка при отправке реакции:", err);
-    } finally {
-      btnLike.disabled = false;
-      btnLove.disabled = false;
+      counts[type + 's'] += 1;
+      userReaction = type;
+      localStorage.setItem(`reaction_${storyId}`, type);
     }
+
+    saveLocal();
+    renderUI();
+    await saveToFirestore();
   };
 
-  renderUI();
   initStory();
 </script>
+
 <!-- КОНЕЦ ВИДЖЕТА -->
 
   </div>
