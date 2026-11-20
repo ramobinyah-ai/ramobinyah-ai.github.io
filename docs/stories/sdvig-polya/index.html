@@ -327,105 +327,15 @@
 </style>
 
 <script>
-  // Короткий безопасный ID страницы (API не любит длинные имена и спецсимволы)
-  const rawPath = window.location.pathname.replace(/[^a-zA-Z0-9]/g, '') || 'home';
-  const storyId = rawPath.slice(-30); 
-  
-  const NAMESPACE = 'gh_stories_2026_v1'; 
-  const API_URL = `https://counterapi.dev{NAMESPACE}`;
-
-  // Загружаем сохранённые локально цифры (на случай если API заблокирован)
-  let counts = JSON.parse(localStorage.getItem(`counts_${storyId}`)) || { views: 0, likes: 0, loves: 0 };
-  let userReaction = localStorage.getItem(`reaction_${storyId}`);
-
-  async function syncCounter(key, action = '') {
-    try {
-      const url = action ? `${API_URL}/${storyId}_${key}/${action}` : `${API_URL}/${storyId}_${key}/`;
-      const res = await fetch(url);
-      if (!res.ok) return null;
-      const data = await res.json();
-      return typeof data.count === 'number' ? data.count : null;
-    } catch (e) {
-      return null; // Если нет сети или API недоступен
-    }
-  }
-
-  async function initWidget() {
-    renderUI();
-
-    if (!sessionStorage.getItem(`viewed_${storyId}`)) {
-      counts.views += 1;
-      sessionStorage.setItem(`viewed_${storyId}`, 'true');
-      renderUI();
-      const serverViews = await syncCounter('views', 'up');
-      if (serverViews !== null) counts.views = serverViews;
-    } else {
-      const serverViews = await syncCounter('views');
-      if (serverViews !== null) counts.views = serverViews;
-    }
-
-    const [serverLikes, serverLoves] = await Promise.all([
-      syncCounter('likes'),
-      syncCounter('loves')
-    ]);
-    
-    if (serverLikes !== null) counts.likes = serverLikes;
-    if (serverLoves !== null) counts.loves = serverLoves;
-    
-    saveLocal();
-    renderUI();
-  }
-
-  async function toggleReaction(type) {
-    // 1. Сначала мгновенно меняем цифры на экране
-    if (userReaction === type) {
-      counts[type + 's'] = Math.max(0, counts[type + 's'] - 1);
-      userReaction = null;
-      localStorage.removeItem(`reaction_${storyId}`);
-      saveLocal();
-      renderUI();
-      
-      const res = await syncCounter(type + 's', 'down');
-      if (res !== null) { counts[type + 's'] = res; saveLocal(); renderUI(); }
-    } else {
-      const prevReaction = userReaction;
-      if (prevReaction) {
-        counts[prevReaction + 's'] = Math.max(0, counts[prevReaction + 's'] - 1);
-      }
-      counts[type + 's'] += 1;
-      userReaction = type;
-      localStorage.setItem(`reaction_${storyId}`, type);
-      saveLocal();
-      renderUI();
-
-      // 2. В фоне отправляем изменения на сервер
-      if (prevReaction) {
-        const resDown = await syncCounter(prevReaction + 's', 'down');
-        if (resDown !== null) counts[prevReaction + 's'] = resDown;
-      }
-      const resUp = await syncCounter(type + 's', 'up');
-      if (resUp !== null) counts[type + 's'] = resUp;
-      
-      saveLocal();
-      renderUI();
-    }
-  }
-
-  function saveLocal() {
-    localStorage.setItem(`counts_${storyId}`, JSON.stringify(counts));
-  }
-
-  function renderUI() {
-    document.getElementById('views-count').textContent = counts.views;
-    document.getElementById('like-count').textContent = counts.likes;
-    document.getElementById('love-count').textContent = counts.loves;
-    document.getElementById('total-reactions').textContent = counts.likes + counts.loves;
-
-    document.getElementById('btn-like').classList.toggle('active-like', userReaction === 'like');
-    document.getElementById('btn-love').classList.toggle('active-love', userReaction === 'love');
-  }
-
-  initWidget();
+  <!-- Код счётчика от firebase -->
+ const firebaseConfig = {
+  apiKey: "AIzaSyBcfTl0UvAXuBIgCxFXS3QJYkZnjbcvrlE",
+  authDomain: "ramobinyah-stories.firebaseapp.com",
+  projectId: "ramobinyah-stories",
+  storageBucket: "ramobinyah-stories.firebasestorage.app",
+  messagingSenderId: "833811172908",
+  appId: "1:833811172908:web:cf68ad0491f41c6873cb89"
+};
 </script>
 
 <!-- КОНЕЦ ВИДЖЕТА -->
