@@ -220,7 +220,8 @@
       <p>Васильевич приставил ладонь к глазам. Далеко в море, огибая затопленные макушки деревьев, к Самойловке медленно двигался самодельный деревянный плот. На нем, отчаянно маша белой тряпкой на палке, виднелись силуэты людей. Это были первые беженцы из полностью затопленных низинных деревень Абанского района. Новая эпоха человечества вступала в свои права, и Самойловке предстояло стать их единственным спасением.</p>
     </div>
     <div class="date">Рамо Бин Ях, 2026 г.</div>
-    <!-- ВИДЖЕТ ПРОСМОТРОВ И РЕАКЦИЙ -->
+    
+<!-- ВИДЖЕТ ПРОСМОТРОВ И РЕАКЦИЙ (FIREBASE) -->
 <div class="story-widget" id="story-widget">
   
   <!-- Панель статистики -->
@@ -230,11 +231,11 @@
         <span class="mini-icon mini-like">👍</span>
         <span class="mini-icon mini-love">❤️</span>
       </div>
-      <span id="total-reactions">...</span>
+      <span id="total-reactions">0</span>
     </div>
     
     <div class="views-counter">
-      👁️ Просмотров: <strong id="views-count">...</strong>
+      👁️ Просмотров: <strong id="views-count">0</strong>
     </div>
   </div>
 
@@ -255,7 +256,7 @@
   .story-widget {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     max-width: 600px;
-    margin: 20px auto;
+    margin: 25px auto;
     padding: 15px;
     border: 1px solid #e4e6eb;
     border-radius: 8px;
@@ -326,16 +327,103 @@
   .action-btn.active-love .emoji { transform: scale(1.25); }
 </style>
 
-  <!-- Код счётчика от firebase -->
- const firebaseConfig = {
-  apiKey: "AIzaSyBcfTl0UvAXuBIgCxFXS3QJYkZnjbcvrlE",
-  authDomain: "ramobinyah-stories.firebaseapp.com",
-  projectId: "ramobinyah-stories",
-  storageBucket: "ramobinyah-stories.firebasestorage.app",
-  messagingSenderId: "833811172908",
-  appId: "1:833811172908:web:cf68ad0491f41c6873cb89"
-};
+<script type="module">
+  import { initializeApp } from "https://gstatic.com";
+  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, onSnapshot } from "https://gstatic.com";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyBcfTl0UvAXuBIgCxFXS3QJYkZnjbcvrlE",
+    authDomain: "ramobinyah-stories.firebaseapp.com",
+    projectId: "ramobinyah-stories",
+    storageBucket: "ramobinyah-stories.firebasestorage.app",
+    messagingSenderId: "833811172908",
+    appId: "1:833811172908:web:cf68ad0491f41c6873cb89"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Автоматически определяем уникальный ID рассказа по адресу страницы
+  const rawPath = window.location.pathname.replace(/[^a-zA-Z0-9]/g, '_') || 'home';
+  const storyId = rawPath.replace(/^_+|_+$/g, '');
+  const storyRef = doc(db, "stories", storyId);
+
+  let counts = { views: 0, likes: 0, loves: 0 };
+  let userReaction = localStorage.getItem(`reaction_${storyId}`);
+
+  // Обновление цифр и подсветки на экране
+  function renderUI() {
+    document.getElementById('views-count').textContent = counts.views;
+    document.getElementById('like-count').textContent = counts.likes;
+    document.getElementById('love-count').textContent = counts.loves;
+    document.getElementById('total-reactions').textContent = counts.likes + counts.loves;
+
+    document.getElementById('btn-like').classList.toggle('active-like', userReaction === 'like');
+    document.getElementById('btn-love').classList.toggle('active-love', userReaction === 'love');
+  }
+
+  // Загрузка данных и подсчёт просмотра при открытии страницы
+  async function initStory() {
+    try {
+      const snap = await getDoc(storyRef);
+      const isNewView = !sessionStorage.getItem(`viewed_${storyId}`);
+
+      if (!snap.exists()) {
+        await setDoc(storyRef, { views: 1, likes: 0, loves: 0 });
+        sessionStorage.setItem(`viewed_${storyId}`, 'true');
+      } else if (isNewView) {
+        await updateDoc(storyRef, { views: increment(1) });
+        sessionStorage.setItem(`viewed_${storyId}`, 'true');
+      }
+
+      // Обновление цифр в реальном времени
+      onSnapshot(storyRef, (docSnap) => {
+        if (docSnap.exists()) {
+          counts = docSnap.data();
+          renderUI();
+        }
+      });
+    } catch (err) {
+      console.error("Ошибка Firebase:", err);
+    }
+  }
+
+  // Обработка нажатия на Лайк или Сердечко
+  window.toggleReaction = async function(type) {
+    const btnLike = document.getElementById('btn-like');
+    const btnLove = document.getElementById('btn-love');
+    btnLike.disabled = true;
+    btnLove.disabled = true;
+
+    try {
+      if (userReaction === type) {
+        userReaction = null;
+        localStorage.removeItem(`reaction_${storyId}`);
+        renderUI();
+        await updateDoc(storyRef, { [type + 's']: increment(-1) });
+      } else {
+        const prev = userReaction;
+        userReaction = type;
+        localStorage.setItem(`reaction_${storyId}`, type);
+        renderUI();
+
+        const updates = { [type + 's']: increment(1) };
+        if (prev) {
+          updates[prev + 's'] = increment(-1);
+        }
+        await updateDoc(storyRef, updates);
+      }
+    } catch (err) {
+      console.error("Ошибка при отправке реакции:", err);
+    } finally {
+      btnLike.disabled = false;
+      btnLove.disabled = false;
+    }
+  };
+
+  renderUI();
+  initStory();
+</script>
 <!-- КОНЕЦ ВИДЖЕТА -->
 
   </div>
