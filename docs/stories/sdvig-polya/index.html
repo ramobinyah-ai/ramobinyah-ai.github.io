@@ -327,26 +327,26 @@
 </style>
 
 <script>
-  // Автоматически берём адрес текущей страницы и убираем лишние символы
-  const storyId = window.location.pathname.replace(/[^a-zA-Z0-9]/g, '_') || 'home';
+  // Короткий безопасный ID страницы (API не любит длинные имена и спецсимволы)
+  const rawPath = window.location.pathname.replace(/[^a-zA-Z0-9]/g, '') || 'home';
+  const storyId = rawPath.slice(-30); 
   
-  // Уникальное имя вашего сайта для базы счётчиков
-  const NAMESPACE = 'sdvig-polya'; 
-  const API_URL = `https://ramobinyah.art/stories/sdvig-polya{NAMESPACE}`;
+  const NAMESPACE = 'gh_stories_2026_v1'; 
+  const API_URL = `https://counterapi.dev{NAMESPACE}`;
 
-  let counts = { views: 0, likes: 0, loves: 0 };
+  // Загружаем сохранённые локально цифры (на случай если API заблокирован)
+  let counts = JSON.parse(localStorage.getItem(`counts_${storyId}`)) || { views: 0, likes: 0, loves: 0 };
   let userReaction = localStorage.getItem(`reaction_${storyId}`);
 
-  async function updateCounter(key, action = '') {
+  async function syncCounter(key, action = '') {
     try {
       const url = action ? `${API_URL}/${storyId}_${key}/${action}` : `${API_URL}/${storyId}_${key}/`;
       const res = await fetch(url);
-      if (!res.ok) return 0;
+      if (!res.ok) return null;
       const data = await res.json();
-      return data.count || 0;
+      return typeof data.count === 'number' ? data.count : null;
     } catch (e) {
-      console.error('Ошибка счётчика:', e);
-      return 0;
+      return null; // Если нет сети или API недоступен
     }
   }
 
@@ -354,44 +354,65 @@
     renderUI();
 
     if (!sessionStorage.getItem(`viewed_${storyId}`)) {
-      counts.views = await updateCounter('views', 'up');
+      counts.views += 1;
       sessionStorage.setItem(`viewed_${storyId}`, 'true');
+      renderUI();
+      const serverViews = await syncCounter('views', 'up');
+      if (serverViews !== null) counts.views = serverViews;
     } else {
-      counts.views = await updateCounter('views');
+      const serverViews = await syncCounter('views');
+      if (serverViews !== null) counts.views = serverViews;
     }
 
-    const [likes, loves] = await Promise.all([
-      updateCounter('likes'),
-      updateCounter('loves')
+    const [serverLikes, serverLoves] = await Promise.all([
+      syncCounter('likes'),
+      syncCounter('loves')
     ]);
     
-    counts.likes = likes;
-    counts.loves = loves;
+    if (serverLikes !== null) counts.likes = serverLikes;
+    if (serverLoves !== null) counts.loves = serverLoves;
+    
+    saveLocal();
     renderUI();
   }
 
   async function toggleReaction(type) {
-    const btnLike = document.getElementById('btn-like');
-    const btnLove = document.getElementById('btn-love');
-    btnLike.disabled = true;
-    btnLove.disabled = true;
-
+    // 1. Сначала мгновенно меняем цифры на экране
     if (userReaction === type) {
-      counts[type + 's'] = await updateCounter(type + 's', 'down');
+      counts[type + 's'] = Math.max(0, counts[type + 's'] - 1);
       userReaction = null;
       localStorage.removeItem(`reaction_${storyId}`);
+      saveLocal();
+      renderUI();
+      
+      const res = await syncCounter(type + 's', 'down');
+      if (res !== null) { counts[type + 's'] = res; saveLocal(); renderUI(); }
     } else {
-      if (userReaction) {
-        counts[userReaction + 's'] = await updateCounter(userReaction + 's', 'down');
+      const prevReaction = userReaction;
+      if (prevReaction) {
+        counts[prevReaction + 's'] = Math.max(0, counts[prevReaction + 's'] - 1);
       }
-      counts[type + 's'] = await updateCounter(type + 's', 'up');
+      counts[type + 's'] += 1;
       userReaction = type;
       localStorage.setItem(`reaction_${storyId}`, type);
-    }
+      saveLocal();
+      renderUI();
 
-    renderUI();
-    btnLike.disabled = false;
-    btnLove.disabled = false;
+      // 2. В фоне отправляем изменения на сервер
+      if (prevReaction) {
+        const resDown = await syncCounter(prevReaction + 's', 'down');
+        if (resDown !== null) counts[prevReaction + 's'] = resDown;
+      }
+      const resUp = await syncCounter(type + 's', 'up');
+      if (resUp !== null) counts[type + 's'] = resUp;
+      
+      saveLocal();
+      renderUI();
+    }
+  }
+
+  function saveLocal() {
+    localStorage.setItem(`counts_${storyId}`, JSON.stringify(counts));
   }
 
   function renderUI() {
@@ -406,6 +427,7 @@
 
   initWidget();
 </script>
+
 <!-- КОНЕЦ ВИДЖЕТА -->
 
   </div>
