@@ -328,7 +328,7 @@
 </style>
 
 <script>
-  const SUPABASE_URL = "https://vtahppmvdbbouehmuzot.supabase.co";
+  const SUPABASE_URL = "https://supabase.co";
   const SUPABASE_KEY = "sb_publishable_FDmB0Ek8zvdp9ajQ-ZSBgg_3nwbW5l5";
 
   const rawPath = window.location.pathname.replace(/[^a-zA-Z0-9]/g, '_') || 'home';
@@ -342,7 +342,7 @@
     "Prefer": "return=representation"
   };
 
-  let counts = JSON.parse(localStorage.getItem(`counts_${storyId}`)) || { views: 0, likes: 0, loves: 0 };
+  let counts = { views: 0, likes: 0, loves: 0 };
   let userReaction = localStorage.getItem(`reaction_${storyId}`);
 
   function renderUI() {
@@ -355,16 +355,11 @@
     document.getElementById('btn-love').classList.toggle('active-love', userReaction === 'love');
   }
 
-  function saveLocal() {
-    localStorage.setItem(`counts_${storyId}`, JSON.stringify(counts));
-  }
-
-  // Сохранение актуальных цифр в общую базу Supabase
   async function syncToSupabase() {
     try {
-      await fetch(API_URL, {
+      const res = await fetch(API_URL, {
         method: "POST",
-        headers: { ...HEADERS, "Prefer": "resolution=merge-duplicates" },
+        headers: { ...HEADERS, "Prefer": "resolution=merge-duplicates,return=representation" },
         body: JSON.stringify({
           id: storyId,
           views: counts.views,
@@ -372,12 +367,15 @@
           loves: counts.loves
         })
       });
+      if (!res.ok) {
+        const errText = await res.text();
+        console.error("Ошибка Supabase при записи:", res.status, errText);
+      }
     } catch (err) {
-      console.error("Ошибка записи в Supabase:", err);
+      console.error("Сетевая ошибка:", err);
     }
   }
 
-  // Загрузка общих цифр при открытии рассказа
   async function initStory() {
     renderUI();
 
@@ -385,29 +383,28 @@
       const res = await fetch(`${API_URL}?id=eq.${storyId}&select=*`, { headers: HEADERS });
       if (res.ok) {
         const rows = await res.json();
-        if (rows.length > 0) {
-          counts.views = rows[0].views || 0;
-          counts.likes = rows[0].likes || 0;
-          counts.loves = rows[0].loves || 0;
+        if (Array.isArray(rows) && rows.length > 0) {
+          counts.views = Number(rows[0].views) || 0;
+          counts.likes = Number(rows[0].likes) || 0;
+          counts.loves = Number(rows[0].loves) || 0;
         }
+      } else {
+        console.error("Ошибка Supabase при чтении:", res.status, await res.text());
       }
     } catch (err) {
-      console.error("Ошибка чтения из Supabase:", err);
+      console.error("Ошибка чтения:", err);
     }
 
     if (!sessionStorage.getItem(`viewed_${storyId}`)) {
       counts.views += 1;
       sessionStorage.setItem(`viewed_${storyId}`, 'true');
-      saveLocal();
       renderUI();
       await syncToSupabase();
     } else {
-      saveLocal();
       renderUI();
     }
   }
 
-  // Обработка нажатия на Лайк или Сердечко
   window.toggleReaction = async function(type) {
     const prev = userReaction;
 
@@ -424,13 +421,13 @@
       localStorage.setItem(`reaction_${storyId}`, type);
     }
 
-    saveLocal();
     renderUI();
     await syncToSupabase();
   };
 
   initStory();
 </script>
+
 
 
 <!-- КОНЕЦ ВИДЖЕТА -->
