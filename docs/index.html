@@ -297,7 +297,7 @@
             <a href="poems.html">Стихи</a>
             <a href="/audiostihi">Аудиостихи</a>
             <a href="contacts.html">Контакты</a>
-           <!-- Кнопка поддержать автора (компактная) -->
+          <!-- Кнопка поддержать автора (компактная, с золотым переливом) -->
 <a href="https://ramobinyah.art/podderzhat-avtora/" class="nav-donate-3d" title="Поддержать автора">
   <span class="icon-3d-wrap">
     <svg width="14" height="14" viewBox="0 0 32 32" fill="none" xmlns="http://w3.org">
@@ -321,26 +321,77 @@
 
 <style>
   .nav-donate-3d {
+    position: relative;
+    overflow: hidden;
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 4px 10px;
+    padding: 4px 11px;
     border-radius: 99px;
-    background: linear-gradient(145deg, #241e14, #14110b);
-    border: 1px solid rgba(245, 200, 76, 0.5);
-    color: #f7df8b !important;
+    background: linear-gradient(120deg, #1c170f, #3b2e16, #241d11, #4a3919, #1c170f);
+    background-size: 300% 300%;
+    border: 1px solid rgba(245, 200, 76, 0.7);
+    color: #ffe89e !important;
     font-size: 11.5px;
     font-weight: 600;
     line-height: 1.2;
     text-decoration: none !important;
-    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    text-shadow: 0 0 8px rgba(245, 200, 76, 0.4);
+    animation: goldShimmer 4s ease infinite, goldGlow 2.8s ease-in-out infinite alternate;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Пробегающий золотистый блик */
+  .nav-donate-3d::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 65%;
+    height: 100%;
+    background: linear-gradient(
+      110deg,
+      transparent,
+      rgba(255, 243, 184, 0.45),
+      transparent
+    );
+    transform: skewX(-20deg);
+    animation: goldGlint 3.6s infinite;
+  }
+
+  @keyframes goldShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes goldGlow {
+    0% {
+      box-shadow: 0 0 6px rgba(212, 175, 55, 0.25), inset 0 1px 0 rgba(255, 243, 184, 0.2);
+      border-color: rgba(245, 200, 76, 0.55);
+    }
+    100% {
+      box-shadow: 0 0 16px rgba(245, 200, 76, 0.65), inset 0 1px 0 rgba(255, 243, 184, 0.45);
+      border-color: #ffe48f;
+    }
+  }
+
+  @keyframes goldGlint {
+    0%, 55% { left: -120%; }
+    100% { left: 160%; }
   }
 
   .icon-3d-wrap {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     animation: heartBeat3d 2.4s infinite ease-in-out;
+  }
+
+  .nav-donate-3d span:last-child {
+    position: relative;
+    z-index: 1;
   }
 
   @keyframes heartBeat3d {
@@ -352,13 +403,16 @@
   }
 
   .nav-donate-3d:hover {
-    transform: translateY(-1px);
-    border-color: #ffe07d;
-    box-shadow: 0 4px 14px rgba(245, 200, 76, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    color: #ffffff !important;
+    transform: translateY(-1px) scale(1.03);
+    background: linear-gradient(135deg, #f5c84c, #d49b24);
+    border-color: #fff0b3;
+    box-shadow: 0 0 20px rgba(245, 200, 76, 0.8);
+    color: #14110a !important;
+    text-shadow: none;
   }
 </style>
 <!-- Конец кнопки поддержать автора -->
+
 
         </nav>
     </header>
