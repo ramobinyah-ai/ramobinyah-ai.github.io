@@ -170,34 +170,7 @@
        <lastmod>2026-11-18T15:08:00+00:00</lastmod>
        <priority>0.6400</priority>
   </url>
-  <!-- Страницы книг -->
-  <url>
-       <loc>https://ramobinyah.art/books/mnemosida/</loc>
-       <lastmod>2026-11-13T00:11:00+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
    <url>
-       <loc>https://ramobinyah.art/books/ekho-v-bezmolvii/</loc>
-       <lastmod>2026-11-15T00:14:00+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <!-- Рассказы -->
-  <url>
-       <loc>https://ramobinyah.art/stories</loc>
-       <lastmod>2026-11-16T01:15:00+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://ramobinyah.art/stories/sdvig-polya/</loc>
-       <lastmod>2026-11-16T01:25:00+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://ramobinyah.art/stories/den-kogda-mir-obnovilsya</loc>
-       <lastmod>2026-11-22</lastmod>
-       <priority>0.6400</priority>
-  </url>
- <url>
        <loc>https://ramobinyah.art/poems/vykhoda-net-solntse-ushlo/</loc>
        <lastmod>2026-11-18</lastmod>
        <priority>0.6400</priority>
@@ -247,5 +220,38 @@
        <lastmod>2026-11-19</lastmod>
        <priority>0.6400</priority>
   </url>
+  <url>
+       <loc>https://ramobinyah.art/poems/zachem-dana-zhizn-cheloveku/</loc>
+       <lastmod>2026-11-19</lastmod>
+       <priority>0.6400</priority>
+  </url>
+  <!-- Страницы книг -->
+  <url>
+       <loc>https://ramobinyah.art/books/mnemosida/</loc>
+       <lastmod>2026-11-13T00:11:00+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
+   <url>
+       <loc>https://ramobinyah.art/books/ekho-v-bezmolvii/</loc>
+       <lastmod>2026-11-15T00:14:00+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
+  <!-- Рассказы -->
+  <url>
+       <loc>https://ramobinyah.art/stories</loc>
+       <lastmod>2026-11-16T01:15:00+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://ramobinyah.art/stories/sdvig-polya/</loc>
+       <lastmod>2026-11-16T01:25:00+00:00</lastmod>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://ramobinyah.art/stories/den-kogda-mir-obnovilsya</loc>
+       <lastmod>2026-11-22</lastmod>
+       <priority>0.6400</priority>
+  </url>
+
 
 </urlset>
