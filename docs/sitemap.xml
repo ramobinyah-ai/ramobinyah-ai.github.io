@@ -248,10 +248,15 @@
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://ramobinyah.art/stories/den-kogda-mir-obnovilsya</loc>
+       <loc>https://ramobinyah.art/stories/den-kogda-mir-obnovilsya/</loc>
        <lastmod>2026-11-22</lastmod>
        <priority>0.6400</priority>
   </url>
-
+  <!-- Страница поддержки автора -->
+  <url>
+       <loc>https://ramobinyah.art/podderzhat-avtora/</loc>
+       <lastmod>2026-11-22</lastmod>
+       <priority>0.6400</priority>
+  </url>
 
 </urlset>
