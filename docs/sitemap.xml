@@ -230,8 +230,14 @@
        <lastmod>2026-11-19</lastmod>
        <priority>0.6400</priority>
   </url>
+   <!-- Линии горизонта -->
   <url>
        <loc>https://ramobinyah.art/linii-gorizonta/traveler/</loc>
+       <lastmod>2026-11-19</lastmod>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://ramobinyah.art/linii-gorizonta/kakie-volny-na-kleopatre/</loc>
        <lastmod>2026-11-19</lastmod>
        <priority>0.6400</priority>
   </url>
