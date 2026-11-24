@@ -485,13 +485,101 @@ box-shadow: 0 6px 22px rgba(27, 107, 69, 0.45);
     </div>
 </div>
     <!-- Банер Каравана путешествий -->
-<div style="max-width: 340px; width: 100%; margin: 0 auto; padding: 18px 20px; border-radius: 16px; background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%); color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.35); position: relative; overflow: hidden; box-sizing: border-box; text-align: left;">
-  
-  <!-- Декоративный блик на фоне -->
-  <div style="position: absolute; right: -25px; top: -25px; width: 120px; height: 120px; border-radius: 50%; background: rgba(251, 191, 36, 0.16); pointer-events: none;"></div>
+<style>
+  @keyframes karavanPulse {
+    0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.16; }
+    50% { transform: scale(1.25) translate(-8px, 8px); opacity: 0.28; }
+  }
+  @keyframes karavanPlane {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(4px, -4px) rotate(-4deg); }
+  }
+  @keyframes karavanShimmer {
+    0% { left: -120%; }
+    35%, 100% { left: 150%; }
+  }
+  .karavan-banner {
+    max-width: 340px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%);
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.35);
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .karavan-banner:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px -5px rgba(2, 132, 199, 0.45);
+  }
+  .karavan-glow {
+    position: absolute;
+    right: -25px;
+    top: -25px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #fbbf24;
+    pointer-events: none;
+    animation: karavanPulse 4s ease-in-out infinite;
+  }
+  .karavan-plane {
+    display: inline-block;
+    animation: karavanPlane 3s ease-in-out infinite;
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+  .karavan-btn {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    background: #fbbf24;
+    color: #0f172a !important;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .karavan-btn:hover {
+    background: #f59e0b;
+    transform: scale(1.04);
+  }
+  .karavan-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+    transform: skewX(-20deg);
+    animation: karavanShimmer 3.5s infinite;
+  }
+  .karavan-phone {
+    color: #ffffff !important;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    opacity: 0.95;
+    transition: color 0.2s ease;
+  }
+  .karavan-phone:hover {
+    color: #fde68a !important;
+  }
+</style>
 
-  <!-- Верхняя строка: название и плашка -->
-  <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px;">
+<div class="karavan-banner">
+  <div class="karavan-glow"></div>
+
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; position: relative;">
     <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.02em; color: #fde68a;">
       Караван путешествий
     </span>
@@ -500,26 +588,29 @@ box-shadow: 0 6px 22px rgba(27, 107, 69, 0.45);
     </span>
   </div>
 
-  <!-- Главный заголовок -->
-  <div style="font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 6px;">
+  <div style="font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 6px; position: relative;">
     Найди свой тур прямо сейчас
+    <span class="karavan-plane">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fde68a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+      </svg>
+    </span>
   </div>
 
-  <!-- Описание с сайта -->
-  <div style="font-size: 13px; line-height: 1.4; opacity: 0.92; margin-bottom: 14px;">
+  <div style="font-size: 13px; line-height: 1.4; opacity: 0.92; margin-bottom: 14px; position: relative;">
     Поиск туров онлайн от более чем 70 туроператоров и горящие путевки со скидкой.
   </div>
 
-  <!-- Нижняя панель: кнопка и телефон -->
-  <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
-    <a href="https://karavan-travel.ru" target="_blank" rel="noopener" style="display: inline-block; background: #fbbf24; color: #0f172a; font-size: 13px; font-weight: 700; text-decoration: none; padding: 8px 14px; border-radius: 8px;">
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; position: relative;">
+    <a href="https://karavan-travel.ru" target="_blank" rel="noopener" class="karavan-btn">
       Подобрать тур →
     </a>
-    <a href="tel:+79135555565" style="color: #ffffff; font-size: 12px; font-weight: 600; text-decoration: none; opacity: 0.95;">
+    <a href="tel:+79135555565" class="karavan-phone">
       8 (913) 555-55-65
     </a>
   </div>
 </div>
+
 <!-- Конец банера Караван путешествий -->
 <!-- Карточка рассказа "Случайная стыковка в Хитроу" -->
 <section class="stories-section">
