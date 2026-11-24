@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NBSRRQJ2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Линии горизонта — Сборник стихов и поэзии | Рамо Бин Ях</title>
+<meta name="description" content="Читать современные стихи и лирику Рамо Бин Ях из сборника «Линии горизонта». Поэзия о поиске пути, жизненных ориентирах и глубоких размышлениях автора.">
+<meta name="keywords" content="Рамо Бин Ях, Линии горизонта, стихи Рамо Бин Ях, современные стихи, поэзия Рамо Бин Ях, лирика, читать стихи онлайн">
+
+    <!-- 
+      ========================================================================
+      LICENSE NOTICE FOR SOURCE CODE (ЛИЦЕНЗИЯ НА ИСХОДНЫЙ КОД САЙТА)
+      ========================================================================
+      Copyright (c) 2026 Ramo Bin Yah (https://ramobinyah-ai.github.io/)
+      All Rights Reserved.
+    -->
+    <style>
+        :root {
+            --bg-color: #f5f2eb;
+            --text-color: #1a1a1a;
+            --accent-color: #8b5a2b; /* Сохранена оригинальная теплая палитра */
+            --book-page-bg: #fdfcf9; 
+        }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+        }
+        header {
+            padding: 30px 15px 15px 15px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 1.8em;
+            font-weight: normal;
+            color: #442d18;
+            letter-spacing: 0.5px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #000;
+        }
+        
+        /* === КНИЖНЫЙ ВАРИАНТ СТРАНИЦЫ С ПОЛНОЙ АДАПТИВНОСТЬЮ === */
+        .book-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 10px 30px 10px;
+            box-sizing: border-box;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        .book-page {
+            background-color: var(--book-page-bg);
+            border: 1px solid #e0dad3;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.02);
+            max-width: 650px;
+            width: 100%;
+            padding: 30px 15px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        
+        /* Эмуляция книжного переплета / корешка слева */
+        .book-page::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 12px;
+            background: linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.01) 25%, transparent 100%);
+            pointer-events: none;
+        }
+        
+        .book-inner-content {
+            padding: 5px 0;
+            width: 100%;
+        }
+        
+        /* Интерактивный аккордеон в книжном стиле */
+        .poem-entry {
+            margin-bottom: 20px;
+            border-bottom: 1px dashed rgba(192, 181, 169, 0.4);
+            padding-bottom: 15px;
+            width: 100%;
+        }
+        .poem-entry:last-child {
+            margin-bottom: 50px;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        /* Книжные заголовки-кнопки */
+        .poem-entry summary {
+            font-size: 1.25em;
+            font-weight: normal;
+            letter-spacing: 0.3px;
+            padding: 8px 5%; /* Синхронизировано с отступом текста (5%) на мобильных */
+            color: #3d2712;
+            text-align: left; /* Выравнивание текста заголовка по левому краю */
+            cursor: pointer;
+            outline: none;
+            list-style: none;
+            user-select: none;
+            transition: color 0.2s ease;
+            display: flex;
+            justify-content: flex-start; /* Прижимает заголовок и перо к левому краю */
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            box-sizing: border-box; /* Защита ширины от влияния внутренних отступов */
+        }
+        .poem-entry summary::-webkit-details-marker {
+            display: none;
+        }
+        .poem-entry summary:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Иконка пера */
+        .poem-entry summary::after {
+            content: '✒️';
+            font-size: 0.65em;
+            opacity: 0.3;
+            transition: transform 0.3s ease, opacity 0.2s ease;
+            flex-shrink: 0;
+        }
+        .poem-entry[open] summary {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        .poem-entry[open] summary::after {
+            transform: rotate(-30deg) scale(1.1);
+            opacity: 1;
+        }
+        
+        /* Блок с текстом: идеальная мобильная верстка без вылезания строк */
+        .poem-text-block {
+            padding: 0 5%; 
+            font-style: normal;
+            font-size: 1.05em; 
+            line-height: 1.65;
+            color: #2b1a0e;
+            text-align: left;
+            box-sizing: border-box;
+            width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            animation: slideDownFade 0.4s ease-out forwards;
+            transform-origin: top center;
+        }
+
+        @keyframes slideDownFade {
+            from {
+                opacity: 0;
+                transform: scaleY(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+        }
+
+        /* === МЕДИА-ЗАПРОСЫ ДЛЯ ПЛАНШЕТОВ И ДЕСКТОПОВ === */
+        @media (min-width: 480px) {
+            header {
+                padding: 40px 20px 20px 20px;
+            }
+            header h1 {
+                font-size: 2.2em;
+                letter-spacing: 1px;
+            }
+            .book-container {
+                padding: 20px 15px 40px 15px;
+            }
+            .book-page {
+                padding: 45px 30px;
+            }
+            .poem-entry summary {
+                font-size: 1.4em;
+                letter-spacing: 0.5px;
+                padding: 8px 10%; /* Синхронизировано с отступом текста (10%) на десктопах */
+            }
+            .poem-text-block {
+                padding: 0 10%;
+                font-size: 1.1em;
+                line-height: 1.7;
+            }
+        }
+</style>
+
+</head>
+<body>
+
+    <header>
+        <h1>Линии горизонта</h1>
+        <nav>
+            <a href="poems.html">← К разделам</a>
+        </nav>
+    </header>
+
+    <div class="book-container">
+        <div class="book-page">
+            <div class="book-inner-content">
+                
+                <details class="poem-entry" id="na-zaimke">
+                    <summary>Посидим мы с тобой на заимке</summary>
+                    <div class="poem-text-block">
+                        Посидим мы с тобой на заимке,<br>
+                        Разведём костерок до утра,<br>
+                        Вспомним годы былые с улыбкой…<br>
+                        До чего же ушица вкусна!<br>
+                        <br>
+                        Выпьем чаю с халвой и печеньем,<br>
+                        Дым костра прослезит нас чуть-чуть.<br>
+                        Подошло уж к концу воскресенье,<br>
+                        По домам мы отправились в путь.<br>
+                        
+                    </div>
+                </details>
+
+                <details class="poem-entry">
+                    <summary>Он в поезд сел домой поехал</summary>
+                    <div class="poem-text-block">
+                        Он в поезд сел, домой поехал,<br>
+                        Рукой родным он помахал.<br> 
+                        Ему немного не до смеха -<br>
+                        На год себя в аренду сдал.<br>
+
+                    </div>
+                </details>
+
+                <details class="poem-entry">
+                    <summary>Горы горы снег кругом</summary>
+                    <div class="poem-text-block">
+                        Горы, горы, снег кругом -<br>
+                        Черногория, мой дом.<br>
+                        Люблю лазить по горам,<br>
+                        Быть по ближе к облакам.<br>
+
+                    </div>
+                </details>
+
+                <details class="poem-entry">
+                    <summary>Пойду пройдусь я прогуляюсь</summary>
+                    <div class="poem-text-block">
+                        Пойду пройдусь я прогуляюсь,<br>
+                        По Пинтюшету сделав круг.<br>
+                        Сосновым бором наслаждаюсь -<br>
+                        Здесь так красиво всё вокруг!.<br>
+                        <br>
+                        Бывает, рябчик вылетает<br>
+                        С куста рябины на утёк.<br>
+                        Вон заячий след, смотри, петляет -<br>
+                        Возможно, где-то тут прилёг.<br>
+
+
+                    </div>
+                </details>
+
+                <details class="poem-entry">
+                    <summary>Пять минут до утра прогуляюсь</summary>
+                    <div class="poem-text-block">
+                        Пять минут до утра прогуляюсь,<br>
+                        Пять минут - и вернусь я назад.<br>
+                        А потом до полдня проваляюсь,<br>
+                        Я увижу осуждающий взгляд.<br>
+                        <br>
+                        Да, вот так, потому что и надо,<br>
+                        Не корите за это меня.<br>
+                        Тёмной ночью гулять мне услада,<br>
+                        Звёзды яркие манят меня.<br>
+                        <br>
+                        Тёмной ночью слагаются строки,<br>
+                        Льются рифмы одна за другой.<br>
+                        Я гуляю в ночи одинокий,<br>
+                        Наслаждаясь ночной красотой.<br>                                   
+
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </div>
+    
+ <!-- Блок «Поделиться» с кнопкой копирования ссылки -->
+<div style="text-align: center; margin: 30px auto 20px auto;">
+    <p style="font-family: 'Georgia', serif; font-style: italic; color: #777; margin-bottom: 15px; font-size: 0.95em;">Поделиться стихами:</p>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; align-items: center;">
+        <!-- Кнопка «Скопировать ссылку» -->
+        <button id="copy-link-btn" onclick="copyPageUrl()" style="background-color: #555555; color: white; border: none; cursor: pointer; padding: 8px 18px; border-radius: 20px; font-family: sans-serif; font-size: 14px; font-weight: bold; display: inline-block; transition: background-color 0.2s;">Скопировать ссылку</button>
+    </div>
+</div>
+
+<script>
+function copyPageUrl() {
+    const el = document.createElement('textarea');
+    el.value = 'https://ramobinyah.art/horizons';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+
+    const btn = document.getElementById('copy-link-btn');
+    const originalText = btn.innerText;
+    btn.innerText = 'Ссылка скопирована!';
+    btn.style.backgroundColor = '#28a745';
+
+    setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.backgroundColor = '#555555';
+    }, 2000);
+}
+</script>
+  <!-- Блок поддержки автора -->
+<div class="support-block">
+<p class="support-text">«Если эти строки отозвались в вашем сердце, вы можете поддержать выход новых стихотворений»</p>
+<a href="https://pay.cloudtips.ru/p/425eb4f6" class="support-btn">Поддержать автора</a>
+
+</div>
+
+<style>
+.support-block {
+text-align: center;
+margin: 35px auto;
+padding: 0 15px;
+max-width: 550px;
+}
+
+.support-text {
+font-family: 'Georgia', serif;
+font-style: italic;
+font-size: 16px;
+color: #555555;
+margin: 0 0 16px 0;
+line-height: 1.5;
+}
+
+.support-btn {
+position: relative;
+display: inline-block;
+text-align: center;
+padding: 14px 28px;
+font-family: sans-serif;
+font-size: 16px;
+font-weight: 700;
+color: #ffffff;
+text-decoration: none;
+background: linear-gradient(135deg, #1b6b45, #0e4229);
+border: 2px solid rgba(110, 231, 160, 0.45);
+border-radius: 12px;
+overflow: hidden;
+cursor: pointer;
+transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+animation: pulse-alive 2.5s infinite ease-in-out;
+}
+
+.support-btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 60%;
+height: 100%;
+background: linear-gradient(
+90deg,
+transparent,
+rgba(255, 255, 255, 0.3),
+transparent
+);
+transform: skewX(-25deg);
+animation: shine 4s infinite;
+}
+
+.support-btn:hover {
+color: #1a1500;
+background: linear-gradient(135deg, #ffd700 0%, #ffaa00 50%, #ffe875 100%);
+background-size: 200% auto;
+border-color: #fff3b0;
+box-shadow: 0 0 25px rgba(255, 215, 0, 0.7), 0 5px 15px rgba(255, 170, 0, 0.4);
+transform: translateY(-3px) scale(1.03);
+animation: gold-shimmer 1.5s linear infinite;
+}
+
+.support-btn:active {
+transform: translateY(1px) scale(0.98);
+}
+
+@keyframes pulse-alive {
+0%, 100% {
+transform: scale(1);
+box-shadow: 0 4px 15px rgba(14, 66, 41, 0.25);
+}
+50% {
+transform: scale(1.03);
+box-shadow: 0 6px 22px rgba(27, 107, 69, 0.45);
+}
+}
+
+@keyframes shine {
+0%, 60% { left: -100%; }
+100% { left: 200%; }
+}
+
+@keyframes gold-shimmer {
+0% { background-position: 0% center; }
+100% { background-position: 200% center; }
+}
+</style>
+<!-- Конец блока поддержки автора -->
+
+
+    <script>
+  // Скрипт автоматически открывает <details>, если на него перешли по ссылке-якорю
+  function openTargetDetails() {
+    const hash = window.location.hash;
+    if (hash) {
+      const targetDetails = document.querySelector(hash);
+      if (targetDetails && targetDetails.tagName === 'DETAILS') {
+        targetDetails.open = true;
+      }
+    }
+  }
+  // Запускаем при загрузке страницы и при смене хэша
+  window.addEventListener('DOMContentLoaded', openTargetDetails);
+  window.addEventListener('hashchange', openTargetDetails);
+</script>
+
+    <!-- Полный корректный футер -->
+    <footer style="text-align: center; padding: 30px 15px; font-size: 0.85em; color: #555; border-top: 1px solid #e0dad3; margin-top: 40px; line-height: 1.6; box-sizing: border-box;">
+        <div style="max-width: 600px; margin: 0 auto 15px auto; font-style: italic; color: #6e5d4f;">
+            Все стихотворения, тексты и материалы, опубликованные на данном сайте, являются объектом авторского права и защищены лицензией 
+            <a href="https://creativecommons.org" target="_blank" style="color: var(--accent-color); text-decoration: underline;">Creative Commons BY-NC-ND 4.0</a>. 
+            <br>Вы можете делиться произведениями при условии обязательного указания авторства (Рамо Бин Ях) и ссылки на первоисточник. Коммерческое использование и любые изменения текстов строго запрещены.
+        </div>
+        <p style="margin: 0; font-weight: bold; letter-spacing: 0.5px;">&copy; 2026 Рамо Бин Ях. Все права защищены (All Rights Reserved).</p>
+    </footer>
+
+    <script>
