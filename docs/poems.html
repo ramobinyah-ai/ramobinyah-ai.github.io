@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Рамо Бин Ях | Стихи и поэзия — Читать стихи онлайн</title>
 <meta name="description" content="Читать онлайн современные стихи и поэтические сборники Рамо Бин Ях. Философская лирика, катрены и глубокие стихотворения о жизни, времени и чувствах.">
-<meta name="keywords" content="Рамо Бин Ях стихи, читать стихи Рамо Бин Ях, сборники стихов онлайн, современная поэзия, катрены, философская лирика, стихи о жизни, стихи о природе, стихи о любви, жизненная поэзия, душевная поэзия, душевные стихи,">
+<meta name="keywords" content="Рамо Бин Ях стихи, читать стихи Рамо Бин Ях, сборники стихов онлайн, лучший современный поэт, современная поэзия, катрены, философская лирика, стихи о жизни, стихи о природе, стихи о любви, жизненная поэзия, душевная поэзия, душевные стихи,">
     <!-- 
       ========================================================================
       LICENSE NOTICE FOR SOURCE CODE (ЛИЦЕНЗИЯ НА ИСХОДНЫЙ КОД САЙТА)
@@ -183,8 +183,124 @@
     <header>
         <h1>Мои стихотворения</h1>
         <nav>
-            <a href="index.html">На главную</a>
-            <a href="audiostihi.html">Аудиостихи</a>
+            <a href="https://ramobinyah.art">На главную</a>
+            <a href="https://ramobinyah.art/audiostihi">Аудиостихи</a>
+            <!-- Кнопка поддержать автора (компактная, с золотым переливом) -->
+<a href="https://ramobinyah.art/podderzhat-avtora/" class="nav-donate-3d" title="Поддержать автора">
+  <span class="icon-3d-wrap">
+    <svg width="14" height="14" viewBox="0 0 32 32" fill="none" xmlns="http://w3.org">
+      <defs>
+    <radialGradient id="heart3d" cx="35%" cy="30%" r="70%">
+       <stop offset="0%" stop-color="#ffb3ba"/>
+       <stop offset="35%" stop-color="#e63946"/>
+       <stop offset="80%" stop-color="#9b111e"/>
+       <stop offset="100%" stop-color="#59060e"/>
+    </radialGradient>
+
+        <filter id="dropShadow" x="-10%" y="-10%" width="125%" height="125%">
+          <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.5"/>
+        </filter>
+      </defs>
+      <path filter="url(#dropShadow)" d="M16 28.5C16 28.5 3.5 20.6 3.5 11.2C3.5 6.8 6.9 3.5 11.1 3.5C13.6 3.5 15.8 4.8 16 6.7C16.2 4.8 18.4 3.5 20.9 3.5C25.1 3.5 28.5 6.8 28.5 11.2C28.5 20.6 16 28.5 16 28.5Z" fill="url(#heart3d)"/>
+      <ellipse cx="10.5" cy="9.5" rx="2.8" ry="1.6" transform="rotate(-30 10.5 9.5)" fill="#ffffff" fill-opacity="0.65"/>
+    </svg>
+  </span>
+  <span>Поддержать</span>
+</a>
+
+<style>
+  .nav-donate-3d {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 11px;
+    border-radius: 99px;
+    background: linear-gradient(120deg, #1c170f, #3b2e16, #241d11, #4a3919, #1c170f);
+    background-size: 300% 300%;
+    border: 1px solid rgba(245, 200, 76, 0.7);
+    color: #ffe89e !important;
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none !important;
+    text-shadow: 0 0 8px rgba(245, 200, 76, 0.4);
+    animation: goldShimmer 4s ease infinite, goldGlow 2.8s ease-in-out infinite alternate;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Пробегающий золотистый блик */
+  .nav-donate-3d::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 65%;
+    height: 100%;
+    background: linear-gradient(
+      110deg,
+      transparent,
+      rgba(255, 243, 184, 0.45),
+      transparent
+    );
+    transform: skewX(-20deg);
+    animation: goldGlint 3.6s infinite;
+  }
+
+  @keyframes goldShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes goldGlow {
+    0% {
+      box-shadow: 0 0 6px rgba(212, 175, 55, 0.25), inset 0 1px 0 rgba(255, 243, 184, 0.2);
+      border-color: rgba(245, 200, 76, 0.55);
+    }
+    100% {
+      box-shadow: 0 0 16px rgba(245, 200, 76, 0.65), inset 0 1px 0 rgba(255, 243, 184, 0.45);
+      border-color: #ffe48f;
+    }
+  }
+
+  @keyframes goldGlint {
+    0%, 55% { left: -120%; }
+    100% { left: 160%; }
+  }
+
+  .icon-3d-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    animation: heartBeat3d 2.4s infinite ease-in-out;
+  }
+
+  .nav-donate-3d span:last-child {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes heartBeat3d {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.18); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.12); }
+    60% { transform: scale(1); }
+  }
+
+  .nav-donate-3d:hover {
+    transform: translateY(-1px) scale(1.03);
+    background: linear-gradient(135deg, #f5c84c, #d49b24);
+    border-color: #fff0b3;
+    box-shadow: 0 0 20px rgba(245, 200, 76, 0.8);
+    color: #14110a !important;
+    text-shadow: none;
+  }
+</style>
+<!-- Конец кнопки поддержать автора -->
         </nav>
     </header>
 
