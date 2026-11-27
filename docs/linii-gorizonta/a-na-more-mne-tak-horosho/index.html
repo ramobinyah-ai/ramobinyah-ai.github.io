@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Оптимизированные поисковые теги -->
+    <meta charset="UTF-8">
+    <!-- Критически важный тег для адаптации под мобильные экраны -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>«А на море мне так хорошо» - Рамо Бин Ях | Линии горизонта | Современная поэзия</title>
+    <meta name="description" content="Читать известное стихотворение «А на море мне так хорошо» современного поэта Рамо Бин Ях (2026 г.).">
+    <meta name="keywords" content="Рамо Бин Ях, А на море мне так хорошо, стихи Рамо Бин Ях, пейзажная лирика,стихи о море, стихи об отдыхе, стихи современного поэта, современная поэзия, линии горизонта, стихи о жизни, стихи о любви, стихи о путешествиях, читать стихи онлайн, стихи 2026">
+
+    <!-- Дополнительная разметка Open Graph для красивого отображения в соцсетях и мессенджерах (Telegram, VK, WhatsApp) -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="«А на море мне так хорошо» - Рамо Бин Ях">
+    <meta property="og:description" content="Не доеденный ужин, не допитый чай - Мне уже не нужно. Москва, прощай! Я лечу в самолёте, я лечу на юг, Шёпот моря ласкает мне слух.» Читать стихотворение полностью на сайте.">
+    <meta property="og:site_name" content="Стихотворение лучшего современного поэта Рамо Бин Ях">
+    <meta property="og:image" content="https://ramobinyah.art/a-na-more-mne-tak-horosho/a-na-more-mne-tak-horosho.jpg">
+
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NBSRRQJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    </script>
+
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-color: #2c2c2c;
+            --accent-color: #8b5a2b;
+            --card-bg: #ffffff;
+            --border-color: #e0dad3;
+        }
+        
+        /* Делаем body флекс-контейнером на всю высоту экрана, чтобы прижать футер вниз */
+        html, body {
+            height: 100%;
+        }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 30px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: #fff;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2em;
+            font-weight: normal;
+            color: var(--accent-color);
+        }
+        header .author-name {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        
+        /* Главный контейнер забирает всё свободное пространство, толкая футер вниз */
+        .main-content {
+            flex: 1 0 auto;
+        }
+        .container {
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .poem-block {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0 0 40px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        .poem-image-wrapper {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0; /* Убирает лишний микро-отступ снизу под картинкой */
+}
+
+.poem-image {
+    width: 100%;        /* Растягивает или сжимает картинку ровно по ширине карточки */
+    height: auto;       /* Сохраняет правильные пропорции, чтобы лицо/объект не сплющило */
+    display: block;     /* Убирает поведение строчного элемента */
+    object-fit: cover;  /* Гарантирует красивое заполнение, если вы зададите фиксированную высоту */
+}
+
+        .poem-content {
+            padding: 40px 30px 0 30px;
+            text-align: center;
+        }
+        .poem-text {
+            font-size: 1.2em;
+            line-height: 1.65;
+            display: inline-block;
+            text-align: left; 
+        }
+        .stanza {
+            margin-bottom: 25px; 
+        }
+        .poem-date {
+            text-align: right;
+            font-style: italic;
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 30px;
+        }
+        
+        /* Адаптивный блок навигации */
+        .poem-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding: 0 5px;
+            gap: 10px;
+        }
+        .nav-button {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        .nav-button:hover {
+            color: var(--accent-color);
+        }
+        .nav-button .arrow {
+            font-family: sans-serif;
+            font-size: 1.2em;
+        }
+        .nav-button.prev .arrow {
+            margin-right: 8px;
+        }
+        .nav-button.next .arrow {
+            margin-left: 8px;
+        }
+        
+        /* Стилизация кнопки "Поделиться" */
+        .share-button {
+            font-family: 'Georgia', serif;
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
+        }
+        .share-button:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        .share-button.copied {
+            background-color: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+        }
+
+        footer {
+            flex-shrink: 0;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+            color: #888;
+            border-top: 1px solid var(--border-color);
+            background: #fff;
+            margin-top: 40px;
+        }
+
+        /* Корректировка размеров шрифтов для мобильных устройств */
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.7em; }
+            .poem-text { font-size: 1.1em; }
+            .poem-content { padding: 30px 20px 0 20px; }
+            .container { margin: 20px auto; }
+            .nav-button .text { display: none; } /* Скрываем текст кнопок на мобильных, оставляя только стрелочки */
+        }
+
+        /* --- Стили секции и карточки рассказа --- */
+.stories-section {
+    margin: 50px 0 20px 0;
+}
+
+.stories-container {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.poems-title {
+    font-size: 1.4em;
+    font-weight: normal;
+    color: var(--accent-color);
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.story-card-horizontal {
+    display: flex;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.story-image {
+    flex: 0 0 210px;
+    line-height: 0;
+}
+
+.story-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.story-body {
+    flex: 1;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.poem-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85em;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.poem-category {
+    color: var(--accent-color);
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.9em;
+}
+
+.poem-heading {
+    margin: 0 0 12px 0;
+    font-size: 1.35em;
+    font-weight: normal;
+    color: var(--accent-color);
+    line-height: 1.3;
+}
+
+.story-body .poem-text {
+    display: block;
+    font-size: 0.95em;
+    line-height: 1.65;
+    color: var(--text-color);
+    margin-bottom: 18px;
+}
+
+.story-body .poem-text p {
+    margin: 0;
+}
+
+.poem-link {
+    align-self: flex-start;
+    margin-top: auto;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.95em;
+    font-style: italic;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.poem-link:hover {
+    border-bottom-color: var(--accent-color);
+}
+
+/* Адаптация карточки рассказа под планшеты и мобильные */
+@media (max-width: 600px) {
+    .story-card-horizontal {
+        flex-direction: column;
+    }
+
+    .story-image {
+        flex: none;
+        width: 100%;
+        height: 220px;
+    }
+
+    .story-body {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stories-section {
+        margin-top: 35px;
+    }
+
+    .poem-heading {
+        font-size: 1.25em;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>«А на море мне так хорошо»</h1>
+    <div class="author-name">Рамо Бин Ях</div>
+    <nav>
+        <a href="/">На главную</a>
+        <a href="https://ramobinyah.art/poems">Стихи</a>
+        <a href="https://ramobinyah.art/books">Книги</a>
+        <a href="https://ramobinyah.art/stories">Рассказы</a>
+    </nav>
+</header>
+
+<div class="main-content">
+    <div class="container">
+        <div class="poem-block">
+             <div class="poem-image-wrapper">
+                <img src="a-na-more-mne-tak-horosho.jpg" alt="А на море мне так хорошо — Рамо Бин Ях" class="poem-image">
+            </div>
+            <div class="poem-content">
+                <div class="poem-text">
+                   <div class="stanza">
+                        Не доеденный ужин, не допитый чай -<br>
+                        Мне уже не нужно. Москва, прощай!<br>
+                        Я лечу в самолёте, я лечу на юг,<br>
+                        Шёпот моря ласкает мне слух.
+                    </div>
+                    <div class="stanza">
+                        Улыбки девчонок, брызги волны,<br>
+                        Как дельфинёнок, я нырнул и поплыл.<br>
+                        Чёрное море ласкает меня,<br>
+                        Довольный, счастливый я день ото дня.
+                    </div>
+                    <div class="stanza">
+                        Нежусь на солнышке, пью апельсин,<br>
+                        По морю лениво катер проплыл.<br>
+                        Как хорошо здесь отдыхать -<br>
+                        Лучшего места не отыскать!
+                    </div>
+                    <div class="stanza">
+                        А на море мне так хорошо,<br>
+                        Я на море прилетать люблю.<br>
+                        Мне не нужно больше ни чего,<br>
+                        Наслаждаюсь морем и пою!
+                    </div>
+                    <div class="poem-date">Рамо Бин Ях  16.05.2025 г.</div>
+                </div>
+            </div>
+        </div>
+        <!-- Блок поддержки автора -->
+<div class="support-block">
+<p class="support-text">«Если эти строки отозвались в вашем сердце, вы можете поддержать выход новых стихотворений»</p>
+<a href="https://pay.cloudtips.ru/p/425eb4f6" class="support-btn">Поддержать автора</a>
+
+<style>
+.support-block {
+text-align: center;
+margin: 35px auto;
+padding: 0 15px;
+max-width: 550px;
+}
+
+.support-text {
+font-family: 'Georgia', serif;
+font-style: italic;
+font-size: 16px;
+color: #555555;
+margin: 0 0 16px 0;
+line-height: 1.5;
+}
+
+.support-btn {
+position: relative;
+display: inline-block;
+text-align: center;
+padding: 14px 28px;
+font-family: sans-serif;
+font-size: 16px;
+font-weight: 700;
+color: #ffffff;
+text-decoration: none;
+background: linear-gradient(135deg, #1b6b45, #0e4229);
+border: 2px solid rgba(110, 231, 160, 0.45);
+border-radius: 12px;
+overflow: hidden;
+cursor: pointer;
+transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+animation: pulse-alive 2.5s infinite ease-in-out;
+}
+
+.support-btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 60%;
+height: 100%;
+background: linear-gradient(
+90deg,
+transparent,
+rgba(255, 255, 255, 0.3),
+transparent
+);
+transform: skewX(-25deg);
+animation: shine 4s infinite;
+}
+
+.support-btn:hover {
+color: #1a1500;
+background: linear-gradient(135deg, #ffd700 0%, #ffaa00 50%, #ffe875 100%);
+background-size: 200% auto;
+border-color: #fff3b0;
+box-shadow: 0 0 25px rgba(255, 215, 0, 0.7), 0 5px 15px rgba(255, 170, 0, 0.4);
+transform: translateY(-3px) scale(1.03);
+animation: gold-shimmer 1.5s linear infinite;
+}
+
+.support-btn:active {
+transform: translateY(1px) scale(0.98);
+}
+
+@keyframes pulse-alive {
+0%, 100% {
+transform: scale(1);
+box-shadow: 0 4px 15px rgba(14, 66, 41, 0.25);
+}
+50% {
+transform: scale(1.03);
+box-shadow: 0 6px 22px rgba(27, 107, 69, 0.45);
+}
+}
+
+@keyframes shine {
+0%, 60% { left: -100%; }
+100% { left: 200%; }
+}
+
+@keyframes gold-shimmer {
+0% { background-position: 0% center; }
+100% { background-position: 200% center; }
+}
+</style>
+<!-- Конец блока поддержки автора -->
+
+        <!-- Блок навигации -->
+        <div class="poem-navigation">
+            <a href="https://ramobinyah.art/linii-gorizonta/priyatno-projtis-po-pesku-punta-kany" class="nav-button prev">
+                <span class="arrow">←</span> <span class="text"></span>
+            </a>
+            
+            <button class="share-button" id="shareBtn" onclick="copyPoemLink()">Поделиться</button>
+            
+            <a href="https://ramobinyah.art/poems/poet-rozhdaetsya-chtob-byt" class="nav-button next">
+                <span class="text"></span> <span class="arrow">→</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Карточка рассказа "Случайная стыковка в Хитроу" -->
+<section class="stories-section">
+  <div class="stories-container">
+    <h2 class="poems-title">Новая книга</h2>
+    <div class="stories-grid">
+      <article class="poem-card story-card-horizontal">
+        <div class="story-image">
+          <img src="/books/sluchaynaya-stykovka-v-heathrow/sluchaynaya-stykovka-v-heathrow.jpg" alt="Случайная стыковка в Хитроу">
+        </div>
+        <div class="story-body">
+          <div class="poem-meta">
+            <span class="stories-date">24 ноября 2026</span>
+            <span class="poem-category">Романтика</span>
+          </div>
+          <h3 class="poem-heading">Случайная стыковка в Хитроу</h3>
+          <div class="poem-text">
+            <p>В зале ожидания лондонского Хитроу встретились двое: она летела в Нью-Йорк с провалившимся проектом, он — в Сан-Франциско после неудачной выставки. Случайный разговор за остывшим кофе перевернул всё. Она позвала его в Сибирь. Он приехал. Так началась история, где одна случайная стыковка изменила не только две жизни, но и судьбы их будущих детей. Трогательный роман о том, как рискнуть всем ради человека, встреченного в аэропорту, и обрести дом, где тебя ждут.</p>
+          </div>
+          <a href="https://www.litres.ru/74045266/" class="poem-link">Читать полностью →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<footer>
+    <p>&copy; 2026 Рамо Бин Ях. Все права защищены.</p>
+</footer>
+
+<script>
+function copyPoemLink() {
+    const shareBtn = document.getElementById('shareBtn');
+    
+    navigator.clipboard.writeText(window.location.href).then(() => {
+        shareBtn.textContent = 'Ссылка скопирована!';
+        shareBtn.classList.add('copied');
+        shareBtn.disabled = true;
+        
+        setTimeout(() => {
+            shareBtn.textContent = 'Поделиться';
+            shareBtn.classList.remove('copied');
+            shareBtn.disabled = false;
+        }, 2000);
+    }).catch(err => {
+        console.error('Ошибка при копировании: ', err);
+    });
+}
+</script>
+</body>
+</html>
