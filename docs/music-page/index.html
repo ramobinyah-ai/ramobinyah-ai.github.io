@@ -193,239 +193,46 @@
     </header>
                 
        <!-- Музыкальный плеер -->
-   <style>
-  .poetry-playlist-player {
-    max-width: 560px;
-    margin: 25px auto;
-    padding: 24px 28px;
-    background: linear-gradient(145deg, #1a2421 0%, #24332e 100%);
-    border: 1px solid rgba(212, 175, 55, 0.35);
-    border-radius: 16px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-    color: #f4efe6;
-    font-family: 'Georgia', serif;
-    box-sizing: border-box;
-  }
-
-  .player-now-playing {
-    margin-bottom: 16px;
-  }
-
-  .now-playing-title {
-    font-size: 1.25rem;
-    font-weight: normal;
-    color: #e8c872;
-    margin: 0;
-    letter-spacing: 0.4px;
-  }
-
-  .now-playing-author {
-    font-size: 0.85rem;
-    color: #a3b1ac;
-    font-style: italic;
-    margin: 4px 0 0 0;
-  }
-
-  .player-main-controls {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 18px;
-  }
-
-  .ctrl-btn {
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    background: rgba(212, 175, 55, 0.1);
-    color: #e8c872;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.2s ease;
-  }
-
-  .ctrl-btn:hover {
-    background: #d4af37;
-    color: #1a2421;
-  }
-
-  .play-pause-btn {
-    width: 48px;
-    height: 48px;
-    border-color: #d4af37;
-  }
-
-  .nav-btn {
-    width: 36px;
-    height: 36px;
-  }
-
-  .ctrl-btn svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-  }
-
-  .play-pause-btn svg {
-    width: 22px;
-    height: 22px;
-  }
-
-  .progress-area {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .progress-bar {
-    width: 100%;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.12);
-    border-radius: 4px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #c59b27, #f0d58c);
-    border-radius: 4px;
-  }
-
-  .time-info {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.78rem;
-    color: #a3b1ac;
-    font-family: sans-serif;
-  }
-
-  /* Регулятор громкости */
-  .volume-control {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    margin-bottom: 16px;
-  }
-
-  .volume-btn {
-    background: none;
-    border: none;
-    color: #e8c872;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-  }
-
-  .volume-btn svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-  }
-
-  .volume-slider {
-    -webkit-appearance: none;
-    width: 100px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.18);
-    border-radius: 2px;
-    outline: none;
-    cursor: pointer;
-  }
-
-  .volume-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    background: #e8c872;
-    cursor: pointer;
-  }
-
-  .volume-slider::-moz-range-thumb {
-    width: 13px;
-    height: 13px;
-    border: none;
-    border-radius: 50%;
-    background: #e8c872;
-    cursor: pointer;
-  }
-
-  /* Список треков (плейлист) */
-  .playlist-tracks {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-height: 240px;
-    overflow-y: auto;
-    border-top: 1px solid rgba(212, 175, 55, 0.25);
-  }
-
-  .playlist-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 11px 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    cursor: pointer;
-    transition: background 0.2s ease;
-    font-size: 0.95rem;
-    gap: 10px;
-  }
-
-  .playlist-item:last-child {
-    border-bottom: none;
-  }
-
-  .playlist-item:hover {
-    background: rgba(212, 175, 55, 0.08);
-  }
-
-  .playlist-item.active {
-    background: rgba(212, 175, 55, 0.16);
-    color: #e8c872;
-  }
-
-  .track-num {
-    color: #a3b1ac;
-    font-size: 0.85rem;
-    margin-right: 8px;
-    font-family: sans-serif;
-  }
-
-  .playlist-item.active .track-num {
-    color: #e8c872;
-  }
-
-  .playlist-item-duration {
-    font-size: 0.8rem;
-    color: #a3b1ac;
-    font-family: sans-serif;
-    flex-shrink: 0;
-  }
-
+  <!-- Музыкальный плеер -->
+<style>
+  .poetry-playlist-player { max-width: 560px; margin: 25px auto; padding: 24px 28px; background: linear-gradient(145deg, #1a2421 0%, #24332e 100%); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 16px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35); color: #f4efe6; font-family: 'Georgia', serif; box-sizing: border-box; }
+  .player-now-playing { margin-bottom: 16px; }
+  .now-playing-title { font-size: 1.25rem; font-weight: normal; color: #e8c872; margin: 0; letter-spacing: 0.4px; }
+  .now-playing-author { font-size: 0.85rem; color: #a3b1ac; font-style: italic; margin: 4px 0 0 0; }
+  .player-main-controls { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .ctrl-btn { border: 1px solid rgba(212, 175, 55, 0.4); background: rgba(212, 175, 55, 0.1); color: #e8c872; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s ease; }
+  .ctrl-btn:hover { background: #d4af37; color: #1a2421; }
+  .play-pause-btn { width: 48px; height: 48px; border-color: #d4af37; }
+  .nav-btn { width: 36px; height: 36px; }
+  .ctrl-btn svg { width: 18px; height: 18px; fill: currentColor; }
+  .play-pause-btn svg { width: 22px; height: 22px; }
+  .progress-area { flex-grow: 1; display: flex; flex-direction: column; gap: 6px; }
+  .progress-bar { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.12); border-radius: 4px; cursor: pointer; position: relative; overflow: hidden; }
+  .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #c59b27, #f0d58c); border-radius: 4px; }
+  .time-info { display: flex; justify-content: space-between; font-size: 0.78rem; color: #a3b1ac; font-family: sans-serif; }
+  .volume-control { display: flex; align-items: center; gap: 8px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 16px; }
+  .volume-btn { background: none; border: none; color: #e8c872; cursor: pointer; padding: 0; display: flex; align-items: center; }
+  .volume-btn svg { width: 18px; height: 18px; fill: currentColor; }
+  .volume-slider { -webkit-appearance: none; width: 100px; height: 4px; background: rgba(255, 255, 255, 0.18); border-radius: 2px; outline: none; cursor: pointer; }
+  .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px; border-radius: 50%; background: #e8c872; cursor: pointer; }
+  .volume-slider::-moz-range-thumb { width: 13px; height: 13px; border: none; border-radius: 50%; background: #e8c872; cursor: pointer; }
+  .playlist-tracks { list-style: none; margin: 0; padding: 0; max-height: 240px; overflow-y: auto; border-top: 1px solid rgba(212, 175, 55, 0.25); }
+  .playlist-item { display: flex; justify-content: space-between; align-items: center; padding: 11px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); cursor: pointer; transition: background 0.2s ease; font-size: 0.95rem; gap: 10px; }
+  .playlist-item:last-child { border-bottom: none; }
+  .playlist-item:hover { background: rgba(212, 175, 55, 0.08); }
+  .playlist-item.active { background: rgba(212, 175, 55, 0.16); color: #e8c872; }
+  .track-num { color: #a3b1ac; font-size: 0.85rem; margin-right: 8px; font-family: sans-serif; }
+  .playlist-item.active .track-num { color: #e8c872; }
+  .playlist-item-duration { font-size: 0.8rem; color: #a3b1ac; font-family: sans-serif; flex-shrink: 0; }
   @media (max-width: 480px) {
-    .poetry-playlist-player {
-      padding: 18px;
-      margin: 15px 10px;
-    }
-    .player-main-controls {
-      gap: 10px;
-    }
+    .poetry-playlist-player { padding: 18px; margin: 15px 10px; }
+    .player-main-controls { gap: 10px; }
   }
 </style>
 
 <div class="poetry-playlist-player" id="poetryPlayer">
   <div class="player-now-playing">
-    <h3 class="now-playing-title" id="npTitle">Выберите стихотворение</h3>
+    <h3 class="now-playing-title" id="npTitle">Хренов-Телеком</h3>
     <p class="now-playing-author" id="npAuthor">Читает автор</p>
   </div>
 
@@ -433,16 +240,13 @@
     <button class="ctrl-btn nav-btn" id="prevBtn" aria-label="Предыдущий трек">
       <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
     </button>
-
     <button class="ctrl-btn play-pause-btn" id="playPauseBtn" aria-label="Воспроизвести или пауза">
       <svg id="iconPlay" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       <svg id="iconPause" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
-
     <button class="ctrl-btn nav-btn" id="nextBtn" aria-label="Следующий трек">
       <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
     </button>
-
     <div class="progress-area">
       <div class="progress-bar" id="progressBar">
         <div class="progress-fill" id="progressFill"></div>
@@ -462,14 +266,11 @@
     <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.02" value="0.85" aria-label="Громкость">
   </div>
 
-  <!-- СПИСОК ТРЕКОВ (длительность подставляется автоматически) -->
- <ul class="playlist-tracks" id="playlistList">
-  <li class="playlist-item active" data-src="/music-pge/hrenov-telekom.mp3" data-title="Хренов-Телеком" data-author="Читает автор">
-    <span><span class="track-num">1.</span>Хренов-Телеком</span>
-    <span class="playlist-item-duration">--:--</span>
-  </li>
-</ul>
-
+  <ul class="playlist-tracks" id="playlistList">
+    <li class="playlist-item active" data-src="/music-pge/hrenov-telekom.mp3" data-title="Хренов-Телеком" data-author="Читает автор">
+      <span><span class="track-num">1.</span>Хренов-Телеком</span>
+      <span class="playlist-item-duration">--:--</span>
+    </li>
     <li class="playlist-item" data-src="audio/stih2.mp3" data-title="Второе стихотворение" data-author="Читает автор">
       <span><span class="track-num">2.</span>Второе стихотворение</span>
       <span class="playlist-item-duration">--:--</span>
@@ -482,72 +283,98 @@
 </div>
 
 <script>
-  (function() {
-    const audio = new Audio();
-    const items = Array.from(document.querySelectorAll('#playlistList .playlist-item'));
-    const npTitle = document.getElementById('npTitle');
-    const npAuthor = document.getElementById('npAuthor');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const iconPlay = document.getElementById('iconPlay');
-    const iconPause = document.getElementById('iconPause');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const progressBar = document.getElementById('progressBar');
-    const progressFill = document.getElementById('progressFill');
-    const currentTimeEl = document.getElementById('currentTime');
-    const durationTimeEl = document.getElementById('durationTime');
-    const volumeSlider = document.getElementById('volumeSlider');
-    const muteBtn = document.getElementById('muteBtn');
-    const iconVolHigh = document.getElementById('iconVolHigh');
-    const iconVolMute = document.getElementById('iconVolMute');
+(function() {
+  const audio = new Audio();
+  const items = Array.from(document.querySelectorAll('#playlistList .playlist-item'));
+  const npTitle = document.getElementById('npTitle');
+  const npAuthor = document.getElementById('npAuthor');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const iconPlay = document.getElementById('iconPlay');
+  const iconPause = document.getElementById('iconPause');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const currentTimeEl = document.getElementById('currentTime');
+  const durationTimeEl = document.getElementById('durationTime');
+  const volumeSlider = document.getElementById('volumeSlider');
+  const muteBtn = document.getElementById('muteBtn');
+  const iconVolHigh = document.getElementById('iconVolHigh');
+  const iconVolMute = document.getElementById('iconVolMute');
 
-    let currentIndex = 0;
-    audio.volume = parseFloat(volumeSlider.value);
+  let currentIndex = 0;
+  let lastVolume = parseFloat(volumeSlider.value);
+  audio.volume = lastVolume;
 
-    function formatTime(sec) {
-      if (isNaN(sec) || !isFinite(sec)) return '--:--';
-      const m = Math.floor(sec / 60);
-      const s = Math.floor(sec % 60);
-      return `${m}:${s < 10 ? '0' : ''}${s}`;
-    }
+  function formatTime(sec) {
+    if (isNaN(sec) || !isFinite(sec)) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  }
 
-    // Автоматический расчет длительности для каждого трека в списке
-    items.forEach((item) => {
-      const durationBadge = item.querySelector('.playlist-item-duration');
-      const tempAudio = new Audio();
-      tempAudio.preload = 'metadata';
-      tempAudio.src = item.dataset.src;
-
-      tempAudio.addEventListener('loadedmetadata', () => {
-        if (durationBadge) {
-          durationBadge.textContent = formatTime(tempAudio.duration);
-        }
-        // Очищаем временный объект из памяти
-        tempAudio.src = '';
-      });
-
-      tempAudio.addEventListener('error', () => {
-        if (durationBadge) {
-          durationBadge.textContent = '--:--';
-        }
-      });
+  // Расчет длительности треков в списке
+  items.forEach((item) => {
+    const durationBadge = item.querySelector('.playlist-item-duration');
+    const tempAudio = new Audio();
+    tempAudio.preload = 'metadata';
+    tempAudio.src = item.dataset.src;
+    tempAudio.addEventListener('loadedmetadata', () => {
+      if (durationBadge) durationBadge.textContent = formatTime(tempAudio.duration);
+      tempAudio.src = '';
     });
+    tempAudio.addEventListener('error', () => {
+      if (durationBadge) durationBadge.textContent = '--:--';
+    });
+  });
 
-    function updatePlayIcons(isPlaying) {
-      iconPlay.style.display = isPlaying ? 'none' : 'block';
-      iconPause.style.display = isPlaying ? 'block' : 'none';
+  function updatePlayIcons(isPlaying) {
+    iconPlay.style.display = isPlaying ? 'none' : 'block';
+    iconPause.style.display = isPlaying ? 'block' : 'none';
+  }
+
+  function loadTrack(index, autoplay = false) {
+    currentIndex = index;
+    const item = items[index];
+    items.forEach(el => el.classList.remove('active'));
+    item.classList.add('active');
+
+    audio.src = item.dataset.src;
+    npTitle.textContent = item.dataset.title;
+    npAuthor.textContent = item.dataset.author || '';
+    progressFill.style.width = '0%';
+    currentTimeEl.textContent = '0:00';
+    durationTimeEl.textContent = '0:00';
+
+    if (autoplay) {
+      audio.play().then(() => updatePlayIcons(true)).catch(() => updatePlayIcons(false));
+    } else {
+      updatePlayIcons(false);
     }
+  }
 
-    function loadTrack(index, autoplay = false) {
-      currentIndex = index;
-      const item = items[index];
-      items.forEach(el => el.classList.remove('active'));
-      item.classList.add('active');
+  playPauseBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play().then(() => updatePlayIcons(true)).catch(err => console.error('Ошибка воспроизведения:', err));
+    } else {
+      audio.pause();
+      updatePlayIcons(false);
+    }
+  });
 
-      audio.src = item.dataset.src;
-      npTitle.textContent = item.dataset.title;
-      npAuthor.textContent = item.dataset.author || '';
-      progressFill.style.width = '0%';
+  prevBtn.addEventListener('click', () => {
+    const nextIdx = (currentIndex - 1 + items.length) % items.length;
+    loadTrack(nextIdx, !audio.paused);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const nextIdx = (currentIndex + 1) % items.length;
+    loadTrack(nextIdx, !audio.paused);
+  });
+
+  items.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      if (index === currentIndex && !audio.paused) {
 
     <!-- /Музыкальный плеер -->
 
