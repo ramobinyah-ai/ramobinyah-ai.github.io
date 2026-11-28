@@ -462,92 +462,185 @@
     <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.02" value="0.85" aria-label="Громкость">
   </div>
 
-  <!-- СПИСОК ТРЕКОВ (длительность подставляется автоматически) -->
-  <ul class="playlist-tracks" id="playlistList">
-    <li class="playlist-item active" data-src:"hrenov-telekom.mp3" data-title="Хренов-Телеком" data-author="Читает автор">
-      <span><span class="track-num">1.</span>Хренов-Телеком</span>
-      <span class="playlist-item-duration">--:--</span>
-    </li>
-    <li class="playlist-item" data-src="na-crosse-nachem.mp3" data-title="Второе стихотворение" data-author="Читает автор">
-      <span><span class="track-num">2.</span>На кроссе нашем</span>
-      <span class="playlist-item-duration">--:--</span>
-    </li>
-    <li class="playlist-item" data-src="audio/stih3.mp3" data-title="Третье стихотворение" data-author="Читает автор">
-      <span><span class="track-num">3.</span>Третье стихотворение</span>
-      <span class="playlist-item-duration">--:--</span>
-    </li>
-  </ul>
+ <!-- СПИСОК ТРЕКОВ (длительность подставляется автоматически) -->
+<ul class="playlist-tracks" id="playlistList">
+  <li class="playlist-item active" data-src="hrenov-telekom.mp3" data-title="Хренов-Телеком" data-author="Читает автор">
+    <span><span class="track-num">1.</span>Хренов-Телеком</span>
+    <span class="playlist-item-duration">--:--</span>
+  </li>
+  <li class="playlist-item" data-src="na-crosse-nachem.mp3" data-title="На кроссе нашем" data-author="Читает автор">
+    <span><span class="track-num">2.</span>На кроссе нашем</span>
+    <span class="playlist-item-duration">--:--</span>
+  </li>
+  <li class="playlist-item" data-src="audio/stih3.mp3" data-title="Третье стихотворение" data-author="Читает автор">
+    <span><span class="track-num">3.</span>Третье стихотворение</span>
+    <span class="playlist-item-duration">--:--</span>
+  </li>
+</ul>
 </div>
 
 <script>
-  (function() {
-    const audio = new Audio();
-    const items = Array.from(document.querySelectorAll('#playlistList .playlist-item'));
-    const npTitle = document.getElementById('npTitle');
-    const npAuthor = document.getElementById('npAuthor');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const iconPlay = document.getElementById('iconPlay');
-    const iconPause = document.getElementById('iconPause');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const progressBar = document.getElementById('progressBar');
-    const progressFill = document.getElementById('progressFill');
-    const currentTimeEl = document.getElementById('currentTime');
-    const durationTimeEl = document.getElementById('durationTime');
-    const volumeSlider = document.getElementById('volumeSlider');
-    const muteBtn = document.getElementById('muteBtn');
-    const iconVolHigh = document.getElementById('iconVolHigh');
-    const iconVolMute = document.getElementById('iconVolMute');
+(function() {
+  const audio = new Audio();
+  const items = Array.from(document.querySelectorAll('#playlistList .playlist-item'));
+  const npTitle = document.getElementById('npTitle');
+  const npAuthor = document.getElementById('npAuthor');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const iconPlay = document.getElementById('iconPlay');
+  const iconPause = document.getElementById('iconPause');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const currentTimeEl = document.getElementById('currentTime');
+  const durationTimeEl = document.getElementById('durationTime');
+  const volumeSlider = document.getElementById('volumeSlider');
+  const muteBtn = document.getElementById('muteBtn');
+  const iconVolHigh = document.getElementById('iconVolHigh');
+  const iconVolMute = document.getElementById('iconVolMute');
 
-    let currentIndex = 0;
-    audio.volume = parseFloat(volumeSlider.value);
+  let currentIndex = 0;
+  audio.volume = parseFloat(volumeSlider.value);
 
-    function formatTime(sec) {
-      if (isNaN(sec) || !isFinite(sec)) return '--:--';
-      const m = Math.floor(sec / 60);
-      const s = Math.floor(sec % 60);
-      return `${m}:${s < 10 ? '0' : ''}${s}`;
-    }
+  function formatTime(sec) {
+    if (isNaN(sec) || !isFinite(sec)) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  }
 
-    // Автоматический расчет длительности для каждого трека в списке
-    items.forEach((item) => {
-      const durationBadge = item.querySelector('.playlist-item-duration');
-      const tempAudio = new Audio();
-      tempAudio.preload = 'metadata';
-      tempAudio.src = item.dataset.src;
+  // Автоматический расчет длительности для каждого трека в списке
+  items.forEach((item) => {
+    const durationBadge = item.querySelector('.playlist-item-duration');
+    const tempAudio = new Audio();
+    tempAudio.preload = 'metadata';
+    tempAudio.src = item.dataset.src;
 
-      tempAudio.addEventListener('loadedmetadata', () => {
-        if (durationBadge) {
-          durationBadge.textContent = formatTime(tempAudio.duration);
-        }
-        // Очищаем временный объект из памяти
-        tempAudio.src = '';
-      });
-
-      tempAudio.addEventListener('error', () => {
-        if (durationBadge) {
-          durationBadge.textContent = '--:--';
-        }
-      });
+    tempAudio.addEventListener('loadedmetadata', () => {
+      if (durationBadge) {
+        durationBadge.textContent = formatTime(tempAudio.duration);
+      }
+      tempAudio.src = '';
     });
 
-    function updatePlayIcons(isPlaying) {
-      iconPlay.style.display = isPlaying ? 'none' : 'block';
-      iconPause.style.display = isPlaying ? 'block' : 'none';
+    tempAudio.addEventListener('error', () => {
+      if (durationBadge) {
+        durationBadge.textContent = '--:--';
+      }
+    });
+  });
+
+  function updatePlayIcons(isPlaying) {
+    iconPlay.style.display = isPlaying ? 'none' : 'block';
+    iconPause.style.display = isPlaying ? 'block' : 'none';
+  }
+
+  function loadTrack(index, autoplay = false) {
+    currentIndex = index;
+    const item = items[index];
+    items.forEach(el => el.classList.remove('active'));
+    item.classList.add('active');
+
+    audio.src = item.dataset.src;
+    npTitle.textContent = item.dataset.title;
+    npAuthor.textContent = item.dataset.author || '';
+    progressFill.style.width = '0%';
+    currentTimeEl.textContent = '0:00';
+    durationTimeEl.textContent = '0:00';
+
+    if (autoplay) {
+      audio.play().then(() => {
+        updatePlayIcons(true);
+      }).catch(err => {
+        console.error('Ошибка воспроизведения:', err);
+        updatePlayIcons(false);
+      });
+    } else {
+      updatePlayIcons(false);
     }
+  }
 
-    function loadTrack(index, autoplay = false) {
-      currentIndex = index;
-      const item = items[index];
-      items.forEach(el => el.classList.remove('active'));
-      item.classList.add('active');
+  // Кнопка Play / Pause
+  playPauseBtn.addEventListener('click', () => {
+    if (!audio.src) {
+      loadTrack(currentIndex, true);
+      return;
+    }
+    if (audio.paused) {
+      audio.play().then(() => updatePlayIcons(true));
+    } else {
+      audio.pause();
+      updatePlayIcons(false);
+    }
+  });
 
-      audio.src = item.dataset.src;
-      npTitle.textContent = item.dataset.title;
-      npAuthor.textContent = item.dataset.author || '';
-      progressFill.style.width = '0%';
+  // Кнопки Назад / Вперёд
+  prevBtn.addEventListener('click', () => {
+    const newIndex = (currentIndex - 1 + items.length) % items.length;
+    loadTrack(newIndex, true);
+  });
 
-    <!-- /Музыкальный плеер -->
+  nextBtn.addEventListener('click', () => {
+    const newIndex = (currentIndex + 1) % items.length;
+    loadTrack(newIndex, true);
+  });
+
+  // Клик по треку в списке
+  items.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      loadTrack(index, true);
+    });
+  });
+
+  // Обновление прогресса и времени
+  audio.addEventListener('loadedmetadata', () => {
+    durationTimeEl.textContent = formatTime(audio.duration);
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    if (audio.duration) {
+      const percent = (audio.currentTime / audio.duration) * 100;
+      progressFill.style.width = `${percent}%`;
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+    }
+  });
+
+  // Автопереключение на следующий трек по окончании
+  audio.addEventListener('ended', () => {
+    const nextIndex = (currentIndex + 1) % items.length;
+    loadTrack(nextIndex, true);
+  });
+
+  // Перемотка по клику на полосу прогресса
+  progressBar.addEventListener('click', (e) => {
+    if (!audio.duration) return;
+    const rect = progressBar.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    audio.currentTime = (clickX / rect.width) * audio.duration;
+  });
+
+  // Громкость и Mute
+  volumeSlider.addEventListener('input', () => {
+    audio.volume = parseFloat(volumeSlider.value);
+    audio.muted = audio.volume === 0;
+    iconVolHigh.style.display = audio.muted ? 'none' : 'block';
+    iconVolMute.style.display = audio.muted ? 'block' : 'none';
+  });
+
+  muteBtn.addEventListener('click', () => {
+    audio.muted = !audio.muted;
+    iconVolHigh.style.display = audio.muted ? 'none' : 'block';
+    iconVolMute.style.display = audio.muted ? 'block' : 'none';
+  });
+
+  // Загружаем первый трек при открытии страницы (без автозапуска)
+  if (items.length > 0) {
+    loadTrack(0, false);
+  }
+})();
+</script>
+<!-- /Музыкальный плеер -->
+
 
     <!-- Подвал музыкальной страницы -->
     <footer>
