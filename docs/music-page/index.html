@@ -191,357 +191,368 @@
             <a href="/audiostihi">Аудиостихи</a>
         </nav>
     </header>
-<!-- Музыкальный плеер -->
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Музыкальный плеер</title>
-<style>
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #0f172a;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-
-  .cmp-player {
-    width: 100%;
-    max-width: 380px;
-    background: linear-gradient(145deg, #1e293b, #0f172a);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 24px;
-    padding: 24px;
-    color: #ffffff;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  
+ <!-- Музыкальный плеер -->
+   <style>
+  .poetry-playlist-player {
+    max-width: 560px;
+    margin: 25px auto;
+    padding: 24px 28px;
+    background: linear-gradient(145deg, #1a2421 0%, #24332e 100%);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    color: #f4efe6;
+    font-family: 'Georgia', serif;
     box-sizing: border-box;
   }
 
-  .cmp-player * { box-sizing: border-box; }
+  .player-now-playing {
+    margin-bottom: 16px;
+  }
 
-  .cmp-info { text-align: center; margin-bottom: 18px; }
+  .now-playing-title {
+    font-size: 1.25rem;
+    font-weight: normal;
+    color: #e8c872;
+    margin: 0;
+    letter-spacing: 0.4px;
+  }
 
-  .cmp-disc {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 14px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  .now-playing-author {
+    font-size: 0.85rem;
+    color: #a3b1ac;
+    font-style: italic;
+    margin: 4px 0 0 0;
+  }
+
+  .player-main-controls {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 8px 20px rgba(255, 75, 43, 0.35);
-    animation: cmp-spin 10s linear infinite;
-    animation-play-state: paused;
-  }
-
-  .cmp-player.is-playing .cmp-disc { animation-play-state: running; }
-
-  @keyframes cmp-spin { 100% { transform: rotate(360deg); } }
-
-  .cmp-disc svg { width: 40px; height: 40px; fill: #fff; }
-
-  .cmp-title {
-    font-size: 17px;
-    font-weight: 600;
-    margin: 0 0 4px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .cmp-artist { font-size: 13px; color: #94a3b8; margin: 0; }
-
-  .cmp-progress-wrap { margin-bottom: 18px; }
-
-  .cmp-progress-bar {
-    width: 100%;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 4px;
-    cursor: pointer;
-    overflow: hidden;
-  }
-
-  .cmp-progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #ff416c, #ff4b2b);
-    border-radius: 4px;
-  }
-
-  .cmp-time {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    color: #94a3b8;
-    margin-top: 6px;
-  }
-
-  .cmp-controls {
-    display: flex;
-    justify-content: center;
     align-items: center;
     gap: 14px;
     margin-bottom: 18px;
   }
 
-  .cmp-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    width: 40px;
-    height: 40px;
+  .ctrl-btn {
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    background: rgba(212, 175, 55, 0.1);
+    color: #e8c872;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
-    transition: transform 0.15s, background 0.2s;
-  }
-
-  .cmp-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.06); }
-
-  .cmp-btn-main {
-    width: 54px;
-    height: 54px;
-    background: linear-gradient(45deg, #ff416c, #ff4b2b);
-    box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
-  }
-
-  .cmp-btn svg { width: 18px; height: 18px; fill: currentColor; }
-  .cmp-btn-main svg { width: 24px; height: 24px; }
-
-  .cmp-volume {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 18px;
-    padding: 0 8px;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
   }
 
-  .cmp-volume svg { width: 18px; height: 18px; fill: #94a3b8; flex-shrink: 0; }
-  .cmp-volume input[type="range"] { width: 100%; cursor: pointer; accent-color: #ff4b2b; }
+  .ctrl-btn:hover {
+    background: #d4af37;
+    color: #1a2421;
+  }
 
-  .cmp-playlist {
-    max-height: 165px;
+  .play-pause-btn {
+    width: 48px;
+    height: 48px;
+    border-color: #d4af37;
+  }
+
+  .nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .ctrl-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  .play-pause-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .progress-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #c59b27, #f0d58c);
+    border-radius: 4px;
+  }
+
+  .time-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #a3b1ac;
+    font-family: sans-serif;
+  }
+
+  /* Регулятор громкости */
+  .volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 16px;
+  }
+
+  .volume-btn {
+    background: none;
+    border: none;
+    color: #e8c872;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .volume-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  .volume-slider {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #e8c872;
+    cursor: pointer;
+  }
+
+  .volume-slider::-moz-range-thumb {
+    width: 13px;
+    height: 13px;
+    border: none;
+    border-radius: 50%;
+    background: #e8c872;
+    cursor: pointer;
+  }
+
+  /* Список треков (плейлист) */
+  .playlist-tracks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 240px;
     overflow-y: auto;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 10px;
+    border-top: 1px solid rgba(212, 175, 55, 0.25);
   }
 
-  .cmp-item {
+  .playlist-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 9px 12px;
-    border-radius: 10px;
+    padding: 11px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     cursor: pointer;
-    font-size: 13px;
-    margin-bottom: 4px;
-    transition: background 0.2s;
+    transition: background 0.2s ease;
+    font-size: 0.95rem;
+    gap: 10px;
   }
 
-  .cmp-item:hover { background: rgba(255, 255, 255, 0.07); }
-  .cmp-item.active { background: rgba(255, 75, 43, 0.2); color: #ff6b52; font-weight: 600; }
+  .playlist-item:last-child {
+    border-bottom: none;
+  }
 
-  .cmp-error {
-    color: #f87171;
-    font-size: 12px;
-    text-align: center;
-    margin-top: 10px;
-    display: none;
-    line-height: 1.4;
+  .playlist-item:hover {
+    background: rgba(212, 175, 55, 0.08);
+  }
+
+  .playlist-item.active {
+    background: rgba(212, 175, 55, 0.16);
+    color: #e8c872;
+  }
+
+  .track-num {
+    color: #a3b1ac;
+    font-size: 0.85rem;
+    margin-right: 8px;
+    font-family: sans-serif;
+  }
+
+  .playlist-item.active .track-num {
+    color: #e8c872;
+  }
+
+  .playlist-item-duration {
+    font-size: 0.8rem;
+    color: #a3b1ac;
+    font-family: sans-serif;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 480px) {
+    .poetry-playlist-player {
+      padding: 18px;
+      margin: 15px 10px;
+    }
+    .player-main-controls {
+      gap: 10px;
+    }
   }
 </style>
-</head>
-<body>
 
-<div class="cmp-player" id="cmp-player">
-  <div class="cmp-info">
-    <div class="cmp-disc">
-      <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-    </div>
-    <div class="cmp-title" id="cmp-title">Загрузка...</div>
-    <div class="cmp-artist" id="cmp-artist">Исполнитель</div>
+<div class="poetry-playlist-player" id="poetryPlayer">
+  <div class="player-now-playing">
+    <h3 class="now-playing-title" id="npTitle">Выберите стихотворение</h3>
+    <p class="now-playing-author" id="npAuthor">Читает автор</p>
   </div>
 
-  <div class="cmp-progress-wrap">
-    <div class="cmp-progress-bar" id="cmp-progress-bar">
-      <div class="cmp-progress-fill" id="cmp-progress-fill"></div>
-    </div>
-    <div class="cmp-time">
-      <span id="cmp-curr-time">0:00</span>
-      <span id="cmp-dur-time">0:00</span>
-    </div>
-  </div>
-
-  <div class="cmp-controls">
-    <button type="button" class="cmp-btn" id="cmp-prev" title="Назад">
+  <div class="player-main-controls">
+    <button class="ctrl-btn nav-btn" id="prevBtn" aria-label="Предыдущий трек">
       <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
     </button>
-    <button type="button" class="cmp-btn cmp-btn-main" id="cmp-play" title="Play / Pause">
-      <svg id="cmp-ico-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      <svg id="cmp-ico-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+
+    <button class="ctrl-btn play-pause-btn" id="playPauseBtn" aria-label="Воспроизвести или пауза">
+      <svg id="iconPlay" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="iconPause" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
-    <button type="button" class="cmp-btn" id="cmp-stop" title="Стоп">
-      <svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
-    </button>
-    <button type="button" class="cmp-btn" id="cmp-next" title="Вперёд">
+
+    <button class="ctrl-btn nav-btn" id="nextBtn" aria-label="Следующий трек">
       <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
     </button>
+
+    <div class="progress-area">
+      <div class="progress-bar" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="time-info">
+        <span id="currentTime">0:00</span>
+        <span id="durationTime">0:00</span>
+      </div>
+    </div>
   </div>
 
-  <div class="cmp-volume">
-    <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
-    <input type="range" id="cmp-vol" min="0" max="1" step="0.01" value="0.8">
+  <div class="volume-control">
+    <button class="volume-btn" id="muteBtn" aria-label="Звук">
+      <svg id="iconVolHigh" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+      <svg id="iconVolMute" viewBox="0 0 24 24" style="display: none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+    </button>
+    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.02" value="0.85" aria-label="Громкость">
   </div>
 
-  <div class="cmp-playlist" id="cmp-playlist"></div>
-  <div class="cmp-error" id="cmp-error"></div>
+  <!-- СПИСОК ТРЕКОВ (длительность подставляется автоматически) -->
+  <ul class="playlist-tracks" id="playlistList">
+    <li class="playlist-item active" data-src:"hrenov-telekom.mp3" data-title="Хренов-Телеком" data-author="Читает автор">
+      <span><span class="track-num">1.</span>Хренов-Телеком</span>
+      <span class="playlist-item-duration">--:--</span>
+    </li>
+    <li class="playlist-item" data-src="audio/stih2.mp3" data-title="Второе стихотворение" data-author="Читает автор">
+      <span><span class="track-num">2.</span>Второе стихотворение</span>
+      <span class="playlist-item-duration">--:--</span>
+    </li>
+    <li class="playlist-item" data-src="audio/stih3.mp3" data-title="Третье стихотворение" data-author="Читает автор">
+      <span><span class="track-num">3.</span>Третье стихотворение</span>
+      <span class="playlist-item-duration">--:--</span>
+    </li>
+  </ul>
 </div>
 
 <script>
-  // === СПИСОК ТРЕКОВ ДЛЯ GITHUB PAGES ===
-  // Указывайте относительный путь к файлам в вашем репозитории (без слеша в начале!)
-  const tracks = [
-    {
-      title: "Хренов-Телеком",
-      artist: "Мой проект",
-      src: "hrenov-telekom.mp3"
-    },
-    {
-      title: "Второй трек",
-      artist: "Мой проект",
-      src: "music/track2.mp3"
-    },
-    {
-      title: "Третий трек",
-      artist: "Мой проект",
-      src: "music/track3.mp3"
+  (function() {
+    const audio = new Audio();
+    const items = Array.from(document.querySelectorAll('#playlistList .playlist-item'));
+    const npTitle = document.getElementById('npTitle');
+    const npAuthor = document.getElementById('npAuthor');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const iconPlay = document.getElementById('iconPlay');
+    const iconPause = document.getElementById('iconPause');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationTimeEl = document.getElementById('durationTime');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const muteBtn = document.getElementById('muteBtn');
+    const iconVolHigh = document.getElementById('iconVolHigh');
+    const iconVolMute = document.getElementById('iconVolMute');
+
+    let currentIndex = 0;
+    audio.volume = parseFloat(volumeSlider.value);
+
+    function formatTime(sec) {
+      if (isNaN(sec) || !isFinite(sec)) return '--:--';
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
     }
-  ];
 
-  const player = document.getElementById('cmp-player');
-  const titleEl = document.getElementById('cmp-title');
-  const artistEl = document.getElementById('cmp-artist');
-  const playBtn = document.getElementById('cmp-play');
-  const icoPlay = document.getElementById('cmp-ico-play');
-  const icoPause = document.getElementById('cmp-ico-pause');
-  const stopBtn = document.getElementById('cmp-stop');
-  const prevBtn = document.getElementById('cmp-prev');
-  const nextBtn = document.getElementById('cmp-next');
-  const volSlider = document.getElementById('cmp-vol');
-  const progBar = document.getElementById('cmp-progress-bar');
-  const progFill = document.getElementById('cmp-progress-fill');
-  const currTimeEl = document.getElementById('cmp-curr-time');
-  const durTimeEl = document.getElementById('cmp-dur-time');
-  const playlistEl = document.getElementById('cmp-playlist');
-  const errorEl = document.getElementById('cmp-error');
+    // Автоматический расчет длительности для каждого трека в списке
+    items.forEach((item) => {
+      const durationBadge = item.querySelector('.playlist-item-duration');
+      const tempAudio = new Audio();
+      tempAudio.preload = 'metadata';
+      tempAudio.src = item.dataset.src;
 
-  const audio = new Audio();
-  let currentIndex = 0;
-  let isPlaying = false;
+      tempAudio.addEventListener('loadedmetadata', () => {
+        if (durationBadge) {
+          durationBadge.textContent = formatTime(tempAudio.duration);
+        }
+        // Очищаем временный объект из памяти
+        tempAudio.src = '';
+      });
 
-  function renderPlaylist() {
-    playlistEl.innerHTML = '';
-    tracks.forEach((t, idx) => {
-      const div = document.createElement('div');
-      div.className = 'cmp-item' + (idx === currentIndex ? ' active' : '');
-      div.innerHTML = `<span>${idx + 1}. ${t.title}</span><small style="opacity:0.6">${t.artist}</small>`;
-      div.onclick = () => {
-        currentIndex = idx;
-        loadTrack(currentIndex);
-        playAudio();
-      };
-      playlistEl.appendChild(div);
+      tempAudio.addEventListener('error', () => {
+        if (durationBadge) {
+          durationBadge.textContent = '--:--';
+        }
+      });
     });
-  }
 
-  function loadTrack(idx) {
-    errorEl.style.display = 'none';
-    const t = tracks[idx];
-    titleEl.textContent = t.title;
-    artistEl.textContent = t.artist;
-    audio.src = t.src;
-    progFill.style.width = '0%';
-    currTimeEl.textContent = '0:00';
-    durTimeEl.textContent = '0:00';
-    renderPlaylist();
-  }
-
-  function playAudio() {
-    audio.play().then(() => {
-      isPlaying = true;
-      player.classList.add('is-playing');
-      icoPlay.style.display = 'none';
-      icoPause.style.display = 'block';
-    }).catch(() => {
-      errorEl.textContent = 'Файл не найден: ' + tracks[currentIndex].src + '. Проверьте папку и регистр букв.';
-      errorEl.style.display = 'block';
-    });
-  }
-
-  function pauseAudio() {
-    audio.pause();
-    isPlaying = false;
-    player.classList.remove('is-playing');
-    icoPlay.style.display = 'block';
-    icoPause.style.display = 'none';
-  }
-
-  function stopAudio() {
-    pauseAudio();
-    audio.currentTime = 0;
-    progFill.style.width = '0%';
-  }
-
-  function nextTrack() {
-    currentIndex = (currentIndex + 1) % tracks.length;
-    loadTrack(currentIndex);
-    playAudio();
-  }
-
-  function prevTrack() {
-    currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
-    loadTrack(currentIndex);
-    playAudio();
-  }
-
-  function fmtTime(sec) {
-    if (!sec || isNaN(sec)) return '0:00';
-    const m = Math.floor(sec / 60);
-    const s = Math.floor(sec % 60);
-    return m + ':' + (s < 10 ? '0' : '') + s;
-  }
-
-  playBtn.onclick = () => isPlaying ? pauseAudio() : playAudio();
-  stopBtn.onclick = stopAudio;
-  nextBtn.onclick = nextTrack;
-  prevBtn.onclick = prevTrack;
-
-  audio.volume = volSlider.value;
-  volSlider.oninput = (e) => { audio.volume = e.target.value; };
-
-  audio.ontimeupdate = () => {
-    if (audio.duration) {
-      progFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
-      currTimeEl.textContent = fmtTime(audio.currentTime);
-      durTimeEl.textContent = fmtTime(audio.duration);
+    function updatePlayIcons(isPlaying) {
+      iconPlay.style.display = isPlaying ? 'none' : 'block';
+      iconPause.style.display = isPlaying ? 'block' : 'none';
     }
-  };
 
-  progBar.onclick = (e) => {
-    if (audio.duration) {
-      const rect = progBar.getBoundingClientRect();
-      audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
-    }
-  };
+    function loadTrack(index, autoplay = false) {
+      currentIndex = index;
+      const item = items[index];
+      items.forEach(el => el.classList.remove('active'));
+      item.classList.add('active');
 
-  audio.onended = nextTrack;
+      audio.src = item.dataset.src;
+      npTitle.textContent = item.dataset.title;
+      npAuthor.textContent = item.dataset.author || '';
+      progressFill.style.width = '0%';
 
-    <!-- Конец Музыкального плеера -->
+    <!-- /Музыкальный плеер -->
+
+    <!-- Подвал музыкальной страницы -->
+    <footer>
+        <p>&copy; 2026 <a href="/">Рамо Бин Ях</a>. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
