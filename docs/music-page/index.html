@@ -197,396 +197,351 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Стильный музыкальный плеер</title>
+<title>Музыкальный плеер</title>
 <style>
-  /* Сброс и базовые настройки для демонстрации */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  }
-
   body {
-    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    margin: 0;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
-    padding: 20px;
+    background: #0f172a;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
-  /* Контейнер плеера */
-  .music-player {
+  .cmp-player {
     width: 100%;
     max-width: 380px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 24px;
-    padding: 25px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    padding: 24px;
+    color: #ffffff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
   }
 
-  /* Информация о текущем треке */
-  .track-info {
-    text-align: center;
-    margin-bottom: 20px;
-  }
+  .cmp-player * { box-sizing: border-box; }
 
-  .cover-art {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 15px;
+  .cmp-info { text-align: center; margin-bottom: 18px; }
+
+  .cmp-disc {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 14px;
     border-radius: 50%;
     background: linear-gradient(45deg, #ff416c, #ff4b2b);
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 10px 25px rgba(255, 75, 43, 0.4);
-    animation: rotate 12s linear infinite;
+    box-shadow: 0 8px 20px rgba(255, 75, 43, 0.35);
+    animation: cmp-spin 10s linear infinite;
     animation-play-state: paused;
   }
 
-  .music-player.playing .cover-art {
-    animation-play-state: running;
-  }
+  .cmp-player.is-playing .cmp-disc { animation-play-state: running; }
 
-  .cover-art svg {
-    width: 48px;
-    height: 48px;
-    fill: #fff;
-  }
+  @keyframes cmp-spin { 100% { transform: rotate(360deg); } }
 
-  @keyframes rotate {
-    100% { transform: rotate(360deg); }
-  }
+  .cmp-disc svg { width: 40px; height: 40px; fill: #fff; }
 
-  .track-title {
-    font-size: 18px;
+  .cmp-title {
+    font-size: 17px;
     font-weight: 600;
-    margin-bottom: 4px;
+    margin: 0 0 4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .track-artist {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.6);
-  }
+  .cmp-artist { font-size: 13px; color: #94a3b8; margin: 0; }
 
-  /* Прогресс-бар */
-  .progress-container {
-    margin-bottom: 20px;
-  }
+  .cmp-progress-wrap { margin-bottom: 18px; }
 
-  .progress-bar {
+  .cmp-progress-bar {
     width: 100%;
     height: 6px;
     background: rgba(255, 255, 255, 0.15);
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    position: relative;
     overflow: hidden;
   }
 
-  .progress-fill {
+  .cmp-progress-fill {
     height: 100%;
     width: 0%;
     background: linear-gradient(90deg, #ff416c, #ff4b2b);
-    border-radius: 5px;
-    transition: width 0.1s linear;
+    border-radius: 4px;
   }
 
-  .time-stamps {
+  .cmp-time {
     display: flex;
     justify-content: space-between;
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.6);
+    color: #94a3b8;
     margin-top: 6px;
   }
 
-  /* Кнопки управления */
-  .controls {
+  .cmp-controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 20px;
+    gap: 14px;
+    margin-bottom: 18px;
   }
 
-  .btn {
+  .cmp-btn {
     background: rgba(255, 255, 255, 0.1);
     border: none;
     color: #fff;
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: transform 0.15s, background 0.2s;
   }
 
-  .btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-  }
+  .cmp-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.06); }
 
-  .btn:active {
-    transform: scale(0.95);
-  }
-
-  .btn-play {
-    width: 56px;
-    height: 56px;
+  .cmp-btn-main {
+    width: 54px;
+    height: 54px;
     background: linear-gradient(45deg, #ff416c, #ff4b2b);
-    box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
   }
 
-  .btn-play:hover {
-    background: linear-gradient(45deg, #ff5177, #ff5b3b);
-  }
+  .cmp-btn svg { width: 18px; height: 18px; fill: currentColor; }
+  .cmp-btn-main svg { width: 24px; height: 24px; }
 
-  .btn svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-  }
-
-  .btn-play svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  /* Громкость */
-  .volume-container {
+  .cmp-volume {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
-    padding: 0 10px;
+    margin-bottom: 18px;
+    padding: 0 8px;
   }
 
-  .volume-icon {
-    width: 18px;
-    height: 18px;
-    fill: rgba(255, 255, 255, 0.7);
-  }
+  .cmp-volume svg { width: 18px; height: 18px; fill: #94a3b8; flex-shrink: 0; }
+  .cmp-volume input[type="range"] { width: 100%; cursor: pointer; accent-color: #ff4b2b; }
 
-  input[type="range"].volume-slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    outline: none;
-    cursor: pointer;
-  }
-
-  input[type="range"].volume-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: #fff;
-    cursor: pointer;
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
-  }
-
-  /* Плейлист */
-  .playlist {
-    max-height: 180px;
+  .cmp-playlist {
+    max-height: 165px;
     overflow-y: auto;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 12px;
+    padding-top: 10px;
   }
 
-  /* Стилизация скроллбара плейлиста */
-  .playlist::-webkit-scrollbar {
-    width: 5px;
-  }
-  .playlist::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-  }
-
-  .playlist-item {
+  .cmp-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 12px;
+    padding: 9px 12px;
     border-radius: 10px;
     cursor: pointer;
-    transition: background 0.2s;
-    font-size: 14px;
+    font-size: 13px;
     margin-bottom: 4px;
+    transition: background 0.2s;
   }
 
-  .playlist-item:hover {
-    background: rgba(255, 255, 255, 0.08);
-  }
+  .cmp-item:hover { background: rgba(255, 255, 255, 0.07); }
+  .cmp-item.active { background: rgba(255, 75, 43, 0.2); color: #ff6b52; font-weight: 600; }
 
-  .playlist-item.active {
-    background: rgba(255, 75, 43, 0.2);
-    color: #ff6b52;
-    font-weight: 600;
-  }
-
-  .playlist-item-info {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .playlist-item-title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .playlist-item-artist {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  .playlist-item.active .playlist-item-artist {
-    color: rgba(255, 107, 82, 0.8);
+  .cmp-error {
+    color: #f87171;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+    line-height: 1.4;
   }
 </style>
 </head>
 <body>
 
-<div class="music-player" id="player">
-  <!-- Обложка и название -->
-  <div class="track-info">
-    <div class="cover-art">
+<div class="cmp-player" id="cmp-player">
+  <div class="cmp-info">
+    <div class="cmp-disc">
       <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
     </div>
-    <div class="track-title" id="track-title">Загрузка...</div>
-    <div class="track-artist" id="track-artist">Исполнитель</div>
+    <div class="cmp-title" id="cmp-title">Загрузка...</div>
+    <div class="cmp-artist" id="cmp-artist">Исполнитель</div>
   </div>
 
-  <!-- Полоса прогресса -->
-  <div class="progress-container">
-    <div class="progress-bar" id="progress-bar">
-      <div class="progress-fill" id="progress-fill"></div>
+  <div class="cmp-progress-wrap">
+    <div class="cmp-progress-bar" id="cmp-progress-bar">
+      <div class="cmp-progress-fill" id="cmp-progress-fill"></div>
     </div>
-    <div class="time-stamps">
-      <span id="current-time">0:00</span>
-      <span id="duration">0:00</span>
+    <div class="cmp-time">
+      <span id="cmp-curr-time">0:00</span>
+      <span id="cmp-dur-time">0:00</span>
     </div>
   </div>
 
-  <!-- Кнопки: Назад, Play/Pause, Stop, Вперёд -->
-  <div class="controls">
-    <button class="btn" id="btn-prev" title="Предыдущий трек">
+  <div class="cmp-controls">
+    <button type="button" class="cmp-btn" id="cmp-prev" title="Назад">
       <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
     </button>
-
-    <button class="btn btn-play" id="btn-play" title="Воспроизвести / Пауза">
-      <svg id="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      <svg id="icon-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    <button type="button" class="cmp-btn cmp-btn-main" id="cmp-play" title="Play / Pause">
+      <svg id="cmp-ico-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="cmp-ico-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
-
-    <button class="btn" id="btn-stop" title="Стоп">
+    <button type="button" class="cmp-btn" id="cmp-stop" title="Стоп">
       <svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
     </button>
-
-    <button class="btn" id="btn-next" title="Следующий трек">
+    <button type="button" class="cmp-btn" id="cmp-next" title="Вперёд">
       <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
     </button>
   </div>
 
-  <!-- Регулятор громкости -->
-  <div class="volume-container">
-    <svg class="volume-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-    <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.01" value="0.8">
+  <div class="cmp-volume">
+    <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+    <input type="range" id="cmp-vol" min="0" max="1" step="0.01" value="0.8">
   </div>
 
-  <!-- Список треков -->
-  <div class="playlist" id="playlist"></div>
+  <div class="cmp-playlist" id="cmp-playlist"></div>
+  <div class="cmp-error" id="cmp-error"></div>
 </div>
 
-<!-- Скрытый аудио-элемент -->
-<audio id="audio"></audio>
-
 <script>
-  // === СПИСОК ВАШИХ ТРЕКОВ ===
-  // Замените ссылки (src) на пути к вашим MP3-файлам
+  // === СПИСОК ТРЕКОВ ДЛЯ GITHUB PAGES ===
+  // Указывайте относительный путь к файлам в вашем репозитории (без слеша в начале!)
   const tracks = [
     {
-      title: "Летний закат (Demo 1)",
-      artist: "SoundHelix",
-      src: "https://ramobinyah.art/books/music-page/hrenov-telekom.mp3"
+      title: "Хренов-Телеком",
+      artist: "Мой проект",
+      src: "music-page/hrenov-telekom.mp3"
     },
     {
-      title: "Ночной мегаполис (Demo 2)",
-      artist: "SoundHelix",
-      src: "https://soundhelix.com"
+      title: "Второй трек",
+      artist: "Мой проект",
+      src: "music/track2.mp3"
     },
     {
-      title: "Утренний кофе (Demo 3)",
-      artist: "SoundHelix",
-      src: "https://soundhelix.com"
+      title: "Третий трек",
+      artist: "Мой проект",
+      src: "music/track3.mp3"
     }
   ];
 
-  // Элементы DOM
-  const player = document.getElementById('player');
-  const audio = document.getElementById('audio');
-  const trackTitle = document.getElementById('track-title');
-  const trackArtist = document.getElementById('track-artist');
-  const btnPlay = document.getElementById('btn-play');
-  const iconPlay = document.getElementById('icon-play');
-  const iconPause = document.getElementById('icon-pause');
-  const btnStop = document.getElementById('btn-stop');
-  const btnPrev = document.getElementById('btn-prev');
-  const btnNext = document.getElementById('btn-next');
-  const volumeSlider = document.getElementById('volume-slider');
-  const progressBar = document.getElementById('progress-bar');
-  const progressFill = document.getElementById('progress-fill');
-  const currentTimeEl = document.getElementById('current-time');
-  const durationEl = document.getElementById('duration');
-  const playlistEl = document.getElementById('playlist');
+  const player = document.getElementById('cmp-player');
+  const titleEl = document.getElementById('cmp-title');
+  const artistEl = document.getElementById('cmp-artist');
+  const playBtn = document.getElementById('cmp-play');
+  const icoPlay = document.getElementById('cmp-ico-play');
+  const icoPause = document.getElementById('cmp-ico-pause');
+  const stopBtn = document.getElementById('cmp-stop');
+  const prevBtn = document.getElementById('cmp-prev');
+  const nextBtn = document.getElementById('cmp-next');
+  const volSlider = document.getElementById('cmp-vol');
+  const progBar = document.getElementById('cmp-progress-bar');
+  const progFill = document.getElementById('cmp-progress-fill');
+  const currTimeEl = document.getElementById('cmp-curr-time');
+  const durTimeEl = document.getElementById('cmp-dur-time');
+  const playlistEl = document.getElementById('cmp-playlist');
+  const errorEl = document.getElementById('cmp-error');
 
-  let currentTrackIndex = 0;
+  const audio = new Audio();
+  let currentIndex = 0;
   let isPlaying = false;
 
-  // Инициализация плейлиста
   function renderPlaylist() {
     playlistEl.innerHTML = '';
-    tracks.forEach((track, index) => {
-      const item = document.createElement('div');
-      item.classList.add('playlist-item');
-      if (index === currentTrackIndex) item.classList.add('active');
-      
-      item.innerHTML = `
-        <div class="playlist-item-info">
-          <span class="playlist-item-title">${index + 1}. ${track.title}</span>
-          <span class="playlist-item-artist">${track.artist}</span>
-        </div>
-      `;
-      
-      item.addEventListener('click', () => {
-        currentTrackIndex = index;
-        loadTrack(currentTrackIndex);
-        playTrack();
-      });
-      
-      playlistEl.appendChild(item);
+    tracks.forEach((t, idx) => {
+      const div = document.createElement('div');
+      div.className = 'cmp-item' + (idx === currentIndex ? ' active' : '');
+      div.innerHTML = `<span>${idx + 1}. ${t.title}</span><small style="opacity:0.6">${t.artist}</small>`;
+      div.onclick = () => {
+        currentIndex = idx;
+        loadTrack(currentIndex);
+        playAudio();
+      };
+      playlistEl.appendChild(div);
     });
   }
 
-  // Загрузка трека
-  function loadTrack(index) {
-    const track = tracks[index];
-    trackTitle.textContent = track.title;
-    trackArtist.textContent = track.artist;
+  function loadTrack(idx) {
+    errorEl.style.display = 'none';
+    const t = tracks[idx];
+    titleEl.textContent = t.title;
+    artistEl.textContent = t.artist;
+    audio.src = t.src;
+    progFill.style.width = '0%';
+    currTimeEl.textContent = '0:00';
+    durTimeEl.textContent = '0:00';
+    renderPlaylist();
+  }
 
+  function playAudio() {
+    audio.play().then(() => {
+      isPlaying = true;
+      player.classList.add('is-playing');
+      icoPlay.style.display = 'none';
+      icoPause.style.display = 'block';
+    }).catch(() => {
+      errorEl.textContent = 'Файл не найден: ' + tracks[currentIndex].src + '. Проверьте папку и регистр букв.';
+      errorEl.style.display = 'block';
+    });
+  }
+
+  function pauseAudio() {
+    audio.pause();
+    isPlaying = false;
+    player.classList.remove('is-playing');
+    icoPlay.style.display = 'block';
+    icoPause.style.display = 'none';
+  }
+
+  function stopAudio() {
+    pauseAudio();
+    audio.currentTime = 0;
+    progFill.style.width = '0%';
+  }
+
+  function nextTrack() {
+    currentIndex = (currentIndex + 1) % tracks.length;
+    loadTrack(currentIndex);
+    playAudio();
+  }
+
+  function prevTrack() {
+    currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
+    loadTrack(currentIndex);
+    playAudio();
+  }
+
+  function fmtTime(sec) {
+    if (!sec || isNaN(sec)) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  playBtn.onclick = () => isPlaying ? pauseAudio() : playAudio();
+  stopBtn.onclick = stopAudio;
+  nextBtn.onclick = nextTrack;
+  prevBtn.onclick = prevTrack;
+
+  audio.volume = volSlider.value;
+  volSlider.oninput = (e) => { audio.volume = e.target.value; };
+
+  audio.ontimeupdate = () => {
+    if (audio.duration) {
+      progFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+      currTimeEl.textContent = fmtTime(audio.currentTime);
+      durTimeEl.textContent = fmtTime(audio.duration);
+    }
+  };
+
+  progBar.onclick = (e) => {
+    if (audio.duration) {
+      const rect = progBar.getBoundingClientRect();
+      audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+    }
+  };
+
+  audio.onended = nextTrack;
 
     <!-- Конец Музыкального плеера -->
